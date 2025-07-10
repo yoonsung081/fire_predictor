@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>🔥 산불 예측 비교 대시보드</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <style>
         #map { height: 100vh; }
     </style>
@@ -13,12 +13,12 @@
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
 
     <script>
         const map = L.map('map').setView([37.5, 128.2], 7);
 
-        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{x}.png', { attribution: 'OpenStreetMap' }).addTo(map);
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);
         const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' });
 
         const trueFires = L.layerGroup().addTo(map);
@@ -34,41 +34,46 @@
             }
         ).addTo(map);
 
-        // 🔥 GeoJSON 로드
-        function loadGeoJson(url, layerGroup, iconColor) {
+        function loadGeoJson(url, layerGroup) {
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
-                    L.geoJSON(data, {
-                        pointToLayer: (feature, latlng) => L.marker(latlng, {
-                            icon: L.icon({
-                                iconUrl: 'https://cdn-icons-png.flaticon.com/512/482/482464.png',
-                                iconSize: [20, 20],
-                                iconAnchor: [10, 10]
-                            })
-                        }),
-                        onEachFeature: (feature, layer) => {
-                            if (feature.properties && feature.properties.popup) {
-                                layer.bindPopup(feature.properties.popup);
-                            }
+                    const geoLayer = L.geoJSON(data, {
+                        pointToLayer: function(feature, latlng) {
+                            return L.circleMarker(latlng, {
+                                radius: 5,
+                                fillColor: "#ff7800",
+                                color: "#000",
+                                weight: 1,
+                                opacity: 1,
+                                fillOpacity: 0.8
+                            });
                         }
                     }).addTo(layerGroup);
                 });
         }
 
-        loadGeoJson('data/true_fires.geojson', trueFires, 'red');
-        loadGeoJson('data/predicted_weather.geojson', predWeather, 'blue');
-        loadGeoJson('data/predicted_baseline.geojson', predBaseline, 'orange');
+        loadGeoJson('data/true_fires.geojson', trueFires);
+        loadGeoJson('data/predicted_weather.geojson', predWeather);
+        loadGeoJson('data/predicted_baseline.geojson', predBaseline);
 
-        // 🔍 검색 기능 (주소/지역명 기반 시점 이동)
-        const geocoder = L.Control.geocoder({
-            defaultMarkGeocode: false
-        })
-        .on('markgeocode', function(e) {
-            const center = e.geocode.center;
-            map.flyTo(center, 12);
-        })
-        .addTo(map);
+        // 검색창 기능 (Leaflet Search Plugin)
+        const searchControl = new L.Control.Search({
+            url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+            jsonpParam: 'json_callback',
+            propertyName: 'display_name',
+            propertyLoc: ['lat','lon'],
+            autoCollapse: true,
+            autoType: false,
+            minLength: 2,
+            zoom: 12
+        });
+
+        searchControl.on('search:locationfound', function(e) {
+            map.setView(e.latlng, 12);
+        });
+
+        map.addControl(searchControl);
     </script>
 </body>
 </html>
