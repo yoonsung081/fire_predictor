@@ -11,38 +11,58 @@
   </style>
 </head>
 <body>
-  <h1>🔥 예측 성능 비교</h1>
-  <canvas id="accuracyChart"></canvas>
+  <h1>🔥 성능 지표 비교</h1>
+  <canvas id="metricsChart"></canvas>
 
   <a href="index.html">← 지도 보기로 돌아가기</a>
 
   <script>
-    const ctx = document.getElementById('accuracyChart').getContext('2d');
-    const chart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['날씨 고려 모델', '날씨 미고려 모델'],
-        datasets: [{
-          label: '정확도 (%)',
-          data: [85, 68],  // 실측 결과 반영
-          backgroundColor: ['rgba(54, 162, 235, 0.7)', 'rgba(255, 99, 132, 0.7)'],
-          borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        animation: {
-          duration: 2000,
-          easing: 'easeOutBounce'
-        },
-        scales: {
-          y: { beginAtZero: true, max: 100 }
-        },
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    });
+    fetch('static/metrics.json')
+      .then(response => response.json())
+      .then(data => {
+        const labels = ['정확도', '정밀도', '재현율', 'F1-score'];
+        const weather = [
+          data.weather.accuracy,
+          data.weather.precision,
+          data.weather.recall,
+          data.weather.f1
+        ];
+        const baseline = [
+          data.baseline.accuracy,
+          data.baseline.precision,
+          data.baseline.recall,
+          data.baseline.f1
+        ];
+
+        const ctx = document.getElementById('metricsChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: '날씨 고려 모델',
+                data: weather,
+                backgroundColor: 'rgba(54, 162, 235, 0.7)'
+              },
+              {
+                label: '미고려 모델',
+                data: baseline,
+                backgroundColor: 'rgba(255, 99, 132, 0.7)'
+              }
+            ]
+          },
+          options: {
+            animation: {
+              duration: 2000,
+              easing: 'easeOutBounce'
+            },
+            scales: {
+              y: { beginAtZero: true, max: 100 }
+            }
+          }
+        });
+      });
   </script>
 </body>
 </html>
