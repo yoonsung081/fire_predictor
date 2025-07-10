@@ -1,0 +1,14 @@
+{
+  "weather": {
+    "accuracy": 39.33,
+    "precision": 28.99,
+    "recall": 84.15,
+    "f1": 43.12
+  },
+  "baseline": {
+    "accuracy": 48.67,
+    "precision": 30.43,
+    "recall": 68.29,
+    "f1": 42.11
+  }
+}
