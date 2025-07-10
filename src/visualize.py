@@ -3,8 +3,8 @@ from folium.plugins import MarkerCluster
 import webbrowser
 import os
 
-def show_map_with_prediction(df_actual, df_pred):
-    m = folium.Map(location=[37.5, 128.2], zoom_start=7)
+def show_comparison_map(center, df_true, df_pred_weather, df_pred_baseline):
+    m = folium.Map(location=center, zoom_start=10)
 
     folium.TileLayer('OpenStreetMap', name='지도').add_to(m)
     folium.TileLayer(
@@ -15,22 +15,30 @@ def show_map_with_prediction(df_actual, df_pred):
         control=True
     ).add_to(m)
 
-    ca = MarkerCluster(name='과거 산불 위치').add_to(m)
-    cp = MarkerCluster(name='예측 산불 위치').add_to(m)
+    true_layer = MarkerCluster(name='실제 산불 위치').add_to(m)
+    weather_layer = MarkerCluster(name='날씨 고려 예측').add_to(m)
+    baseline_layer = MarkerCluster(name='날씨 미고려 예측').add_to(m)
 
-    for _, row in df_actual.iterrows():
+    for _, row in df_true.iterrows():
         folium.Marker(
             [row['LAT'], row['LON']],
-            popup=f"📍 과거 산불",
+            popup="🔥 실제 산불",
             icon=folium.Icon(color='red', icon='fire', prefix='fa')
-        ).add_to(ca)
+        ).add_to(true_layer)
 
-    for _, row in df_pred.iterrows():
+    for _, row in df_pred_weather.iterrows():
         folium.Marker(
             [row['LAT'], row['LON']],
-            popup=f"🔥 예측 산불",
+            popup="🌡️ 날씨 고려 예측",
+            icon=folium.Icon(color='blue', icon='fire', prefix='fa')
+        ).add_to(weather_layer)
+
+    for _, row in df_pred_baseline.iterrows():
+        folium.Marker(
+            [row['LAT'], row['LON']],
+            popup="⚡ 날씨 미고려 예측",
             icon=folium.Icon(color='orange', icon='fire', prefix='fa')
-        ).add_to(cp)
+        ).add_to(baseline_layer)
 
     folium.LayerControl().add_to(m)
     m.save("map_result.html")
