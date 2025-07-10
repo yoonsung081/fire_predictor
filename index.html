@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <style>
         #map { height: 100vh; }
-        .top-left-link {
+        .analysis-link {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 100px; /* 돋보기 바로 아래로 내림 */
+            right: 10px;
             background: #fff;
             padding: 6px 10px;
             border-radius: 4px;
@@ -19,28 +19,11 @@
             z-index: 1000;
             font-size: 14px;
         }
-        .legend {
-            position: absolute;
-            bottom: 30px;
-            left: 10px;
-            background: white;
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            line-height: 1.4;
-            border: 1px solid #ccc;
-        }
     </style>
 </head>
 <body>
-    <a href="dashboard.html" class="top-left-link">📊 분석 보기</a>
+    <a href="dashboard.html" class="analysis-link">📊 분석 보기</a>
     <div id="map"></div>
-    <div class="legend">
-        <b>범례</b><br>
-        🔴 실제 산불<br>
-        🔵 날씨 고려 예측<br>
-        🟠 날씨 미고려 예측
-    </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
@@ -64,28 +47,26 @@
             }
         ).addTo(map);
 
-        function loadGeoJson(url, layerGroup, color) {
+        function loadGeoJson(url, layerGroup, iconUrl) {
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
                     L.geoJSON(data, {
                         pointToLayer: (feature, latlng) =>
-                            L.divIcon({
-                                html: `<span style="font-size:20px; color:${color}">🔥</span>`,
-                                className: ''
-                            }),
-                        onEachFeature: (feature, layer) => {
-                            if (feature.properties && feature.properties.popup) {
-                                layer.bindPopup(feature.properties.popup);
-                            }
-                        }
+                            L.marker(latlng, {
+                                icon: L.icon({
+                                    iconUrl: iconUrl,
+                                    iconSize: [20, 20],
+                                    iconAnchor: [10, 10]
+                                })
+                            })
                     }).addTo(layerGroup);
                 });
         }
 
-        loadGeoJson('data/true_fires.geojson', trueFires, 'red');
-        loadGeoJson('data/predicted_weather.geojson', predWeather, 'blue');
-        loadGeoJson('data/predicted_baseline.geojson', predBaseline, 'orange');
+        loadGeoJson('data/true_fires.geojson', trueFires, 'img/icon_red.png');
+        loadGeoJson('data/predicted_weather.geojson', predWeather, 'img/icon_blue.png');
+        loadGeoJson('data/predicted_baseline.geojson', predBaseline, 'img/icon_orange.png');
 
         const searchControl = new L.Control.Search({
             url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
