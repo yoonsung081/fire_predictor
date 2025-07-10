@@ -2,14 +2,27 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>🔥 산불 예측 비교 대시보드</title>
+    <title>🔥 산불 예측 지도</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <style>
         #map { height: 100vh; }
+        .top-right-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            z-index: 1000;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+    <a href="dashboard.html" class="top-right-link">정확도 비교 보기</a>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -34,30 +47,33 @@
             }
         ).addTo(map);
 
-        function loadGeoJson(url, layerGroup) {
+        function loadGeoJson(url, layerGroup, color) {
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
-                    const geoLayer = L.geoJSON(data, {
-                        pointToLayer: function(feature, latlng) {
-                            return L.circleMarker(latlng, {
+                    L.geoJSON(data, {
+                        pointToLayer: (feature, latlng) =>
+                            L.circleMarker(latlng, {
                                 radius: 5,
-                                fillColor: "#ff7800",
-                                color: "#000",
+                                fillColor: color,
+                                color: '#000',
                                 weight: 1,
                                 opacity: 1,
                                 fillOpacity: 0.8
-                            });
+                            }),
+                        onEachFeature: (feature, layer) => {
+                            if (feature.properties && feature.properties.popup) {
+                                layer.bindPopup(feature.properties.popup);
+                            }
                         }
                     }).addTo(layerGroup);
                 });
         }
 
-        loadGeoJson('data/true_fires.geojson', trueFires);
-        loadGeoJson('data/predicted_weather.geojson', predWeather);
-        loadGeoJson('data/predicted_baseline.geojson', predBaseline);
+        loadGeoJson('data/true_fires.geojson', trueFires, 'red');
+        loadGeoJson('data/predicted_weather.geojson', predWeather, 'blue');
+        loadGeoJson('data/predicted_baseline.geojson', predBaseline, 'orange');
 
-        // 검색창 기능 (Leaflet Search Plugin)
         const searchControl = new L.Control.Search({
             url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
             jsonpParam: 'json_callback',
