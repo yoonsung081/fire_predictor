@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <style>
         #map { height: 100vh; }
-        .top-right-link {
+        .top-left-link {
             position: absolute;
             top: 10px;
-            right: 10px;
+            left: 10px;
             background: #fff;
             padding: 6px 10px;
             border-radius: 4px;
@@ -19,11 +19,28 @@
             z-index: 1000;
             font-size: 14px;
         }
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            left: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
-    <a href="dashboard.html" class="top-right-link">정확도 비교 보기</a>
+    <a href="dashboard.html" class="top-left-link">📊 분석 보기</a>
     <div id="map"></div>
+    <div class="legend">
+        <b>범례</b><br>
+        🔴 실제 산불<br>
+        🔵 날씨 고려 예측<br>
+        🟠 날씨 미고려 예측
+    </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
@@ -53,13 +70,9 @@
                 .then(data => {
                     L.geoJSON(data, {
                         pointToLayer: (feature, latlng) =>
-                            L.circleMarker(latlng, {
-                                radius: 5,
-                                fillColor: color,
-                                color: '#000',
-                                weight: 1,
-                                opacity: 1,
-                                fillOpacity: 0.8
+                            L.divIcon({
+                                html: `<span style="font-size:20px; color:${color}">🔥</span>`,
+                                className: ''
                             }),
                         onEachFeature: (feature, layer) => {
                             if (feature.properties && feature.properties.popup) {
