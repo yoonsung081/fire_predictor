@@ -23,7 +23,7 @@
         .date-filter {
             position: absolute;
             top: 10px;
-            left: 10px;
+            left: 80px; /* 컨트롤 버튼과 겹치지 않도록 조정 */
             background: rgba(255, 255, 255, 0.8);
             padding: 10px;
             border-radius: 5px;
@@ -31,8 +31,13 @@
             display: flex;
             flex-direction: column;
         }
-        .date-filter > * {
+        .date-filter > div {
+            display: flex;
+            align-items: center;
             margin-bottom: 5px;
+        }
+        .date-filter input, .date-filter button, .date-filter span, .date-filter label {
+            margin: 0 5px;
         }
         .legend {
             position: absolute;
@@ -88,16 +93,19 @@
 <body>
     <a href="dashboard.html" class="analysis-link">📊 분석 보기</a>
     <div class="date-filter">
-        <label for="start-date">시작:</label>
-        <input type="text" id="start-date" placeholder="YYYY-MM-DD">
-        <label for="end-date">종료:</label>
-        <input type="text" id="end-date" placeholder="YYYY-MM-DD">
-        <button id="filter-button">적용</button>
-        &nbsp;&nbsp;
-        <label for="months-ago">지난 :</label>
-        <input type="number" id="months-ago" min="1" placeholder="10">
-        <span>개월 간의 데이터 (10개월 이상 입력 시 최신 데이터 조회 가능)</span>
-        <button id="months-filter-button">적용</button>
+        <div>
+            <label>조회할 범위:</label>
+            <input type="text" id="start-date" placeholder="YYYY-MM-DD">
+            <span>~</span>
+            <input type="text" id="end-date" placeholder="YYYY-MM-DD">
+            <button id="filter-button">적용</button>
+        </div>
+        <div>
+            <label for="months-ago">지난 :</label>
+            <input type="number" id="months-ago" min="1" placeholder="10">
+            <span>개월 간의 데이터 (10개월 이상 입력 시 최신 데이터 조회 가능)</span>
+            <button id="months-filter-button">적용</button>
+        </div>
     </div>
     <div class="legend">
         <h4>범례</h4>
