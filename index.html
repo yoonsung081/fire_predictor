@@ -5,6 +5,7 @@
     <title>🔥 산불 예측 지도</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         #map { height: 100vh; }
         .analysis-link {
@@ -19,14 +20,31 @@
             z-index: 1000;
             font-size: 14px;
         }
+        .date-filter {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <a href="dashboard.html" class="analysis-link">📊 분석 보기</a>
+    <div class="date-filter">
+        <label for="start-date">시작:</label>
+        <input type="text" id="start-date" placeholder="YYYY-MM-DD">
+        <label for="end-date">종료:</label>
+        <input type="text" id="end-date" placeholder="YYYY-MM-DD">
+        <button id="filter-button">적용</button>
+    </div>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
         const map = L.map('map').setView([37.5, 128.2], 7);
@@ -84,6 +102,59 @@
         });
 
         map.addControl(searchControl);
+
+        flatpickr("#start-date", {});
+        flatpickr("#end-date", {});
+
+        let allFiresData = [];
+
+        function updateFireMarkers(startDate, endDate) {
+            trueFires.clearLayers();
+            const filteredFires = allFiresData.filter(feature => {
+                const fireDate = new Date(feature.properties.발생일시_년, feature.properties.발생일시_월 - 1, feature.properties.발생일시_일);
+                return fireDate >= startDate && fireDate <= endDate;
+            });
+
+            L.geoJSON(filteredFires, {
+                pointToLayer: (feature, latlng) =>
+                    L.marker(latlng, {
+                        icon: L.icon({
+                            iconUrl: 'img/icon_red.png',
+                            iconSize: [20, 20],
+                            iconAnchor: [10, 10]
+                        })
+                    })
+            }).addTo(trueFires);
+        }
+
+        fetch('data/true_fires.geojson')
+            .then(res => res.json())
+            .then(data => {
+                allFiresData = data.features;
+                allFiresData.sort((a, b) => {
+                    const dateA = new Date(a.properties.발생일시_년, a.properties.발생일시_월 - 1, a.properties.발생일시_일);
+                    const dateB = new Date(b.properties.발생일시_년, b.properties.발생일시_월 - 1, b.properties.발생일시_일);
+                    return dateB - dateA; // 최신 날짜 순으로 정렬
+                });
+
+                const last30Fires = allFiresData.slice(0, 30);
+                const lastDate = new Date(last30Fires[0].properties.발생일시_년, last30Fires[0].properties.발생일시_월 - 1, last30Fires[0].properties.발생일시_일);
+                const firstDate = new Date(last30Fires[last30Fires.length - 1].properties.발생일시_년, last30Fires[last30Fires.length - 1].properties.발생일시_월 - 1, last30Fires[last30Fires.length - 1].properties.발생일시_일);
+
+                document.getElementById('start-date').value = firstDate.toISOString().split('T')[0];
+                document.getElementById('end-date').value = lastDate.toISOString().split('T')[0];
+
+                updateFireMarkers(firstDate, lastDate);
+            });
+
+        document.getElementById('filter-button').addEventListener('click', () => {
+            const startDate = new Date(document.getElementById('start-date').value);
+            const endDate = new Date(document.getElementById('end-date').value);
+            updateFireMarkers(startDate, endDate);
+        });
+
+        loadGeoJson('data/predicted_weather.geojson', predWeather, 'img/icon_blue.png');
+        loadGeoJson('data/predicted_baseline.geojson', predBaseline, 'img/icon_orange.png');
     </script>
 </body>
 </html>
