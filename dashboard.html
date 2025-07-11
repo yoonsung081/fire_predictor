@@ -18,72 +18,103 @@
 
   <script>
     fetch('static/metrics.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("metrics.json 파일을 찾을 수 없습니다.");
+        }
+        return response.json();
+      })
       .then(data => {
-        const labels = ['정확도', '정밀도', '재현율', 'F1-score'];
-        const weather = [
-          data.weather.accuracy,
-          data.weather.precision,
-          data.weather.recall,
-          data.weather.f1
-        ];
-        const baseline = [
-          data.baseline.accuracy,
-          data.baseline.precision,
-          data.baseline.recall,
-          data.baseline.f1
-        ];
-        const transformer = [
-          data.transformer ? data.transformer.accuracy : 0.0,
-          data.transformer ? data.transformer.precision : 0.0,
-          data.transformer ? data.transformer.recall : 0.0,
-          data.transformer ? data.transformer.f1 : 0.0
-        ];
-        const lightgbm = [
-          data.lightgbm ? data.lightgbm.accuracy : 0.0,
-          data.lightgbm ? data.lightgbm.precision : 0.0,
-          data.lightgbm ? data.lightgbm.recall : 0.0,
-          data.lightgbm ? data.lightgbm.f1 : 0.0
-        ];
+        const labels = ['정확도 (Accuracy)', '정밀도 (Precision)', '재현율 (Recall)', 'F1-Score'];
+        const chartDatasets = [];
+
+        // LightGBM (Baseline) 데이터 처리
+        if (data.baseline) {
+          chartDatasets.push({
+            label: 'LightGBM (Baseline)',
+            data: [
+              data.baseline.accuracy * 100,
+              data.baseline.precision * 100,
+              data.baseline.recall * 100,
+              data.baseline.f1 * 100
+            ],
+            backgroundColor: 'rgba(153, 102, 255, 0.7)' // Purple
+          });
+        }
+
+        // Transformer 데이터 처리
+        if (data.transformer) {
+          chartDatasets.push({
+            label: 'Transformer',
+            data: [
+              data.transformer.accuracy * 100,
+              data.transformer.precision * 100,
+              data.transformer.recall * 100,
+              data.transformer.f1 * 100
+            ],
+            backgroundColor: 'rgba(75, 192, 192, 0.7)' // Teal
+          });
+        }
+        
+        if (chartDatasets.length === 0) {
+            document.body.innerHTML += '<p>표시할 성능 지표 데이터가 없습니다. 모델을 먼저 훈련시켜 주세요.</p>';
+            return;
+        }
 
         const ctx = document.getElementById('metricsChart').getContext('2d');
         new Chart(ctx, {
           type: 'bar',
           data: {
             labels: labels,
-            datasets: [
-              {
-                label: '날씨 고려 모델',
-                data: weather,
-                backgroundColor: 'rgba(54, 162, 235, 0.7)'
-              },
-              {
-                label: '미고려 모델',
-                data: baseline,
-                backgroundColor: 'rgba(255, 99, 132, 0.7)'
-              },
-              {
-                label: 'Transformer 모델',
-                data: transformer,
-                backgroundColor: 'rgba(75, 192, 192, 0.7)'
-              },
-              {
-                label: 'LightGBM 모델',
-                data: lightgbm,
-                backgroundColor: 'rgba(153, 102, 255, 0.7)'
-              }
-            ]
+            datasets: chartDatasets
           },
           options: {
+            responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: '모델별 성능 지표 비교 (단위: %)',
+                font: {
+                    size: 18
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    let label = context.dataset.label || '';
+                    if (label) {
+                      label += ': ';
+                    }
+                    if (context.parsed.y !== null) {
+                      label += context.parsed.y.toFixed(2) + '%';
+                    }
+                    return label;
+                  }
+                }
+              }
+            },
             animation: {
-              duration: 2000,
+              duration: 1500,
               easing: 'easeOutBounce'
             },
             scales: {
-              y: { beginAtZero: true, max: 100 }
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  // y축에 % 기호 추가
+                  callback: function(value) {
+                    return value + '%';
+                  }
+                }
+              }
             }
           }
         });
+      })
+      .catch(error => {
+        console.error('Error fetching or parsing metrics.json:', error);
+        document.body.innerHTML += `<p>성능 지표를 불러오는 중 오류가 발생했습니다: ${error.message}</p>`;
       });
   </script>
 </body>

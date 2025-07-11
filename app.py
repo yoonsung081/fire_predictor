@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import joblib
+import json
 import torch
 
 from src.geocoding import get_coordinates
@@ -145,6 +146,48 @@ def run_long_term_prediction_mode(df, locations_df):
     center_location = get_coordinates(region_name) or (36.5, 127.5) # Default to center of Korea
     show_long_term_prediction_map(center_location, pred_dfs)
 
+def show_model_performance():
+    """모델 성능 지표 비교 대시보드"""
+    metrics_path = "static/metrics.json"
+    if not os.path.exists(metrics_path):
+        print(f"\n🚨 성능 지표 파일({metrics_path})이 없습니다. 모델을 먼저 훈련시켜주세요.")
+        return
+
+    with open(metrics_path, 'r', encoding='utf-8') as f:
+        metrics = json.load(f)
+
+    print("\n========================================")
+    print("* 모델 성능 비교 대시보드 *")
+    print("========================================")
+
+    data_for_df = []
+    
+    # LightGBM (baseline) 데이터 추가
+    if 'baseline' in metrics:
+        lgbm_metrics = metrics['baseline']
+        lgbm_metrics['Model'] = 'LightGBM (Baseline)'
+        data_for_df.append(lgbm_metrics)
+
+    # Transformer 데이터 추가
+    if 'transformer' in metrics:
+        transformer_metrics = metrics['transformer']
+        transformer_metrics['Model'] = 'Transformer'
+        data_for_df.append(transformer_metrics)
+
+    if not data_for_df:
+        print("ℹ️  표시할 성능 지표가 없습니다. 모델을 훈련하고 다시 시도해주세요.")
+        return
+
+    # pandas DataFrame을 사용하여 깔끔한 표로 출력
+    df_metrics = pd.DataFrame(data_for_df).set_index('Model')
+    
+    # 소수점 4자리까지 포맷팅
+    for col in ['accuracy', 'precision', 'recall', 'f1']:
+        if col in df_metrics.columns:
+            df_metrics[col] = df_metrics[col].apply(lambda x: f"{x:.4f}")
+            
+    print(df_metrics.to_string())
+
 if __name__ == "__main__":
     data_path = "data/with_coordinates.csv"
     if not os.path.exists(data_path):
@@ -163,6 +206,7 @@ if __name__ == "__main__":
         print("1: 과거 산불 이력 조회")
         print("2: 단기 산불 위험 예측 (LightGBM)")
         print("3: 장기 산불 위험 예측 (Transformer)")
+        print("4: 모델 성능 비교")
         print("q: 종료")
         print("----------------------------------------")
         mode = input("원하는 작업의 번호를 입력하세요 > ")
@@ -173,8 +217,10 @@ if __name__ == "__main__":
             run_short_term_prediction_mode(locations_df.copy())
         elif mode == '3':
             run_long_term_prediction_mode(df.copy(), locations_df.copy())
+        elif mode == '4':
+            show_model_performance()
         elif mode.lower() == 'q':
             print("프로그램을 종료합니다.")
             break
         else:
-            print("🚨 잘못된 입력입니다. 1, 2, 3, q 중에서 선택해주세요.")
+            print("🚨 잘못된 입력입니다. 1, 2, 3, 4, q 중에서 선택해주세요.")
