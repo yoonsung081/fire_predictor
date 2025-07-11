@@ -29,6 +29,41 @@
             border-radius: 5px;
             z-index: 1000;
         }
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .legend div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .legend img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .date-filter {
+                left: 10px;
+                right: 10px;
+                top: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+            .date-filter > * {
+                margin-bottom: 5px;
+            }
+            .analysis-link {
+                top: 180px; 
+            }
+        }
     </style>
 </head>
 <body>
@@ -41,9 +76,15 @@
         <button id="filter-button">적용</button>
         &nbsp;&nbsp;
         <label for="months-ago">지난 :</label>
-        <input type="number" id="months-ago" min="1" placeholder="30">
-        <span>개월 간의 데이터</span>
+        <input type="number" id="months-ago" min="1" placeholder="10">
+        <span>개월 간의 데이터 (10개월 이상 입력 시 최신 데이터 조회 가능)</span>
         <button id="months-filter-button">적용</button>
+    </div>
+    <div class="legend">
+        <h4>범례</h4>
+        <div><img src="img/icon_red.png" alt="실제 산불"> 실제 산불</div>
+        <div><img src="img/icon_blue.png" alt="날씨 고려 예측"> 날씨 고려 예측</div>
+        <div><img src="img/icon_orange.png" alt="날씨 미고려 예측"> 날씨 미고려 예측</div>
     </div>
     <div id="map"></div>
 
