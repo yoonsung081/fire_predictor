@@ -39,6 +39,10 @@
         <label for="end-date">종료:</label>
         <input type="text" id="end-date" placeholder="YYYY-MM-DD">
         <button id="filter-button">적용</button>
+
+        <label for="months-ago">지난:</label>
+        <input type="number" id="months-ago" min="1" placeholder="개월">
+        <button id="months-filter-button">적용</button>
     </div>
     <div id="map"></div>
 
@@ -129,6 +133,11 @@
                 return fireDate >= startDate && fireDate <= endDate;
             });
 
+            if (filteredFires.length === 0) {
+                alert("해당 기간에 산불 데이터가 없습니다.");
+                return;
+            }
+
             L.geoJSON(filteredFires, {
                 pointToLayer: (feature, latlng) =>
                     L.marker(latlng, {
@@ -144,8 +153,8 @@
                 fetch('data/predicted_weather.geojson').then(res => res.json()),
                 fetch('data/predicted_baseline.geojson').then(res => res.json())
             ]).then(([weatherPredictions, baselinePredictions]) => {
-                const closestWeather = findClosestPredictions(filteredFires[0], weatherPredictions.features, 7);
-                const closestBaseline = findClosestPredictions(filteredFires[0], baselinePredictions.features, 7);
+                const closestWeather = findClosestPredictions(filteredFires[0], weatherPredictions.features, filteredFires.length);
+                const closestBaseline = findClosestPredictions(filteredFires[0], baselinePredictions.features, filteredFires.length);
 
                 L.geoJSON(closestWeather, {
                     pointToLayer: (feature, latlng) =>
@@ -194,6 +203,23 @@
         document.getElementById('filter-button').addEventListener('click', () => {
             const startDate = new Date(document.getElementById('start-date').value);
             const endDate = new Date(document.getElementById('end-date').value);
+            updateAllMarkers(startDate, endDate);
+        });
+
+        document.getElementById('months-filter-button').addEventListener('click', () => {
+            const months = parseInt(document.getElementById('months-ago').value);
+            if (isNaN(months) || months <= 0) {
+                alert("유효한 개월 수를 입력하세요.");
+                return;
+            }
+
+            const endDate = new Date();
+            const startDate = new Date();
+            startDate.setMonth(startDate.getMonth() - months);
+
+            document.getElementById('start-date').value = startDate.toISOString().split('T')[0];
+            document.getElementById('end-date').value = endDate.toISOString().split('T')[0];
+
             updateAllMarkers(startDate, endDate);
         });
     </script>
