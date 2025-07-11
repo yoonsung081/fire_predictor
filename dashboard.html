@@ -33,6 +33,18 @@
           data.baseline.recall,
           data.baseline.f1
         ];
+        const transformer = [
+          data.transformer ? data.transformer.accuracy : 0.0,
+          data.transformer ? data.transformer.precision : 0.0,
+          data.transformer ? data.transformer.recall : 0.0,
+          data.transformer ? data.transformer.f1 : 0.0
+        ];
+        const lightgbm = [
+          data.lightgbm ? data.lightgbm.accuracy : 0.0,
+          data.lightgbm ? data.lightgbm.precision : 0.0,
+          data.lightgbm ? data.lightgbm.recall : 0.0,
+          data.lightgbm ? data.lightgbm.f1 : 0.0
+        ];
 
         const ctx = document.getElementById('metricsChart').getContext('2d');
         new Chart(ctx, {
@@ -49,6 +61,16 @@
                 label: '미고려 모델',
                 data: baseline,
                 backgroundColor: 'rgba(255, 99, 132, 0.7)'
+              },
+              {
+                label: 'Transformer 모델',
+                data: transformer,
+                backgroundColor: 'rgba(75, 192, 192, 0.7)'
+              },
+              {
+                label: 'LightGBM 모델',
+                data: lightgbm,
+                backgroundColor: 'rgba(153, 102, 255, 0.7)'
               }
             ]
           },
