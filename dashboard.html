@@ -2,16 +2,85 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔥 성능 비교 대시보드</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-    canvas { max-width: 600px; height: 600px; margin: 30px auto; }
-    a { display: inline-block; margin-top: 30px; text-decoration: none; padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; }
+    body { font-family: Arial, sans-serif; text-align: center; margin: 20px; line-height: 1.6; }
+    h1 { font-size: 2em; }
+    canvas { max-width: 600px; height: 600px; margin: 30px auto; display: block; }
+    a { display: inline-block; margin-top: 30px; text-decoration: none; padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; color: #333; }
+    .explanation-section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      text-align: left;
+      background-color: #f9f9f9;
+    }
+    .explanation-section h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .explanation-section h3 {
+      color: #555;
+      margin-top: 25px;
+    }
+    .explanation-section p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .explanation-section ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      color: #666;
+    }
+    .explanation-section ul li {
+      margin-bottom: 5px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8em; }
+      canvas { max-width: 90%; height: auto; }
+      .explanation-section {
+        margin: 20px auto;
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { margin: 10px; }
+      h1 { font-size: 1.5em; }
+      canvas { max-width: 95%; }
+      a { padding: 6px 12px; font-size: 0.9em; }
+      .explanation-section {
+        padding: 10px;
+        font-size: 0.9em;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>🔥 성능 지표 비교</h1>
+
+  <div class="explanation-section">
+    <h2>웹사이트 및 용어 설명</h2>
+    <h3>이 웹사이트는 무엇인가요?</h3>
+    <p>이 웹사이트는 산불 위험을 예측하는 모델의 성능을 시각적으로 비교하고 분석하기 위해 개발되었습니다. 다양한 예측 모델(예: LightGBM, Transformer)이 산불 발생 가능성을 얼마나 정확하게 예측하는지, 그리고 어떤 지표에서 강점을 보이는지 한눈에 파악할 수 있도록 돕습니다.</p>
+    <p>사용자는 이 대시보드를 통해 각 모델의 <b>정확도, 정밀도, 재현율, F1-Score</b>를 비교하여, 어떤 모델이 특정 상황에서 더 적합한지 판단하는 데 도움을 받을 수 있습니다.</p>
+
+    <h3>성능 지표 설명</h3>
+    <ul>
+      <li><b>정확도 (Accuracy):</b> 전체 예측 중에서 올바르게 예측한 비율입니다. (예: 산불이 발생한다고 예측했는데 실제로 발생했고, 산불이 발생하지 않는다고 예측했는데 실제로 발생하지 않은 경우)</li>
+      <li><b>정밀도 (Precision):</b> 모델이 '산불 발생'이라고 예측한 것 중에서 실제로 산불이 발생한 비율입니다. (오탐을 줄이는 것이 중요할 때 유용)</li>
+      <li><b>재현율 (Recall):</b> 실제 산불이 발생한 경우 중에서 모델이 산불이 발생한다고 올바르게 예측한 비율입니다. (실제 산불을 놓치지 않는 것이 중요할 때 유용)</li>
+      <li><b>F1-Score:</b> 정밀도와 재현율의 조화 평균입니다. 두 지표의 균형을 고려할 때 사용됩니다.</li>
+    </ul>
+    <p>이 지표들은 모델이 산불 위험을 얼마나 효과적으로 감지하고 분류하는지 평가하는 데 중요한 역할을 합니다.</p>
+  </div>
   <canvas id="metricsChart"></canvas>
 
   <a href="index.html">← 지도 보기로 돌아가기</a>

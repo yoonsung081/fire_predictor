@@ -2,12 +2,14 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔥 산불 예측 지도</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
-        #map { height: 100vh; }
+        body { margin: 0; overflow: hidden; }
+        #map { height: 100vh; width: 100vw; }
         .analysis-link {
             position: absolute;
             top: 100px; /* 돋보기 바로 아래로 내림 */
@@ -19,17 +21,19 @@
             text-decoration: none;
             z-index: 1000;
             font-size: 14px;
+            color: #333;
         }
         .date-filter {
             position: absolute;
             top: 10px;
             left: 80px; /* 컨트롤 버튼과 겹치지 않도록 조정 */
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             padding: 10px;
             border-radius: 5px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .date-filter > div {
             display: flex;
@@ -38,47 +42,62 @@
         }
         .date-filter input, .date-filter button, .date-filter span, .date-filter label {
             margin: 0 5px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .date-filter button {
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .date-filter button:hover {
+            background-color: #0056b3;
         }
         .legend {
             position: absolute;
             bottom: 20px;
             left: 10px;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             padding: 10px;
             border-radius: 5px;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .legend h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
         }
         .legend div {
             display: flex;
             align-items: center;
             margin-bottom: 5px;
+            color: #555;
         }
         .legend img {
             width: 20px;
             height: 20px;
-            margin-right: 5px;
+            margin-right: 8px;
         }
 
-        @media (max-width: 600px) {
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
             .date-filter {
-                padding: 5px;
-            }
-            .date-filter input, .date-filter button, .date-filter span {
-                font-size: 12px;
-            }
-            .legend {
-                padding: 5px;
-                bottom: 10px;
+                flex-direction: column;
                 left: 10px;
+                right: 10px;
+                width: auto;
+                top: 10px;
             }
-            .legend h4 {
-                font-size: 14px;
-                margin-top: 0;
+            .date-filter > div {
+                flex-direction: column;
+                align-items: stretch;
+                margin-bottom: 10px;
             }
-            .legend div, .legend img {
-                font-size: 12px;
-                width: 15px;
-                height: 15px;
+            .date-filter input, .date-filter button, .date-filter span, .date-filter label {
+                margin: 5px 0;
             }
             .analysis-link {
                 top: auto;
@@ -86,6 +105,41 @@
                 right: 10px;
                 font-size: 12px;
                 padding: 4px 8px;
+            }
+            .legend {
+                bottom: 60px; /* Adjust to not overlap with analysis link on small screens */
+                left: 10px;
+                right: 10px;
+                width: auto;
+                padding: 8px;
+            }
+            .legend h4 {
+                font-size: 1em;
+            }
+            .legend div {
+                font-size: 0.9em;
+            }
+            .legend img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .date-filter input, .date-filter button, .date-filter span, .date-filter label {
+                font-size: 0.9em;
+            }
+            .analysis-link {
+                font-size: 0.8em;
+                padding: 3px 6px;
+            }
+            .legend {
+                font-size: 0.8em;
+                padding: 5px;
+            }
+            .legend img {
+                width: 15px;
+                height: 15px;
             }
         }
     </style>
