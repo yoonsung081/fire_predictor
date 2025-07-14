@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <style>
         body { margin: 0; overflow: hidden; }
         #map { height: 100vh; width: 100vw; }
@@ -172,6 +174,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
     <script>
         let metricsData = {};
@@ -213,9 +216,9 @@
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);
         const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' });
 
-        const trueFires = L.layerGroup().addTo(map);
-        const predWeather = L.layerGroup().addTo(map);
-        const predBaseline = L.layerGroup().addTo(map);
+        const trueFires = L.markerClusterGroup().addTo(map);
+        const predWeather = L.markerClusterGroup().addTo(map);
+        const predBaseline = L.markerClusterGroup().addTo(map);
 
         L.control.layers(
             { "지도": osm, "위성": satellite },
@@ -313,14 +316,16 @@
                     return dateB - dateA; // 최신 날짜 순으로 정렬
                 });
 
-                const last7Fires = allFiresData.slice(0, 7);
-                const lastDate = new Date(last7Fires[0].properties.발생일시_년, last7Fires[0].properties.발생일시_월 - 1, last7Fires[0].properties.발생일시_일);
-                const firstDate = new Date(last7Fires[last7Fires.length - 1].properties.발생일시_년, last7Fires[last7Fires.length - 1].properties.발생일시_월 - 1, last7Fires[last7Fires.length - 1].properties.발생일시_일);
-
-                document.getElementById('start-date').value = firstDate.toISOString().split('T')[0];
-                document.getElementById('end-date').value = lastDate.toISOString().split('T')[0];
-
-                updateAllMarkers(firstDate, lastDate);
+                // 가장 최근 산불 하나만 표시
+                const latestFire = allFiresData[0];
+                if (latestFire) {
+                    const fireDate = new Date(latestFire.properties.발생일시_년, latestFire.properties.발생일시_월 - 1, latestFire.properties.발생일시_일);
+                    document.getElementById('start-date').value = fireDate.toISOString().split('T')[0];
+                    document.getElementById('end-date').value = fireDate.toISOString().split('T')[0];
+                    updateAllMarkers(fireDate, fireDate, latestFire);
+                } else {
+                    alert("산불 데이터가 없습니다.");
+                }
             });
 
         function findClosestPredictions(fire, predictions, count) {
@@ -334,12 +339,27 @@
                 .slice(0, count);
         }
 
-        function updateAllMarkers(startDate, endDate) {
+        function filterPredictionsByDistance(predictions, actualFires, radiusKm) {
+            const filtered = [];
+            predictions.forEach(pred => {
+                const predLatLng = L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]);
+                for (const fire of actualFires) {
+                    const fireLatLng = L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]);
+                    if (haversineDistance(predLatLng.lat, predLatLng.lng, fireLatLng.lat, fireLatLng.lng) <= radiusKm) {
+                        filtered.push(pred);
+                        break;
+                    }
+                }
+            });
+            return filtered;
+        }
+
+        function updateAllMarkers(startDate, endDate, initialFires = null) {
             trueFires.clearLayers();
             predWeather.clearLayers();
             predBaseline.clearLayers();
 
-            const filteredFires = allFiresData.filter(feature => {
+            const filteredFires = initialFires || allFiresData.filter(feature => {
                 const fireDate = new Date(feature.properties.발생일시_년, feature.properties.발생일시_월 - 1, feature.properties.발생일시_일);
                 return fireDate >= startDate && fireDate <= endDate;
             });
@@ -365,8 +385,13 @@
                 fetch('data/predicted_baseline.geojson').then(res => res.json()),
                 fetch('data/true_fires_with_weather_risk.geojson').then(res => res.json()) // satellite_rule_based 데이터 추가
             ]).then(([weatherPredictions, baselinePredictions, satellitePredictions]) => {
-                // 기존 예측 마커 로드 (transformer, baseline)
-                L.geoJSON(weatherPredictions, {
+                const radiusKm = 20; // 20km 반경
+
+                const filteredWeatherPredictions = filterPredictionsByDistance(weatherPredictions.features, filteredFires, radiusKm);
+                const filteredBaselinePredictions = filterPredictionsByDistance(baselinePredictions.features, filteredFires, radiusKm);
+                const filteredSatellitePredictions = filterPredictionsByDistance(satellitePredictions.features, filteredFires, radiusKm);
+
+                L.geoJSON({ type: "FeatureCollection", features: filteredWeatherPredictions }, {
                     pointToLayer: (feature, latlng) => {
                         const marker = L.marker(latlng, {
                             icon: L.icon({
@@ -392,7 +417,7 @@
                     }
                 }).addTo(predWeather);
 
-                L.geoJSON(baselinePredictions, {
+                L.geoJSON({ type: "FeatureCollection", features: filteredBaselinePredictions }, {
                     pointToLayer: (feature, latlng) => {
                         const marker = L.marker(latlng, {
                             icon: L.icon({
@@ -418,8 +443,7 @@
                     }
                 }).addTo(predBaseline);
 
-                // satellite_rule_based 데이터 로드 및 마커 추가
-                L.geoJSON(satellitePredictions, {
+                L.geoJSON({ type: "FeatureCollection", features: filteredSatellitePredictions }, {
                     pointToLayer: (feature, latlng) => {
                         const marker = L.marker(latlng, {
                             icon: L.icon({
@@ -457,14 +481,24 @@
                     return dateB - dateA; // 최신 날짜 순으로 정렬
                 });
 
-                const last7Fires = allFiresData.slice(0, 7);
-                const lastDate = new Date(last7Fires[0].properties.발생일시_년, last7Fires[0].properties.발생일시_월 - 1, last7Fires[0].properties.발생일시_일);
-                const firstDate = new Date(last7Fires[last7Fires.length - 1].properties.발생일시_년, last7Fires[last7Fires.length - 1].properties.발생일시_월 - 1, last7Fires[last7Fires.length - 1].properties.발생일시_일);
+                if (allFiresData.length > 0) {
+                    const latestFireDate = new Date(allFiresData[0].properties.발생일시_년, allFiresData[0].properties.발생일시_월 - 1, allFiresData[0].properties.발생일시_일);
+                    const latestMonthFires = allFiresData.filter(fire => {
+                        const fireDate = new Date(fire.properties.발생일시_년, fire.properties.발생일시_월 - 1, fire.properties.발생일시_일);
+                        return fireDate.getFullYear() === latestFireDate.getFullYear() && fireDate.getMonth() === latestFireDate.getMonth();
+                    });
 
-                document.getElementById('start-date').value = firstDate.toISOString().split('T')[0];
-                document.getElementById('end-date').value = lastDate.toISOString().split('T')[0];
+                    // 가장 최근 월의 시작일과 종료일 설정
+                    const firstDayOfLatestMonth = new Date(latestFireDate.getFullYear(), latestFireDate.getMonth(), 1);
+                    const lastDayOfLatestMonth = new Date(latestFireDate.getFullYear(), latestFireDate.getMonth() + 1, 0);
 
-                updateAllMarkers(firstDate, lastDate);
+                    document.getElementById('start-date').value = firstDayOfLatestMonth.toISOString().split('T')[0];
+                    document.getElementById('end-date').value = lastDayOfLatestMonth.toISOString().split('T')[0];
+
+                    updateAllMarkers(firstDayOfLatestMonth, lastDayOfLatestMonth, latestMonthFires);
+                } else {
+                    alert("산불 데이터가 없습니다.");
+                }
             });
 
         document.getElementById('filter-button').addEventListener('click', () => {
