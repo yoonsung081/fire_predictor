@@ -81,7 +81,7 @@ def calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_
 
     print(f"Metrics successfully updated in {metrics_file_path}.")
 
-def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, predicted_fires_output_path):
+def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, predicted_fires_output_path, start_date=None, end_date=None):
     print(f"Adding accuracy to predictions from {predicted_fires_input_path}...")
     true_fires_gdf = gpd.read_file(true_fires_path)
     predicted_fires_gdf = gpd.read_file(predicted_fires_input_path)
@@ -91,6 +91,23 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
         true_fires_gdf['date'] = pd.to_datetime(true_fires_gdf['date']).dt.strftime('%Y-%m-%d')
     if 'date' in predicted_fires_gdf.columns:
         predicted_fires_gdf['date'] = pd.to_datetime(predicted_fires_gdf['date']).dt.strftime('%Y-%m-%d')
+
+    # Apply date filtering if start_date and end_date are provided
+    if start_date and end_date:
+        start_date_dt = pd.to_datetime(start_date).date()
+        end_date_dt = pd.to_datetime(end_date).date()
+
+        if 'date' in true_fires_gdf.columns:
+            true_fires_gdf['datetime'] = pd.to_datetime(true_fires_gdf['date'])
+            true_fires_gdf = true_fires_gdf[(true_fires_gdf['datetime'].dt.date >= start_date_dt) &
+                                            (true_fires_gdf['datetime'].dt.date <= end_date_dt)]
+            true_fires_gdf = true_fires_gdf.drop(columns=['datetime']) # Remove temporary column
+
+        if 'date' in predicted_fires_gdf.columns:
+            predicted_fires_gdf['datetime'] = pd.to_datetime(predicted_fires_gdf['date'])
+            predicted_fires_gdf = predicted_fires_gdf[(predicted_fires_gdf['datetime'].dt.date >= start_date_dt) &
+                                                      (predicted_fires_gdf['datetime'].dt.date <= end_date_dt)]
+            predicted_fires_gdf = predicted_fires_gdf.drop(columns=['datetime']) # Remove temporary column
 
     predicted_fires_with_accuracy = []
 
@@ -153,6 +170,6 @@ if __name__ == "__main__":
     calculate_and_update_metrics(true_fires_path, predicted_fires_path_satellite, metrics_file_path, model_name="satellite_rule_based")
 
     # Add accuracy to individual prediction files
-    add_accuracy_to_predictions(true_fires_path, "data/predicted_weather.geojson", "data/predicted_weather_with_accuracy.geojson")
-    add_accuracy_to_predictions(true_fires_path, "data/predicted_baseline.geojson", "data/predicted_baseline_with_accuracy.geojson")
-    add_accuracy_to_predictions(true_fires_path, "data/true_fires_with_weather_risk.geojson", "data/predicted_satellite_with_accuracy.geojson")
+    add_accuracy_to_predictions(true_fires_path, "data/predicted_weather.geojson", "data/predicted_weather_with_accuracy.geojson", start_date=None, end_date=None)
+    add_accuracy_to_predictions(true_fires_path, "data/predicted_baseline.geojson", "data/predicted_baseline_with_accuracy.geojson", start_date=None, end_date=None)
+    add_accuracy_to_predictions(true_fires_path, "data/true_fires_with_weather_risk.geojson", "data/predicted_satellite_with_accuracy.geojson", start_date=None, end_date=None)
