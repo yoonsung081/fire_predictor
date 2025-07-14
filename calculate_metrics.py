@@ -3,33 +3,52 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import json
 import os
+import numpy as np
+
+def haversine_distance(lat1, lon1, lat2, lon2):
+    R = 6371  # Radius of Earth in kilometers
+    lat1_rad = np.radians(lat1)
+    lon1_rad = np.radians(lon1)
+    lat2_rad = np.radians(lat2)
+    lon2_rad = np.radians(lon2)
+
+    dlat = lat2_rad - lat1_rad
+    dlon = lon2_rad - lon1_rad
+
+    a = np.sin(dlat / 2)**2 + np.cos(lat1_rad) * np.cos(lat2_rad) * np.sin(dlon / 2)**2
+    c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+
+    return R * c
+
+def calculate_accuracy_by_distance(distance_km):
+    if distance_km <= 0.5: return 100
+    if distance_km <= 1: return 95
+    if distance_km <= 2: return 90
+    if distance_km <= 5: return 85
+    if distance_km <= 10: return 80
+    return max(0, 80 - (distance_km - 10) * 2)
 
 def calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_file_path, model_name="rule_based_prediction"):
-    print(f"✨ {model_name} 모델 지표 계산 및 업데이트 시작...")
+    print(f"{model_name} 모델 지표 계산 및 업데이트 시작...")
 
-    # 실제 산불 데이터 로드
     true_fires_gdf = gpd.read_file(true_fires_path)
-    # '발생여부' 컬럼이 1이면 산불 발생, 0이면 미발생으로 가정 (데이터셋 구조에 따라 조정 필요)
-    # 여기서는 '발생여부' 컬럼이 없으므로, 모든 지점이 산불 발생 지점이라고 가정하고 'is_fire'를 1로 설정
-    # 실제 데이터셋에 '발생여부' 또는 유사한 컬럼이 있다면 해당 컬럼을 사용해야 합니다.
     true_fires_gdf['is_fire'] = 1 
 
-    # 예측 결과 로드
     predicted_fires_gdf = gpd.read_file(predicted_fires_path)
 
-    # 두 데이터프레임을 공간적으로 조인하거나, 공통 ID를 기반으로 병합
-    # 여기서는 간단하게 인덱스를 기반으로 병합한다고 가정합니다.
-    # 실제로는 지리적 위치나 고유 ID를 기반으로 정확히 매칭해야 합니다.
+    # For overall metrics, we need to align true and predicted fires.
+    # This part of the script assumes a direct merge or spatial join for overall metrics.
+    # For individual marker accuracy, we'll handle it in add_accuracy_to_predictions.
+    
+    # This section for overall metrics might need refinement based on how true_fires and predicted_fires
+    # are supposed to align for a single accuracy/precision/recall/f1 calculation.
+    # For now, keeping the original logic for overall metrics.
     merged_df = pd.merge(true_fires_gdf, predicted_fires_gdf[['FIRE_RISK', 'geometry']], how='left', on='geometry')
-
-    # 결측치 처리 (예측 결과가 없는 경우 0으로 간주)
     merged_df['FIRE_RISK'] = merged_df['FIRE_RISK'].fillna(0)
 
-    # 실제 값과 예측 값 추출
     y_true = merged_df['is_fire']
     y_pred = merged_df['FIRE_RISK']
 
-    # 지표 계산
     accuracy = accuracy_score(y_true, y_pred)
     precision = precision_score(y_true, y_pred, zero_division=0)
     recall = recall_score(y_true, y_pred, zero_division=0)
@@ -44,25 +63,73 @@ def calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_
 
     print(f"계산된 지표: {metrics}")
 
-    # 기존 metrics.json 파일 로드
     if os.path.exists(metrics_file_path):
         with open(metrics_file_path, 'r', encoding='utf-8') as f:
             all_metrics = json.load(f)
     else:
         all_metrics = {}
 
-    # 새로운 모델 지표 추가 또는 업데이트
     all_metrics[model_name] = metrics
 
-    # 업데이트된 metrics.json 저장
     with open(metrics_file_path, 'w', encoding='utf-8') as f:
         json.dump(all_metrics, f, indent=2, ensure_ascii=False)
 
-    print(f"지표가 {metrics_file_path}에 성공적으로 업데이트되었습니다.")
+    print(f"Metrics successfully updated in {metrics_file_path}.")
+
+def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, predicted_fires_output_path):
+    print(f"Adding accuracy to predictions from {predicted_fires_input_path}...")
+    true_fires_gdf = gpd.read_file(true_fires_path)
+    predicted_fires_gdf = gpd.read_file(predicted_fires_input_path)
+
+    predicted_fires_with_accuracy = []
+
+    for idx, pred_fire in predicted_fires_gdf.iterrows():
+        pred_lat, pred_lon = pred_fire.geometry.y, pred_fire.geometry.x
+        min_distance = float('inf')
+        
+        for _, true_fire in true_fires_gdf.iterrows():
+            true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
+            distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
+            if distance < min_distance:
+                min_distance = distance
+        
+        accuracy = calculate_accuracy_by_distance(min_distance)
+        
+        # Create a new feature with existing properties and the new accuracy_score
+        new_properties = pred_fire.drop('geometry').to_dict()
+        # Convert any Timestamp objects to string format
+        for key, value in new_properties.items():
+            if isinstance(value, pd.Timestamp):
+                new_properties[key] = value.isoformat()
+        new_properties['accuracy_score'] = accuracy
+        new_properties['distance_to_closest_true_fire_km'] = min_distance # Optional: for debugging/info
+        
+        new_feature = {
+            "type": "Feature",
+            "properties": new_properties,
+            "geometry": pred_fire.geometry.__geo_interface__
+        }
+        predicted_fires_with_accuracy.append(new_feature)
+
+    output_geojson = {
+        "type": "FeatureCollection",
+        "features": predicted_fires_with_accuracy
+    }
+
+    with open(predicted_fires_output_path, 'w', encoding='utf-8') as f:
+        json.dump(output_geojson, f, indent=2, ensure_ascii=False)
+    print(f"Predictions with accuracy saved to {predicted_fires_output_path}")
+
 
 if __name__ == "__main__":
     true_fires_path = "data/true_fires.geojson"
-    predicted_fires_path = "data/true_fires_with_weather_risk.geojson"
     metrics_file_path = "static/metrics.json"
-    
-    calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_file_path, model_name="satellite_rule_based")
+
+    # Calculate and update overall metrics for satellite_rule_based model
+    predicted_fires_path_satellite = "data/true_fires_with_weather_risk.geojson"
+    calculate_and_update_metrics(true_fires_path, predicted_fires_path_satellite, metrics_file_path, model_name="satellite_rule_based")
+
+    # Add accuracy to individual prediction files
+    add_accuracy_to_predictions(true_fires_path, "data/predicted_weather.geojson", "data/predicted_weather_with_accuracy.geojson")
+    add_accuracy_to_predictions(true_fires_path, "data/predicted_baseline.geojson", "data/predicted_baseline_with_accuracy.geojson")
+    add_accuracy_to_predictions(true_fires_path, "data/true_fires_with_weather_risk.geojson", "data/predicted_satellite_with_accuracy.geojson")

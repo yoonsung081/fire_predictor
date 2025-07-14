@@ -311,9 +311,9 @@
             const actualFireLatLngs = filteredFires.map(fire => L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]));
 
             Promise.all([
-                fetch('data/predicted_weather.geojson').then(res => res.json()),
-                fetch('data/predicted_baseline.geojson').then(res => res.json()),
-                fetch('data/true_fires_with_weather_risk.geojson').then(res => res.json()) // satellite_rule_based 데이터 추가
+                fetch('data/predicted_weather_with_accuracy.geojson').then(res => res.json()),
+                fetch('data/predicted_baseline_with_accuracy.geojson').then(res => res.json()),
+                fetch('data/predicted_satellite_with_accuracy.geojson').then(res => res.json()) // satellite_rule_based 데이터 추가
             ]).then(([weatherPredictions, baselinePredictions, satellitePredictions]) => {
                 const radiusKm = 20; // 20km 반경
                 const overlapThresholdMeters = 50; // 50미터 이내 겹치면 예측 마커 표시 안함
@@ -340,26 +340,14 @@
                                 })
                             });
                             marker.on('click', () => {
-                                let minDistance = Infinity;
-                                let closestFire = null;
-
-                                allFiresData.forEach(fireFeature => {
-                                    const fireLat = fireFeature.geometry.coordinates[1];
-                                    const fireLon = fireFeature.geometry.coordinates[0];
-                                    const distance = haversineDistance(latlng.lat, latlng.lng, fireLat, fireLon);
-                                    if (distance < minDistance) {
-                                        minDistance = distance;
-                                        closestFire = fireFeature;
-                                    }
-                                });
-
                                 let popupContent = `<b>${modelName}</b>`;
-                                if (closestFire) {
-                                    const accuracy = calculateAccuracyByDistance(minDistance);
-                                    popupContent += `<br>가장 가까운 실제 산불과의 거리: ${minDistance.toFixed(2)} km`;
-                                    popupContent += `<br>예측 정확도: ${accuracy.toFixed(2)}%`;
+                                if (feature.properties.accuracy_score !== undefined) {
+                                    popupContent += `<br>예측 정확도: ${feature.properties.accuracy_score.toFixed(2)}%`;
+                                    if (feature.properties.distance_to_closest_true_fire_km !== undefined) {
+                                        popupContent += `<br>가장 가까운 실제 산불과의 거리: ${feature.properties.distance_to_closest_true_fire_km.toFixed(2)} km`;
+                                    }
                                 } else {
-                                    popupContent += `<br>가장 가까운 실제 산불을 찾을 수 없습니다.`;
+                                    popupContent += `<br>정확도 정보를 찾을 수 없습니다.`;
                                 }
                                 marker.setPopupContent(popupContent).openPopup();
                             });
