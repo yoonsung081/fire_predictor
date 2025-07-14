@@ -86,13 +86,11 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
     true_fires_gdf = gpd.read_file(true_fires_path)
     predicted_fires_gdf = gpd.read_file(predicted_fires_input_path)
 
-    # Convert 'date' columns to datetime objects and create 'year_month' column
+    # Ensure 'date' columns are standardized to string 'YYYY-MM-DD' format
     if 'date' in true_fires_gdf.columns:
-        true_fires_gdf['date'] = pd.to_datetime(true_fires_gdf['date'])
-        true_fires_gdf['year_month'] = true_fires_gdf['date'].dt.to_period('M')
+        true_fires_gdf['date'] = pd.to_datetime(true_fires_gdf['date']).dt.strftime('%Y-%m-%d')
     if 'date' in predicted_fires_gdf.columns:
-        predicted_fires_gdf['date'] = pd.to_datetime(predicted_fires_gdf['date'])
-        predicted_fires_gdf['year_month'] = predicted_fires_gdf['date'].dt.to_period('M')
+        predicted_fires_gdf['date'] = pd.to_datetime(predicted_fires_gdf['date']).dt.strftime('%Y-%m-%d')
 
     predicted_fires_with_accuracy = []
 
@@ -100,20 +98,20 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
         pred_lat, pred_lon = pred_fire.geometry.y, pred_fire.geometry.x
         min_distance = float('inf')
         
-        pred_year_month = pred_fire.get('year_month')
+        pred_date = pred_fire.get('date')
 
-        if pred_year_month:
-            # Filter true fires by the same year and month
-            true_fires_on_same_month = true_fires_gdf[true_fires_gdf['year_month'] == pred_year_month]
+        if pred_date:
+            # Filter true fires by the exact same date
+            true_fires_on_same_date = true_fires_gdf[true_fires_gdf['date'] == pred_date]
             
-            if not true_fires_on_same_month.empty:
-                for _, true_fire in true_fires_on_same_month.iterrows():
+            if not true_fires_on_same_date.empty:
+                for _, true_fire in true_fires_on_same_date.iterrows():
                     true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
                     distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
                     if distance < min_distance:
                         min_distance = distance
         else:
-            # Fallback for predictions without a date
+            # Fallback for predictions without a date: compare against all true fires
             for _, true_fire in true_fires_gdf.iterrows():
                 true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
                 distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
@@ -122,7 +120,7 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
 
         accuracy = calculate_accuracy_by_distance(min_distance)
         
-        new_properties = pred_fire.drop(['geometry', 'year_month'], errors='ignore').to_dict()
+        new_properties = pred_fire.drop('geometry', errors='ignore').to_dict()
         for key, value in new_properties.items():
             if isinstance(value, pd.Timestamp):
                 new_properties[key] = value.isoformat()
