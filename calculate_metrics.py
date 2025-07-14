@@ -86,28 +86,48 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
     true_fires_gdf = gpd.read_file(true_fires_path)
     predicted_fires_gdf = gpd.read_file(predicted_fires_input_path)
 
+    # Ensure 'date' columns are in a comparable format (string 'YYYY-MM-DD')
+    # Convert to datetime first to handle potential format variations, then to string
+    if 'date' in true_fires_gdf.columns:
+        true_fires_gdf['date'] = pd.to_datetime(true_fires_gdf['date']).dt.strftime('%Y-%m-%d')
+    if 'date' in predicted_fires_gdf.columns:
+        predicted_fires_gdf['date'] = pd.to_datetime(predicted_fires_gdf['date']).dt.strftime('%Y-%m-%d')
+
     predicted_fires_with_accuracy = []
 
     for idx, pred_fire in predicted_fires_gdf.iterrows():
         pred_lat, pred_lon = pred_fire.geometry.y, pred_fire.geometry.x
         min_distance = float('inf')
         
-        for _, true_fire in true_fires_gdf.iterrows():
-            true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
-            distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
-            if distance < min_distance:
-                min_distance = distance
-        
+        # Check if 'date' column exists and get the prediction date
+        pred_date = pred_fire.get('date')
+
+        if pred_date:
+            # Filter true fires by the same date
+            true_fires_on_same_date = true_fires_gdf[true_fires_gdf['date'] == pred_date]
+            
+            if not true_fires_on_same_date.empty:
+                for _, true_fire in true_fires_on_same_date.iterrows():
+                    true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
+                    distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
+                    if distance < min_distance:
+                        min_distance = distance
+        else:
+            # If prediction has no date, compare with all true fires as a fallback
+            for _, true_fire in true_fires_gdf.iterrows():
+                true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
+                distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
+                if distance < min_distance:
+                    min_distance = distance
+
         accuracy = calculate_accuracy_by_distance(min_distance)
         
-        # Create a new feature with existing properties and the new accuracy_score
         new_properties = pred_fire.drop('geometry').to_dict()
-        # Convert any Timestamp objects to string format
         for key, value in new_properties.items():
             if isinstance(value, pd.Timestamp):
                 new_properties[key] = value.isoformat()
         new_properties['accuracy_score'] = accuracy
-        new_properties['distance_to_closest_true_fire_km'] = min_distance # Optional: for debugging/info
+        new_properties['distance_to_closest_true_fire_km'] = min_distance
         
         new_feature = {
             "type": "Feature",
