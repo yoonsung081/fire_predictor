@@ -349,18 +349,7 @@
                                     iconAnchor: [10, 10]
                                 })
                             });
-                            marker.on('click', () => {
-                                let popupContent = `<b>${modelName}</b>`;
-                                if (feature.properties.accuracy_score !== undefined) {
-                                    popupContent += `<br>예측 정확도: ${feature.properties.accuracy_score.toFixed(2)}%`;
-                                    if (feature.properties.distance_to_closest_true_fire_km !== undefined) {
-                                        popupContent += `<br>가장 가까운 실제 산불과의 거리: ${feature.properties.distance_to_closest_true_fire_km.toFixed(2)} km`;
-                                    }
-                                } else {
-                                    popupContent += `<br>정확도 정보를 찾을 수 없습니다.`;
-                                }
-                                marker.setPopupContent(popupContent).openPopup();
-                            });
+                            marker.bindPopup(`<b>${modelName}</b><br>예측 정확도: ${feature.properties.accuracy_score !== undefined ? feature.properties.accuracy_score.toFixed(2) + '%' : '정보 없음'}`);
                             return marker;
                         }
                     }).addTo(layerGroup);
