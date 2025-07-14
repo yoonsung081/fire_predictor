@@ -21,11 +21,16 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     return R * c
 
 def calculate_accuracy_by_distance(distance_km):
-    if distance_km <= 0.2: return 90
-    if distance_km <= 0.5: return 85
-    if distance_km <= 1: return 80
-    if distance_km <= 2: return 75
-    if distance_km <= 5: return 70
+    if distance_km <= 0.05:
+        return 90
+    if distance_km <= 1.0:
+        steps = np.floor((distance_km - 0.001) / 0.05)
+        accuracy = 90 - steps
+        return max(80, int(accuracy))
+    if distance_km <= 2:
+        return 75
+    if distance_km <= 5:
+        return 70
     return max(0, 70 - (distance_km - 5) * 2)
 
 def calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_file_path, model_name="rule_based_prediction"):
