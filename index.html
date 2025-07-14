@@ -308,10 +308,7 @@
             }).addTo(trueFires);
 
             // 실제 산불 마커의 위치를 저장하여 예측 마커와 겹치는지 확인
-            const actualFireLocations = new Set();
-            filteredFires.forEach(fire => {
-                actualFireLocations.add(`${fire.geometry.coordinates[1]},${fire.geometry.coordinates[0]}`);
-            });
+            const actualFireLatLngs = filteredFires.map(fire => L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]));
 
             Promise.all([
                 fetch('data/predicted_weather.geojson').then(res => res.json()),
@@ -319,6 +316,7 @@
                 fetch('data/true_fires_with_weather_risk.geojson').then(res => res.json()) // satellite_rule_based 데이터 추가
             ]).then(([weatherPredictions, baselinePredictions, satellitePredictions]) => {
                 const radiusKm = 20; // 20km 반경
+                const overlapThresholdMeters = 50; // 50미터 이내 겹치면 예측 마커 표시 안함
 
                 const filteredWeatherPredictions = filterPredictionsByDistance(weatherPredictions.features, filteredFires, radiusKm);
                 const filteredBaselinePredictions = filterPredictionsByDistance(baselinePredictions.features, filteredFires, radiusKm);
@@ -328,8 +326,10 @@
                     L.geoJSON({ type: "FeatureCollection", features: predictions }, {
                         pointToLayer: (feature, latlng) => {
                             // 실제 산불 마커와 겹치는지 확인
-                            if (actualFireLocations.has(`${latlng.lat},${latlng.lng}`)) {
-                                return null; // 겹치면 예측 마커를 추가하지 않음
+                            for (const actualLatLng of actualFireLatLngs) {
+                                if (latlng.distanceTo(actualLatLng) < overlapThresholdMeters) {
+                                    return null; // 겹치면 예측 마커를 추가하지 않음
+                                }
                             }
 
                             const marker = L.marker(latlng, {
