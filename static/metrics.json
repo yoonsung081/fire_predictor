@@ -1,7 +1,7 @@
 {
   "baseline": {
     "accuracy": 0.9948,
-    "precision": 0.9950,
+    "precision": 0.995,
     "recall": 0.9948,
     "f1": 0.9947
   },
@@ -10,5 +10,11 @@
     "precision": 0.0625,
     "recall": 0.0484,
     "f1": 0.0471
+  },
+  "satellite_rule_based": {
+    "accuracy": 0.07677616501145913,
+    "precision": 1.0,
+    "recall": 0.07677616501145913,
+    "f1": 0.142603760198652
   }
 }
