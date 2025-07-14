@@ -174,6 +174,17 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
+        let metricsData = {};
+
+        fetch('static/metrics.json')
+            .then(response => response.json())
+            .then(data => {
+                metricsData = data;
+            })
+            .catch(error => {
+                console.error('Error loading metrics.json:', error);
+            });
+
         const map = L.map('map').setView([37.5, 128.2], 7);
 
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);
@@ -192,26 +203,36 @@
             }
         ).addTo(map);
 
-        function loadGeoJson(url, layerGroup, iconUrl) {
+        function loadGeoJson(url, layerGroup, iconUrl, modelName) {
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
                     L.geoJSON(data, {
-                        pointToLayer: (feature, latlng) =>
-                            L.marker(latlng, {
+                        pointToLayer: (feature, latlng) => {
+                            const marker = L.marker(latlng, {
                                 icon: L.icon({
                                     iconUrl: iconUrl,
                                     iconSize: [20, 20],
                                     iconAnchor: [10, 10]
                                 })
-                            })
+                            });
+
+                            let popupContent = modelName;
+                            if (metricsData[modelName] && metricsData[modelName].accuracy !== undefined) {
+                                const accuracy = (metricsData[modelName].accuracy * 100).toFixed(2);
+                                popupContent += `<br>정확도: ${accuracy}%`;
+                            }
+                            marker.bindPopup(popupContent);
+                            return marker;
+                        }
                     }).addTo(layerGroup);
                 });
         }
 
-        loadGeoJson('data/true_fires.geojson', trueFires, 'img/icon_red.png');
-        loadGeoJson('data/predicted_weather.geojson', predWeather, 'img/icon_blue.png');
-        loadGeoJson('data/predicted_baseline.geojson', predBaseline, 'img/icon_orange.png');
+        loadGeoJson('data/true_fires.geojson', trueFires, 'img/icon_red.png', null); // 실제 산불은 모델 예측이 아니므로 정확도 표시 안함
+        loadGeoJson('data/predicted_weather.geojson', predWeather, 'img/icon_blue.png', 'transformer');
+        loadGeoJson('data/predicted_baseline.geojson', predBaseline, 'img/icon_orange.png', 'baseline');
+        loadGeoJson('data/true_fires_with_weather_risk.geojson', predWeather, 'img/icon_blue.png', 'satellite_rule_based');
 
         const searchControl = new L.Control.Search({
             url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',

@@ -87,8 +87,27 @@
       <li><b>F1-Score:</b> 정밀도와 재현율의 조화 평균입니다. 두 지표의 균형을 고려할 때 사용됩니다.</li>
     </ul>
     <p>이 지표들은 모델이 산불 위험을 얼마나 효과적으로 감지하고 분류하는지 평가하는 데 중요한 역할을 합니다.</p>
+
+    <h3>산불 발생의 주요 원인 및 예측 모델의 한계</h3>
+    <p>산불은 다양한 원인으로 발생하며, 크게 인적 요인과 자연적 요인으로 나눌 수 있습니다. 대한민국 산불의 경우, 대부분 사람의 부주의로 인한 것이며, 특히 최근 10년간의 통계에 따르면 <b>입산자 실화(31.2%), 쓰레기 소각(12.4%), 논·밭두렁 소각(11.0%)</b>이 전체 산불 발생의 절반 이상을 차지합니다. 자연적인 원인(예: 낙뢰)으로 인한 산불은 매우 드문 편입니다.</p>
+    <ul>
+      <li><b>인적 요인:</b> 담뱃불, 쓰레기 소각, 논밭두렁 소각, 성묘객 실화, 용접 불꽃 등 사람의 부주의로 인해 발생하는 경우가 가장 많습니다. 고의적인 방화도 중요한 원인 중 하나입니다.</li>
+      <li><b>자연적 요인:</b> 낙뢰, 화산 활동(드물게) 등이 있습니다.</li>
+    </ul>
+    <p>현재 저희 예측 모델은 주로 인공위성 사진을 기반으로 한 규칙 기반 모델입니다. 이러한 모델은 다음과 같은 한계로 인해 특정 산불 원인에 대한 예측 정확도가 낮을 수 있습니다.</p>
+    <ul>
+      <li><b>인적 요인 감지의 어려움:</b> 인공위성 사진은 넓은 지역의 온도 변화, 연기, 식생 상태 등을 감지하는 데 효과적입니다. 하지만 사람의 부주의나 고의적인 방화와 같이 작은 규모에서 시작되거나, 위성 사진에 직접적으로 나타나지 않는 원인(예: 담뱃불, 작은 불씨)을 실시간으로 감지하고 예측하는 데는 한계가 있습니다. 이러한 산불은 발생 초기에는 위성에서 감지하기 어려울 수 있으며, 이미 확산된 후에야 감지될 가능성이 높습니다.</li>
+      <li><b>미시적인 정보 부족:</b> 위성 사진은 거시적인 관점의 데이터를 제공하므로, 산불 발생에 영향을 미치는 미시적인 요인(예: 특정 지역의 건조한 낙엽 축적, 인구 밀집도, 사람들의 활동 패턴)을 직접적으로 파악하기 어렵습니다.</li>
+    </ul>
+    <p>이러한 이유로, 현재 모델의 정확도가 낮게 나타날 수 있습니다. 산불 예측의 정확도를 높이기 위해서는 위성 데이터 외에도 다양한 인적, 환경적 데이터를 통합하고, 더욱 정교한 머신러닝 모델을 활용하는 연구가 필요합니다.</p>
   </div>
   <canvas id="metricsChart"></canvas>
+
+  <div class="explanation-section">
+    <h2>산불 원인 통계</h2>
+    <p>다음 그래프는 대한민국 산불 발생의 주요 원인별 통계를 보여줍니다. 대부분의 산불이 사람의 부주의로 인해 발생함을 알 수 있습니다.</p>
+    <canvas id="causesChart"></canvas>
+  </div>
 
   <a href="index.html">← 지도 보기로 돌아가기</a>
 
@@ -206,6 +225,72 @@
         console.error('Error fetching or parsing metrics.json:', error);
         document.body.innerHTML += `<p>성능 지표를 불러오는 중 오류가 발생했습니다: ${error.message}</p>`;
       });
+
+    // 산불 원인 통계 그래프
+    const causesLabels = ['입산자 실화', '쓰레기 소각', '논·밭두렁 소각', '기타'];
+    const causesData = [31.2, 12.4, 11.0, 100 - (31.2 + 12.4 + 11.0)]; // 기타는 전체에서 주요 3가지 원인을 제외한 값
+
+    const causesCtx = document.getElementById('causesChart').getContext('2d');
+    new Chart(causesCtx, {
+      type: 'bar',
+      data: {
+        labels: causesLabels,
+        datasets: [{
+          label: '산불 발생 비율',
+          data: causesData,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(153, 102, 255, 0.7)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(153, 102, 255, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: '대한민국 산불 원인별 통계 (최근 10년간)',
+            font: {
+                size: 18
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += context.parsed.y.toFixed(2) + '%';
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              callback: function(value) {
+                return value + '%';
+              }
+            }
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>
