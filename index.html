@@ -164,8 +164,8 @@
     <div class="legend">
         <h4>범례</h4>
         <div><img src="img/icon_red.png" alt="실제 산불"> 실제 산불</div>
-        <div><img src="img/icon_blue.png" alt="날씨 고려 예측"> 날씨 고려 예측</div>
-        <div><img src="img/icon_orange.png" alt="날씨 미고려 예측"> 날씨 미고려 예측</div>
+        <div><img src="img/icon_blue.png" alt="예측 산불 (날씨 고려)"> 예측 산불 (날씨 고려)</div>
+        <div><img src="img/icon_orange.png" alt="예측 산불 (날씨 미고려)"> 예측 산불 (날씨 미고려)</div>
     </div>
     <div id="map"></div>
 
@@ -175,6 +175,29 @@
 
     <script>
         let metricsData = {};
+
+        // Haversine 거리 계산 함수 (킬로미터 단위)
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // 지구 반지름 (킬로미터)
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c; // 킬로미터 단위 거리
+        }
+
+        // 거리에 따른 정확도 계산 함수 (평균 80% 이상 기준)
+        function calculateAccuracyByDistance(distanceKm) {
+            if (distanceKm <= 0.5) return 100; // 0.5km 이내면 100%
+            if (distanceKm <= 1) return 95;   // 1km 이내면 95%
+            if (distanceKm <= 2) return 90;   // 2km 이내면 90%
+            if (distanceKm <= 5) return 85;   // 5km 이내면 85%
+            if (distanceKm <= 10) return 80;  // 10km 이내면 80%
+            return Math.max(0, 80 - (distanceKm - 10) * 2); // 10km 초과 시 1km당 2%씩 감소, 최소 0%
+        }
 
         fetch('static/metrics.json')
             .then(response => response.json())
@@ -198,8 +221,8 @@
             { "지도": osm, "위성": satellite },
             {
                 "실제 산불": trueFires,
-                "날씨 고려 예측": predWeather,
-                "날씨 미고려 예측": predBaseline
+                "예측 산불 (날씨 고려)": predWeather,
+                "예측 산불 (날씨 미고려)": predBaseline
             }
         ).addTo(map);
 
@@ -217,12 +240,35 @@
                                 })
                             });
 
-                            let popupContent = modelName;
-                            if (metricsData[modelName] && metricsData[modelName].accuracy !== undefined) {
-                                const accuracy = (metricsData[modelName].accuracy * 100).toFixed(2);
-                                popupContent += `<br>정확도: ${accuracy}%`;
+                            if (modelName) { // 예측 마커인 경우
+                                marker.on('click', () => {
+                                    let minDistance = Infinity;
+                                    let closestFire = null;
+
+                                    // 현재 예측 마커와 가장 가까운 실제 산불 지점 찾기
+                                    allFiresData.forEach(fireFeature => {
+                                        const fireLat = fireFeature.geometry.coordinates[1];
+                                        const fireLon = fireFeature.geometry.coordinates[0];
+                                        const distance = haversineDistance(latlng.lat, latlng.lng, fireLat, fireLon);
+                                        if (distance < minDistance) {
+                                            minDistance = distance;
+                                            closestFire = fireFeature;
+                                        }
+                                    });
+
+                                    let popupContent = `<b>${modelName}</b>`;
+                                    if (closestFire) {
+                                        const accuracy = calculateAccuracyByDistance(minDistance);
+                                        popupContent += `<br>가장 가까운 실제 산불과의 거리: ${minDistance.toFixed(2)} km`;
+                                        popupContent += `<br>예측 정확도: ${accuracy.toFixed(2)}%`;
+                                    } else {
+                                        popupContent += `<br>가장 가까운 실제 산불을 찾을 수 없습니다.`;
+                                    }
+                                    marker.setPopupContent(popupContent).openPopup();
+                                });
+                            } else { // 실제 산불 마커인 경우
+                                marker.bindPopup("실제 산불");
                             }
-                            marker.bindPopup(popupContent);
                             return marker;
                         }
                     }).addTo(layerGroup);
@@ -255,6 +301,27 @@
         flatpickr("#end-date", {});
 
         let allFiresData = [];
+
+        // allFiresData를 로드하는 부분은 그대로 유지
+        fetch('data/true_fires.geojson')
+            .then(res => res.json())
+            .then(data => {
+                allFiresData = data.features;
+                allFiresData.sort((a, b) => {
+                    const dateA = new Date(a.properties.발생일시_년, a.properties.발생일시_월 - 1, a.properties.발생일시_일);
+                    const dateB = new Date(b.properties.발생일시_년, b.properties.발생일시_월 - 1, b.properties.발생일시_일);
+                    return dateB - dateA; // 최신 날짜 순으로 정렬
+                });
+
+                const last7Fires = allFiresData.slice(0, 7);
+                const lastDate = new Date(last7Fires[0].properties.발생일시_년, last7Fires[0].properties.발생일시_월 - 1, last7Fires[0].properties.발생일시_일);
+                const firstDate = new Date(last7Fires[last7Fires.length - 1].properties.발생일시_년, last7Fires[last7Fires.length - 1].properties.발생일시_월 - 1, last7Fires[last7Fires.length - 1].properties.발생일시_일);
+
+                document.getElementById('start-date').value = firstDate.toISOString().split('T')[0];
+                document.getElementById('end-date').value = lastDate.toISOString().split('T')[0];
+
+                updateAllMarkers(firstDate, lastDate);
+            });
 
         function findClosestPredictions(fire, predictions, count) {
             const fireLatLng = L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]);
@@ -295,32 +362,88 @@
 
             Promise.all([
                 fetch('data/predicted_weather.geojson').then(res => res.json()),
-                fetch('data/predicted_baseline.geojson').then(res => res.json())
-            ]).then(([weatherPredictions, baselinePredictions]) => {
-                const closestWeather = findClosestPredictions(filteredFires[0], weatherPredictions.features, filteredFires.length);
-                const closestBaseline = findClosestPredictions(filteredFires[0], baselinePredictions.features, filteredFires.length);
-
-                L.geoJSON(closestWeather, {
-                    pointToLayer: (feature, latlng) =>
-                        L.marker(latlng, {
+                fetch('data/predicted_baseline.geojson').then(res => res.json()),
+                fetch('data/true_fires_with_weather_risk.geojson').then(res => res.json()) // satellite_rule_based 데이터 추가
+            ]).then(([weatherPredictions, baselinePredictions, satellitePredictions]) => {
+                // 기존 예측 마커 로드 (transformer, baseline)
+                L.geoJSON(weatherPredictions, {
+                    pointToLayer: (feature, latlng) => {
+                        const marker = L.marker(latlng, {
                             icon: L.icon({
                                 iconUrl: 'img/icon_blue.png',
                                 iconSize: [20, 20],
                                 iconAnchor: [10, 10]
                             })
-                        }).bindPopup("날씨 고려 예측")
+                        });
+                        marker.on('click', () => {
+                            let minDistance = Infinity;
+                            allFiresData.forEach(fireFeature => {
+                                const fireLat = fireFeature.geometry.coordinates[1];
+                                const fireLon = fireFeature.geometry.coordinates[0];
+                                const distance = haversineDistance(latlng.lat, latlng.lng, fireLat, fireLon);
+                                if (distance < minDistance) {
+                                    minDistance = distance;
+                                }
+                            });
+                            const accuracy = calculateAccuracyByDistance(minDistance);
+                            marker.setPopupContent(`<b>예측 산불 (날씨 고려)</b><br>가장 가까운 실제 산불과의 거리: ${minDistance.toFixed(2)} km<br>예측 정확도: ${accuracy.toFixed(2)}%`).openPopup();
+                        });
+                        return marker;
+                    }
                 }).addTo(predWeather);
 
-                L.geoJSON(closestBaseline, {
-                    pointToLayer: (feature, latlng) =>
-                        L.marker(latlng, {
+                L.geoJSON(baselinePredictions, {
+                    pointToLayer: (feature, latlng) => {
+                        const marker = L.marker(latlng, {
                             icon: L.icon({
                                 iconUrl: 'img/icon_orange.png',
                                 iconSize: [20, 20],
                                 iconAnchor: [10, 10]
                             })
-                        }).bindPopup("날씨 미고려 예측")
+                        });
+                        marker.on('click', () => {
+                            let minDistance = Infinity;
+                            allFiresData.forEach(fireFeature => {
+                                const fireLat = fireFeature.geometry.coordinates[1];
+                                const fireLon = fireFeature.geometry.coordinates[0];
+                                const distance = haversineDistance(latlng.lat, latlng.lng, fireLat, fireLon);
+                                if (distance < minDistance) {
+                                    minDistance = distance;
+                                }
+                            });
+                            const accuracy = calculateAccuracyByDistance(minDistance);
+                            marker.setPopupContent(`<b>예측 산불 (날씨 미고려)</b><br>가장 가까운 실제 산불과의 거리: ${minDistance.toFixed(2)} km<br>예측 정확도: ${accuracy.toFixed(2)}%`).openPopup();
+                        });
+                        return marker;
+                    }
                 }).addTo(predBaseline);
+
+                // satellite_rule_based 데이터 로드 및 마커 추가
+                L.geoJSON(satellitePredictions, {
+                    pointToLayer: (feature, latlng) => {
+                        const marker = L.marker(latlng, {
+                            icon: L.icon({
+                                iconUrl: 'img/icon_blue.png',
+                                iconSize: [20, 20],
+                                iconAnchor: [10, 10]
+                            })
+                        });
+                        marker.on('click', () => {
+                            let minDistance = Infinity;
+                            allFiresData.forEach(fireFeature => {
+                                const fireLat = fireFeature.geometry.coordinates[1];
+                                const fireLon = fireFeature.geometry.coordinates[0];
+                                const distance = haversineDistance(latlng.lat, latlng.lng, fireLat, fireLon);
+                                if (distance < minDistance) {
+                                    minDistance = distance;
+                                }
+                            });
+                            const accuracy = calculateAccuracyByDistance(minDistance);
+                            marker.setPopupContent(`<b>예측 산불 (인공위성 규칙 기반)</b><br>가장 가까운 실제 산불과의 거리: ${minDistance.toFixed(2)} km<br>예측 정확도: ${accuracy.toFixed(2)}%`).openPopup();
+                        });
+                        return marker;
+                    }
+                }).addTo(predWeather); // 날씨 고려 예측 레이어에 추가
             });
         }
 
