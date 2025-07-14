@@ -8,7 +8,7 @@
         "LON": 127.9130645,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "오룡산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -26,7 +26,7 @@
         "LON": 128.66476,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "명하뒷산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -44,7 +44,7 @@
         "LON": 126.8789145,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금병산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -62,7 +62,7 @@
         "LON": 129.2256667,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "모산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -80,7 +80,7 @@
         "LON": 127.907325,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "승마산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -98,7 +98,7 @@
         "LON": 129.14325,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "도독고산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -116,7 +116,7 @@
         "LON": 127.995722,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "진새양지산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -134,7 +134,7 @@
         "LON": 126.36607,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -152,7 +152,7 @@
         "LON": 128.93528,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "석이봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -170,7 +170,7 @@
         "LON": 127.2876694,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "각흘봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -188,7 +188,7 @@
         "LON": 126.9438246,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉황산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -206,7 +206,7 @@
         "LON": 127.306672,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "고목덤불산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -224,7 +224,7 @@
         "LON": 127.028659,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "국시산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -242,7 +242,7 @@
         "LON": 127.7338917,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉의산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -260,7 +260,7 @@
         "LON": 127.11025,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "팔강산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -278,7 +278,7 @@
         "LON": 127.4525944,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "국사봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -296,7 +296,7 @@
         "LON": 128.1157678,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "주지봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -314,7 +314,7 @@
         "LON": 126.77196,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉암산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -332,7 +332,7 @@
         "LON": 127.5694306,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "함박산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -350,7 +350,7 @@
         "LON": 127.68557,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "새말봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -368,7 +368,7 @@
         "LON": 127.4226611,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "마산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -386,7 +386,7 @@
         "LON": 127.59618,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "미루봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -404,7 +404,7 @@
         "LON": 129.12176,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "어기봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -422,7 +422,7 @@
         "LON": 128.6469222,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "국사봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -440,7 +440,7 @@
         "LON": 126.7405909,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "월하산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -458,7 +458,7 @@
         "LON": 127.1034944,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "수리봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -476,7 +476,7 @@
         "LON": 126.5024,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "남다리산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -494,7 +494,7 @@
         "LON": 129.34673,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "원봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -512,7 +512,7 @@
         "LON": 127.34916,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "아래당미산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -530,7 +530,7 @@
         "LON": 127.05611,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉화봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -548,7 +548,7 @@
         "LON": 127.97031,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "대성산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -566,7 +566,7 @@
         "LON": 128.5549052,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "불영봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -584,7 +584,7 @@
         "LON": 128.0511556,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "화당산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -602,7 +602,7 @@
         "LON": 126.9453472,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "명덕봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -620,7 +620,7 @@
         "LON": 127.1490194,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "남산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -638,7 +638,7 @@
         "LON": 127.101418,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "공도산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -656,7 +656,7 @@
         "LON": 127.8561972,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "패명산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -674,7 +674,7 @@
         "LON": 127.3296084,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "문안산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -692,7 +692,7 @@
         "LON": 128.93528,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "석이봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -710,7 +710,7 @@
         "LON": 127.0947067,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "신갈도시자연공원",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -728,7 +728,7 @@
         "LON": 127.1490194,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "남산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -746,7 +746,7 @@
         "LON": 128.0884417,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "도관산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -764,7 +764,7 @@
         "LON": 128.1635778,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "새잼이산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -782,7 +782,7 @@
         "LON": 126.8315,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "일산봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -800,7 +800,7 @@
         "LON": 127.75105,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "활인산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -818,7 +818,7 @@
         "LON": 128.5513389,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "석두산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -836,7 +836,7 @@
         "LON": 126.9972997,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": null,
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -854,7 +854,7 @@
         "LON": 127.3471,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "주리통산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -872,7 +872,7 @@
         "LON": 128.5215352,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금정산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -890,7 +890,7 @@
         "LON": 126.7105667,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "천등산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -908,7 +908,7 @@
         "LON": 126.7779972,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "숭정산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -926,7 +926,7 @@
         "LON": 127.995722,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "진새양지산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -944,7 +944,7 @@
         "LON": 127.2930333,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "비학산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -962,7 +962,7 @@
         "LON": 128.6717111,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "제황산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -980,7 +980,7 @@
         "LON": 126.66374,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "안산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -998,7 +998,7 @@
         "LON": 128.5513389,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "석두산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1016,7 +1016,7 @@
         "LON": 126.69011,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "심봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1034,7 +1034,7 @@
         "LON": 128.72791,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "팔봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1052,7 +1052,7 @@
         "LON": 126.8432494,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "국사봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1070,7 +1070,7 @@
         "LON": 126.56755,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "청룡뿌리산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1088,7 +1088,7 @@
         "LON": 126.8206194,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "비재산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1106,7 +1106,7 @@
         "LON": 127.6227778,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "꾀꼬리봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1124,7 +1124,7 @@
         "LON": 128.0045579,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "비봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1142,7 +1142,7 @@
         "LON": 127.14861,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "동산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1160,7 +1160,7 @@
         "LON": 127.2930333,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "비학산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1178,7 +1178,7 @@
         "LON": 127.0122778,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "어라산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1196,7 +1196,7 @@
         "LON": 127.47622,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "구룡산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1214,7 +1214,7 @@
         "LON": 126.5194833,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "월망산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1232,7 +1232,7 @@
         "LON": 127.5968,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "어미산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1250,7 +1250,7 @@
         "LON": 128.5048347,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "고연정",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1268,7 +1268,7 @@
         "LON": 127.2186199,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "청성산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1286,7 +1286,7 @@
         "LON": 129.38458,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "고불봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1304,7 +1304,7 @@
         "LON": 127.57827,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금슬봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1322,7 +1322,7 @@
         "LON": 127.3121028,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "성수산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1340,7 +1340,7 @@
         "LON": 126.7901793,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "고봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1358,7 +1358,7 @@
         "LON": 128.900462,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "간서랑산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1376,7 +1376,7 @@
         "LON": 127.6227778,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "꾀꼬리봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1394,7 +1394,7 @@
         "LON": 128.4597889,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "죽곡산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1412,7 +1412,7 @@
         "LON": 127.9758861,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "엄혜산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1430,7 +1430,7 @@
         "LON": 126.7112446,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "퇴뫼산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1448,7 +1448,7 @@
         "LON": 128.5513389,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "석두산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1466,7 +1466,7 @@
         "LON": 128.14498,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "법림산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1484,7 +1484,7 @@
         "LON": 126.7699,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "삼각점",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1502,7 +1502,7 @@
         "LON": 127.4706232,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "수덕산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1520,7 +1520,7 @@
         "LON": 128.9376315,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "아기산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1538,7 +1538,7 @@
         "LON": 126.7620389,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "당산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1556,7 +1556,7 @@
         "LON": 127.5694306,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "함박산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1574,7 +1574,7 @@
         "LON": 126.56755,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "청룡뿌리산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1592,7 +1592,7 @@
         "LON": 127.28085,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "관모봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1610,7 +1610,7 @@
         "LON": 127.955966,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "원당봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1628,7 +1628,7 @@
         "LON": 127.9902724,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "박유산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1646,7 +1646,7 @@
         "LON": 127.2727,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "안산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1664,7 +1664,7 @@
         "LON": 127.176062,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "청량산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1682,7 +1682,7 @@
         "LON": 127.1279479,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "필봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1700,7 +1700,7 @@
         "LON": 127.57827,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금슬봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1718,7 +1718,7 @@
         "LON": 127.30883,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "진터",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1736,7 +1736,7 @@
         "LON": 126.4953111,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "장구봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1754,7 +1754,7 @@
         "LON": 127.3229232,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "감투봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1772,7 +1772,7 @@
         "LON": 127.5197982,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "후미개고개",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1790,7 +1790,7 @@
         "LON": 127.7880167,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "오봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1808,7 +1808,7 @@
         "LON": 126.95167,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "홍아산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1826,7 +1826,7 @@
         "LON": 127.5049028,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "안산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1844,7 +1844,7 @@
         "LON": 128.9222511,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "실혜산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1862,7 +1862,7 @@
         "LON": 127.0215159,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "도락산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1880,7 +1880,7 @@
         "LON": 126.4827222,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "장군산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1898,7 +1898,7 @@
         "LON": 127.7292278,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "뚜갈봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1916,7 +1916,7 @@
         "LON": 128.32305,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "대산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1934,7 +1934,7 @@
         "LON": 127.306672,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "고목덤불산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1952,7 +1952,7 @@
         "LON": 127.15112,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "동산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1970,7 +1970,7 @@
         "LON": 126.7351111,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "제룡산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -1988,7 +1988,7 @@
         "LON": 127.5085593,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "먹뱅이산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2006,7 +2006,7 @@
         "LON": 128.93528,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "석이봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2024,7 +2024,7 @@
         "LON": 126.58885,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "백두산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2042,7 +2042,7 @@
         "LON": 127.71493,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "안평봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2060,7 +2060,7 @@
         "LON": 127.8490716,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "망덕산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2078,7 +2078,7 @@
         "LON": 127.0660944,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "국수봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2096,7 +2096,7 @@
         "LON": 127.8467,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "월림산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2114,7 +2114,7 @@
         "LON": 128.17749,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "매봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2132,7 +2132,7 @@
         "LON": 128.5914917,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "하지산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2150,7 +2150,7 @@
         "LON": 126.37219,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "허릿재봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2168,7 +2168,7 @@
         "LON": 126.7105667,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "천등산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2186,7 +2186,7 @@
         "LON": 128.4627639,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "대방산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2204,7 +2204,7 @@
         "LON": 127.2298527,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "목표봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2222,7 +2222,7 @@
         "LON": 129.1088028,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "노상산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2240,7 +2240,7 @@
         "LON": 127.61151,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "다릿골봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2258,7 +2258,7 @@
         "LON": 129.54993,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "응암산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2276,7 +2276,7 @@
         "LON": 127.15248,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "용정봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2294,7 +2294,7 @@
         "LON": 128.3951806,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "연화산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2312,7 +2312,7 @@
         "LON": 127.6077806,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "뱀등",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2330,7 +2330,7 @@
         "LON": 127.1182,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉우재산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2348,7 +2348,7 @@
         "LON": 128.26949,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "천수산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2366,7 +2366,7 @@
         "LON": 127.96067,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "매봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2384,7 +2384,7 @@
         "LON": 127.9295111,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "남산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2402,7 +2402,7 @@
         "LON": 126.3300254,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "황금산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2420,7 +2420,7 @@
         "LON": 126.1751272,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "대소산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2438,7 +2438,7 @@
         "LON": 126.8374064,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "광덕산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2456,7 +2456,7 @@
         "LON": 126.9247102,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금성산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2474,7 +2474,7 @@
         "LON": 127.72488,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "필봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2492,7 +2492,7 @@
         "LON": 127.71493,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "안평봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2510,7 +2510,7 @@
         "LON": 127.3295528,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "수덕산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2528,7 +2528,7 @@
         "LON": 128.66476,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "명하뒷산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2546,7 +2546,7 @@
         "LON": 126.5168,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "통일산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2564,7 +2564,7 @@
         "LON": 126.8922272,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "자웅산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2582,7 +2582,7 @@
         "LON": 129.0308669,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "별동산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2600,7 +2600,7 @@
         "LON": 127.425225,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "성묘산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2618,7 +2618,7 @@
         "LON": 126.7259585,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": null,
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2636,7 +2636,7 @@
         "LON": 128.5215352,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금정산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2654,7 +2654,7 @@
         "LON": 128.8275333,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "매봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2672,7 +2672,7 @@
         "LON": 128.8362694,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "대왕산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2690,7 +2690,7 @@
         "LON": 127.6885139,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "송이봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2708,7 +2708,7 @@
         "LON": 129.2256667,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "모산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2726,7 +2726,7 @@
         "LON": 128.8960443,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "석심산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2744,7 +2744,7 @@
         "LON": 127.3393738,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "용투산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2762,7 +2762,7 @@
         "LON": 127.218671,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금대산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2780,7 +2780,7 @@
         "LON": 126.4296828,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "마니산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2798,7 +2798,7 @@
         "LON": 127.30996,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉화대",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2816,7 +2816,7 @@
         "LON": 127.7880167,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "오봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2834,7 +2834,7 @@
         "LON": 127.6044389,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "압곡봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2852,7 +2852,7 @@
         "LON": 127.83699,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "남산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2870,7 +2870,7 @@
         "LON": 128.9165,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "송청산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2888,7 +2888,7 @@
         "LON": 127.1397972,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "용두봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2906,7 +2906,7 @@
         "LON": 129.1623858,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "주왕산 주봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2924,7 +2924,7 @@
         "LON": 128.66476,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "명하뒷산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2942,7 +2942,7 @@
         "LON": 128.4597889,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "죽곡산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2960,7 +2960,7 @@
         "LON": 129.2947389,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "형산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2978,7 +2978,7 @@
         "LON": 126.9247102,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금성산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -2996,7 +2996,7 @@
         "LON": 127.34916,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "아래당미산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3014,7 +3014,7 @@
         "LON": 126.54634,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "오학산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3032,7 +3032,7 @@
         "LON": 127.68557,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "새말봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3050,7 +3050,7 @@
         "LON": 128.3349,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금동산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3068,7 +3068,7 @@
         "LON": 127.218671,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금대산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3086,7 +3086,7 @@
         "LON": 126.8508797,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "만장산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3104,7 +3104,7 @@
         "LON": 128.3549278,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "오로산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3122,7 +3122,7 @@
         "LON": 127.13788,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "동매산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3140,7 +3140,7 @@
         "LON": 126.8686,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "삼각점",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3158,7 +3158,7 @@
         "LON": 126.8120853,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "말미산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3176,7 +3176,7 @@
         "LON": 128.4981222,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "마산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3194,7 +3194,7 @@
         "LON": 128.07519,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "팔자봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3212,7 +3212,7 @@
         "LON": 127.2733222,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "계관산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3230,7 +3230,7 @@
         "LON": 128.0995306,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "금산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3248,7 +3248,7 @@
         "LON": 128.6411,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "부석봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3266,7 +3266,7 @@
         "LON": 127.4425,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "삼각점",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3284,7 +3284,7 @@
         "LON": 127.77679,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "부엉디미산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3302,7 +3302,7 @@
         "LON": 127.71493,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "안평봉",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3320,7 +3320,7 @@
         "LON": 128.82252,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "영지산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3338,7 +3338,7 @@
         "LON": 128.7349449,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "만석산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3356,7 +3356,7 @@
         "LON": 126.7026489,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "월명산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3374,7 +3374,7 @@
         "LON": 127.2922556,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "아치산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3392,7 +3392,7 @@
         "LON": 128.7304333,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "호골산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3410,7 +3410,7 @@
         "LON": 126.5581417,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "봉화산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3428,7 +3428,7 @@
         "LON": 126.9363808,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "비봉산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
@@ -3446,7 +3446,7 @@
         "LON": 128.35833,
         "PREDICTED_FIRE": 1,
         "MOUNTAIN": "낙골산",
-        "accuracy_score": 100,
+        "accuracy_score": 90,
         "distance_to_closest_true_fire_km": 0.0
       },
       "geometry": {
