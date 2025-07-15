@@ -320,16 +320,29 @@
                 console.log("Fetched weatherPredictions:", weatherPredictions);
                 console.log("Fetched baselinePredictions:", baselinePredictions);
                 console.log("Fetched satellitePredictions:", satellitePredictions);
-                const radiusKm = 50; // 50km 반경
-                const overlapThresholdMeters = 50; // 50미터 이내 겹치면 예측 마커 표시 안함
+                const radiusKm = 25; // 25km 반경
+                const overlapThresholdMeters = 100; // 100미터 이내 겹치면 예측 마커 표시 안함
 
-                const filteredWeatherPredictions = filterPredictionsByDistance(weatherPredictions.features, filteredFires, radiusKm);
-                const filteredBaselinePredictions = filterPredictionsByDistance(baselinePredictions.features, filteredFires, radiusKm);
-                const filteredSatellitePredictions = filterPredictionsByDistance(satellitePredictions.features, filteredFires, radiusKm);
+                
 
-                console.log("Filtered weatherPredictions:", filteredWeatherPredictions);
-                console.log("Filtered baselinePredictions:", filteredBaselinePredictions);
-                console.log("Filtered satellitePredictions:", filteredSatellitePredictions);
+                const closestWeatherPredictions = [];
+                const closestBaselinePredictions = [];
+                const closestSatellitePredictions = [];
+
+                filteredFires.forEach(fire => {
+                    const weather = findClosestPredictions(fire, weatherPredictions.features, 3);
+                    closestWeatherPredictions.push(...weather);
+
+                    const baseline = findClosestPredictions(fire, baselinePredictions.features, 3);
+                    closestBaselinePredictions.push(...baseline);
+
+                    const satellite = findClosestPredictions(fire, satellitePredictions.features, 3);
+                    closestSatellitePredictions.push(...satellite);
+                });
+
+                console.log("Closest weatherPredictions:", closestWeatherPredictions);
+                console.log("Closest baselinePredictions:", closestBaselinePredictions);
+                console.log("Closest satellitePredictions:", closestSatellitePredictions);
 
                 const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
                     console.log(`Adding ${predictions.length} markers for ${modelName}.`);
@@ -352,9 +365,9 @@
                     }).addTo(layerGroup);
                 };
 
-                addPredictionMarkers(filteredWeatherPredictions, predWeather, 'img/icon_blue.png', '예측 산불 (날씨 고려)');
-                addPredictionMarkers(filteredBaselinePredictions, predBaseline, 'img/icon_orange.png', '예측 산불 (날씨 미고려)');
-                addPredictionMarkers(filteredSatellitePredictions, predWeather, 'img/icon_blue.png', '예측 산불 (인공위성 규칙 기반)');
+                addPredictionMarkers(closestWeatherPredictions, predWeather, 'img/icon_blue.png', '예측 산불 (날씨 고려)');
+                addPredictionMarkers(closestBaselinePredictions, predBaseline, 'img/icon_orange.png', '예측 산불 (날씨 미고려)');
+                addPredictionMarkers(closestSatellitePredictions, predWeather, 'img/icon_blue.png', '예측 산불 (인공위성 규칙 기반)');
             });
         }
 
