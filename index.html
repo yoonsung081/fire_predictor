@@ -165,6 +165,8 @@
     <div class="legend">
         <h4>범례</h4>
         <div><img src="img/icon_red.png" alt="실제 산불"> 실제 산불</div>
+        <div><img src="img/icon_orange.png" alt="예측 산불 (날씨 고려)"> 날씨 데이터 O 예측</div>
+        <div><img src="img/icon_blue.png" alt="예측 산불 (인공위성 규칙 기반)"> 인공위성 규칙 기반 예측</div>
     </div>
     <div id="map"></div>
 
@@ -180,11 +182,16 @@
         const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' });
 
         const trueFires = L.layerGroup().addTo(map);
+        const predWeather = L.layerGroup().addTo(map);
+        
+        const predSatellite = L.layerGroup().addTo(map);
 
         L.control.layers(
             { "지도": osm, "위성": satellite },
             {
-                "실제 산불": trueFires
+                "실제 산불": trueFires,
+                "예측 산불 (날씨 고려)": predWeather,
+                "예측 산불 (인공위성 규칙 기반)": predSatellite
             }
         ).addTo(map);
 
@@ -210,8 +217,38 @@
 
         let allFiresData = [];
 
+        // Haversine 거리 계산 함수 (킬로미터 단위)
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // 지구 반지름 (킬로미터)
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c; // 킬로미터 단위 거리
+        }
+
+        function filterPredictionsByDistance(predictions, actualFires, radiusKm) {
+            const filtered = [];
+            predictions.forEach(pred => {
+                const predLatLng = L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]);
+                for (const fire of actualFires) {
+                    const fireLatLng = L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]);
+                    if (haversineDistance(predLatLng.lat, predLatLng.lng, fireLatLng.lat, fireLatLng.lng) <= radiusKm) {
+                        filtered.push(pred);
+                        break;
+                    }
+                }
+            });
+            return filtered;
+        }
+
         function updateAllMarkers(startDate, endDate, initialFires = null) {
             trueFires.clearLayers();
+            predWeather.clearLayers();
+            predSatellite.clearLayers();
 
             const filteredFires = initialFires || allFiresData.filter(feature => {
                 const fireDate = new Date(feature.properties.발생일시_년, feature.properties.발생일시_월 - 1, feature.properties.발생일시_일);
@@ -236,6 +273,47 @@
                     return marker;
                 }
             }).addTo(trueFires);
+
+            const actualFireLatLngs = filteredFires.map(fire => L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]));
+
+            Promise.all([
+                fetch('data/predicted_weather_with_accuracy.geojson').then(res => res.json()),
+                fetch('data/predicted_satellite_with_accuracy.geojson').then(res => res.json())
+            ]).then(([weatherPredictions, baselinePredictions, satellitePredictions]) => {
+                const radiusKm = 50; // 50km 반경
+                const overlapThresholdMeters = 50; // 50미터 이내 겹치면 예측 마커 표시 안함
+
+                const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
+                    predictions.forEach(pred => {
+                        const predLatLng = L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]);
+                        let closestActualFire = null;
+                        let minDistance = Infinity;
+
+                        actualFireLatLngs.forEach(actualLatLng => {
+                            const distance = predLatLng.distanceTo(actualLatLng);
+                            if (distance < minDistance) {
+                                minDistance = distance;
+                                closestActualFire = actualLatLng;
+                            }
+                        });
+
+                        if (closestActualFire && minDistance <= radiusKm * 1000) { // radiusKm를 미터로 변환
+                            const marker = L.marker(predLatLng, {
+                                icon: L.icon({
+                                    iconUrl: iconUrl,
+                                    iconSize: [20, 20],
+                                    iconAnchor: [10, 10]
+                                })
+                            });
+                            marker.bindPopup(`<b>${modelName}</b><br>예측 확률: ${pred.properties.fire_probability ? pred.properties.fire_probability.toFixed(2) : 'N/A'}`);
+                            layerGroup.addLayer(marker);
+                        }
+                    });
+                };
+
+                addPredictionMarkers(filteredWeatherPredictions, predWeather, 'img/icon_blue.png', '예측 산불 (날씨 고려)');
+                addPredictionMarkers(filteredSatellitePredictions, predSatellite, 'img/icon_blue.png', '예측 산불 (인공위성 규칙 기반)');
+            });
         }
 
         fetch('data/true_fires.geojson')
