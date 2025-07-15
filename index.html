@@ -320,12 +320,12 @@
                 console.log("Fetched weatherPredictions:", weatherPredictions);
                 console.log("Fetched baselinePredictions:", baselinePredictions);
                 console.log("Fetched satellitePredictions:", satellitePredictions);
-                const radiusKm = 20; // 20km 반경
+                const radiusKm = 50; // 50km 반경
                 const overlapThresholdMeters = 50; // 50미터 이내 겹치면 예측 마커 표시 안함
 
-                const filteredWeatherPredictions = weatherPredictions.features;
-                const filteredBaselinePredictions = baselinePredictions.features;
-                const filteredSatellitePredictions = satellitePredictions.features;
+                const filteredWeatherPredictions = filterPredictionsByDistance(weatherPredictions.features, filteredFires, radiusKm);
+                const filteredBaselinePredictions = filterPredictionsByDistance(baselinePredictions.features, filteredFires, radiusKm);
+                const filteredSatellitePredictions = filterPredictionsByDistance(satellitePredictions.features, filteredFires, radiusKm);
 
                 console.log("Filtered weatherPredictions:", filteredWeatherPredictions);
                 console.log("Filtered baselinePredictions:", filteredBaselinePredictions);
@@ -334,17 +334,19 @@
                 const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
                     console.log(`Adding ${predictions.length} markers for ${modelName}.`);
                     L.geoJSON({ type: "FeatureCollection", features: predictions }, {
-                        pointToLayer: (feature, latlng) => {
-                            
-
-                            const marker = L.marker(latlng, {
+                        // 실제 산불 마커와 겹치는지 확인
+                            for (const actualLatLng of actualFireLatLngs) {
+                                if (latlng.distanceTo(actualLatLng) < overlapThresholdMeters) {
+                                    return null; // 겹치면 예측 마커를 추가하지 않음
+                                }
+                            }
                                 icon: L.icon({
                                     iconUrl: iconUrl,
                                     iconSize: [20, 20],
                                     iconAnchor: [10, 10]
                                 })
                             });
-                            marker.bindPopup(`<b>${modelName}</b><br>예측 정확도: ${feature.properties.accuracy_score !== undefined ? feature.properties.accuracy_score.toFixed(2) + '%' : '정보 없음'}`);
+                            marker.bindPopup(`<b>${modelName}</b>`);
                             return marker;
                         }
                     }).addTo(layerGroup);
