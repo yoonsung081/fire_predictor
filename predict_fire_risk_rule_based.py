@@ -90,4 +90,4 @@ if __name__ == "__main__":
     # 규칙 설정 (여기서 값을 조정하여 다양한 시나리오 테스트 가능)
     # 예시: 최고 기온 25도 이상, 강수량 0.1mm 미만, 풍속 5m/s 이상
     predict_fire_risk_rule_based(input_path, output_path,
-                                 temp_threshold=30, precip_threshold=0.05, wind_threshold=7)
+                                 temp_threshold=25, precip_threshold=0.1, wind_threshold=5)
