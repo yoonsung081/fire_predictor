@@ -334,12 +334,14 @@
                 const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
                     console.log(`Adding ${predictions.length} markers for ${modelName}.`);
                     L.geoJSON({ type: "FeatureCollection", features: predictions }, {
-                        // 실제 산불 마커와 겹치는지 확인
+                        pointToLayer: (feature, latlng) => {
+                            // 실제 산불 마커와 겹치는지 확인
                             for (const actualLatLng of actualFireLatLngs) {
                                 if (latlng.distanceTo(actualLatLng) < overlapThresholdMeters) {
                                     return null; // 겹치면 예측 마커를 추가하지 않음
                                 }
                             }
+                            const marker = L.marker(latlng, {
                                 icon: L.icon({
                                     iconUrl: iconUrl,
                                     iconSize: [20, 20],
