@@ -43,12 +43,11 @@ def show_long_term_prediction_map(center, pred_dfs):
     for day, df in pred_dfs.items():
         layer = MarkerCluster(name=f'{day} 예측').add_to(m)
         for _, row in df.iterrows():
-            if row.get('display_prediction', True): # display_prediction이 True인 경우에만 마커 표시
-                folium.Marker(
-                    [row['LAT'], row['LON']],
-                    popup=f"🔥 예측 확률: {row['fire_probability']:.2f}",
-                    icon=folium.Icon(color='purple', icon='fire', prefix='fa')
-                ).add_to(layer)
+            folium.Marker(
+                [row['LAT'], row['LON']],
+                popup=f"🔥 예측 확률: {row['fire_probability']:.2f}",
+                icon=folium.Icon(color='purple', icon='fire', prefix='fa')
+            ).add_to(layer)
 
     folium.LayerControl().add_to(m)
     m.save("long_term_prediction_map.html")

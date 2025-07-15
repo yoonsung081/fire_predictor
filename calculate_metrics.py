@@ -31,8 +31,7 @@ def calculate_accuracy_by_distance(distance_km):
         return 75
     if distance_km <= 5:
         return 70
-    else: # distance_km > 5
-        return 0 # 5km를 초과하는 거리에 대해서는 정확도를 0으로 설정
+    return max(0, 70 - (distance_km - 5) * 2)
 
 def calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_file_path, model_name="rule_based_prediction"):
     print(f"{model_name} 모델 지표 계산 및 업데이트 시작...")
@@ -144,7 +143,6 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
                 new_properties[key] = value.isoformat()
         new_properties['accuracy_score'] = accuracy
         new_properties['distance_to_closest_true_fire_km'] = min_distance
-        new_properties['display_prediction'] = (min_distance <= 5.0) # 5km 이내에 실제 산불이 있는 경우에만 표시
         
         new_feature = {
             "type": "Feature",
