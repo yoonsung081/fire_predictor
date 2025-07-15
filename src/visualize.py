@@ -3,7 +3,7 @@ from folium.plugins import MarkerCluster
 import webbrowser
 import os
 
-def show_fire_map(center, df, popup_col, color):
+def show_fire_map(center, df, title, popup_col, color):
     m = folium.Map(location=center, zoom_start=10)
 
     folium.TileLayer('OpenStreetMap', name='지도').add_to(m)
@@ -15,15 +15,16 @@ def show_fire_map(center, df, popup_col, color):
         control=True
     ).add_to(m)
 
-    marker_cluster = MarkerCluster(name='산불 위치').add_to(m)
+    marker_cluster = MarkerCluster(name=title).add_to(m)
 
     for _, row in df.iterrows():
-        popup_text = f"🔥 {row[popup_col]}"
-        folium.Marker(
-            [row['LAT'], row['LON']],
-            popup=popup_text,
-            icon=folium.Icon(color=color, icon='fire', prefix='fa')
-        ).add_to(marker_cluster)
+        if row.get('display_prediction', True):
+            popup_text = f"🔥 {row[popup_col]}"
+            folium.Marker(
+                [row['LAT'], row['LON']],
+                popup=popup_text,
+                icon=folium.Icon(color=color, icon='fire', prefix='fa')
+            ).add_to(marker_cluster)
 
     folium.LayerControl().add_to(m)
     m.save("map_result.html")

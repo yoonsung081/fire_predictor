@@ -8,9 +8,10 @@ import torch
 
 from src.geocoding import get_coordinates
 from src.visualize import show_fire_map, show_long_term_prediction_map
-from calculate_metrics import add_accuracy_to_predictions # Import the function
+from calculate_metrics import add_accuracy_to_predictions, filter_predictions_for_display # Import the function
 from train_model import WildfireTransformer # 트랜스포머 모델 클래스 임포트
 from sklearn.preprocessing import MinMaxScaler
+import geopandas as gpd
 
 LGBM_MODEL_PATH = "models/fire_predictor.joblib"
 TRANSFORMER_MODEL_PATH = "models/transformer_predictor.pth"
@@ -20,7 +21,7 @@ def run_historical_mode(df):
     """과거 산불 이력 조회 모드"""
     print("\n[날짜] 조회할 시작 날짜를 입력하세요 (예: 2023-03-01):")
     start_date_str = input("> ")
-    print("🗓️ 조회할 종료 날짜를 입력하세요 (예: 2023-03-31):")
+    print("[날짜] 조회할 종료 날짜를 입력하세요 (예: 2023-03-31):")
     end_date_str = input("> ")
 
     try:
@@ -40,7 +41,7 @@ def run_historical_mode(df):
     df_filtered = df.loc[mask]
 
     if not df_filtered.empty:
-        print(f"\n✅ {start_date_str}부터 {end_date_str}까지 총 {len(df_filtered)}건의 산불이 조회되었습니다.")
+        print(f"[정보] {start_date_str}부터 {end_date_str}까지 총 {len(df_filtered)}건의 산불이 조회되었습니다.")
         print("\n🗺️ 지도의 중심이 될 지역명을 입력하세요 (예: 대전):")
         region_name = input("> ")
         center_location = get_coordinates(region_name) or (36.5, 127.5)
@@ -51,11 +52,11 @@ def run_historical_mode(df):
 def run_short_term_prediction_mode(locations_df):
     """단기 예측 (LightGBM) 모드"""
     if not os.path.exists(LGBM_MODEL_PATH):
-        print(f"🚨 단기 예측 모델({LGBM_MODEL_PATH})이 없습니다. train_lightgbm.py를 먼저 실행해주세요.")
+        print(f"[경고] 단기 예측 모델({LGBM_MODEL_PATH})이 없습니다. train_lightgbm.py를 먼저 실행해주세요.")
         return
 
     model = joblib.load(LGBM_MODEL_PATH)
-    print("\n🗓️ 예측할 날짜를 입력하세요 (예: 2024-10-26):")
+    print("예측할 날짜를 입력하세요 (예: 2024-10-26):")
     date_str = input("> ")
     try:
         target_date = datetime.strptime(date_str, "%Y-%m-%d")
@@ -63,14 +64,14 @@ def run_short_term_prediction_mode(locations_df):
         print("잘못된 날짜 형식입니다. YYYY-MM-DD 형식으로 입력해주세요.")
         return
 
-    print(f"📅 {date_str} 날짜의 예측 데이터 준비 중...")
+    print(f"[날짜] {date_str} 날짜의 예측 데이터 준비 중...")
     X_pred = locations_df[['LAT', 'LON']].copy()
     X_pred['월'] = target_date.month
     X_pred['요일'] = target_date.weekday()
     X_pred['피해면적_합계'] = 0  # 예측 시점에는 알 수 없으므로 0으로 설정
     X_pred = X_pred.fillna(0)
 
-    print("🔥 단기 예측 수행 중...")
+    print("단기 예측 수행 중...")
     predictions = model.predict(X_pred)
     pred_proba = model.predict_proba(X_pred)[:, 1]
 
@@ -79,18 +80,34 @@ def run_short_term_prediction_mode(locations_df):
     df_pred = result_df[predictions == 1]
 
     if not df_pred.empty:
-        print(f"\n✅ {date_str}에 {len(df_pred)}곳의 산불 위험 지역이 예측되었습니다.")
+        # Convert df_pred to GeoDataFrame for filtering
+        geometry = gpd.points_from_xy(df_pred['LON'], df_pred['LAT'])
+        df_pred_gdf = gpd.GeoDataFrame(df_pred, geometry=geometry, crs="EPSG:4326")
+
+        # Load true fires for filtering
+        true_fires_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data/true_fires.geojson")
+        if not os.path.exists(true_fires_path):
+            print(f"[경고] 실제 산불 데이터 파일({true_fires_path})이 없습니다.")
+            return
+        true_fires_gdf = gpd.read_file(true_fires_path)
+
+        # Filter predictions for display
+        df_pred_filtered = filter_predictions_for_display(df_pred_gdf, true_fires_gdf)
+
+        print(f"[정보] {date_str}에 {len(df_pred_filtered[df_pred_filtered['display_prediction']==True])}곳의 산불 위험 지역이 예측되었습니다.")
         print("\n🗺️ 지도의 중심이 될 지역명을 입력하세요 (예: 강원):")
         region_name = input("> ")
         center_location = get_coordinates(region_name) or (37.5665, 126.9780)
-        show_fire_map(center_location, df_pred, '단기 예측 결과', 'fire_probability', 'orange')
+        show_fire_map(center_location, df_pred_filtered, '단기 예측 결과', 'fire_probability', 'orange')
     else:
-        print(f"\n✅ {date_str}에는 산불 위험이 예측된 지역이 없습니다.")
+        print(f"
+[정보] {date_str}에는 산불 위험이 예측된 지역이 없습니다.")
 
 def run_long_term_prediction_mode(df, locations_df):
     """장기 예측 (Transformer) 모드"""
     if not all(os.path.exists(p) for p in [TRANSFORMER_MODEL_PATH, SCALER_PATH]):
-        print(f"🚨 장기 예측 모델 또는 스케일러가 없습니다. train_transformer.py를 먼저 실행해주세요.")
+        print(f"
+[경고] 장기 예측 모델 또는 스케일러가 없습니다. train_transformer.py를 먼저 실행해주세요.")
         return
 
     # 모델과 스케일러 로드
@@ -138,10 +155,11 @@ def run_long_term_prediction_mode(df, locations_df):
     pred_dfs = {day: pd.DataFrame(preds) for day, preds in all_preds.items()}
 
     if not pred_dfs:
-        print(f"\n✅ 향후 {PRED_LENGTH}일 동안 산불 위험이 예측된 지역이 없습니다.")
+        print(f"
+[정보] 향후 {PRED_LENGTH}일 동안 산불 위험이 예측된 지역이 없습니다.")
         return
 
-    print(f"\n✅ 향후 {PRED_LENGTH}일 동안의 산불 위험 예측이 완료되었습니다.")
+    print(f"\n[정보] 향후 {PRED_LENGTH}일 동안의 산불 위험 예측이 완료되었습니다.")
     print("\n🗺️ 지도의 중심이 될 지역명을 입력하세요 (예: 전국):")
     region_name = input("> ")
     center_location = get_coordinates(region_name) or (36.5, 127.5) # Default to center of Korea
@@ -151,7 +169,7 @@ def show_model_performance():
     """모델 성능 지표 비교 대시보드"""
     metrics_path = "static/metrics.json"
     if not os.path.exists(metrics_path):
-        print(f"\n🚨 성능 지표 파일({metrics_path})이 없습니다. 모델을 먼저 훈련시켜주세요.")
+        print(f"\n[경고] 성능 지표 파일({metrics_path})이 없습니다. 모델을 먼저 훈련시켜주세요.")
         return
 
     with open(metrics_path, 'r', encoding='utf-8') as f:
@@ -176,7 +194,7 @@ def show_model_performance():
         data_for_df.append(transformer_metrics)
 
     if not data_for_df:
-        print("ℹ️  표시할 성능 지표가 없습니다. 모델을 훈련하고 다시 시도해주세요.")
+        print("표시할 성능 지표가 없습니다. 모델을 훈련하고 다시 시도해주세요.")
         return
 
     # pandas DataFrame을 사용하여 깔끔한 표로 출력
@@ -192,7 +210,7 @@ def show_model_performance():
 def run_accuracy_mode():
     print("\n[날짜] 정확도를 조회할 시작 날짜를 입력하세요 (예: 2023-03-01):")
     start_date_str = input("> ")
-    print("🗓️ 정확도를 조회할 종료 날짜를 입력하세요 (예: 2023-03-31):")
+    print("정확도를 조회할 종료 날짜를 입력하세요 (예: 2023-03-31):")
     end_date_str = input("> ")
 
     try:
@@ -206,7 +224,8 @@ def run_accuracy_mode():
     predicted_baseline_path = "data/predicted_baseline.geojson"
     predicted_baseline_with_accuracy_path = "data/predicted_baseline_with_accuracy.geojson"
 
-    print(f"\n✅ {start_date_str}부터 {end_date_str}까지의 예측 정확도 계산 중...")
+    print(f"
+[정보] {start_date_str}부터 {end_date_str}까지의 예측 정확도 계산 중...")
     add_accuracy_to_predictions(
         true_fires_path,
         predicted_baseline_path,
@@ -228,7 +247,7 @@ def run_accuracy_mode():
         else:
             print(f"\nℹ️ 해당 기간({start_date_str} ~ {end_date_str})에는 정확도를 표시할 예측 산불 데이터가 없습니다.")
     else:
-        print("🚨 정확도 계산 결과 파일을 찾을 수 없습니다.")
+        print("[경고] 정확도 계산 결과 파일을 찾을 수 없습니다.")
 
 if __name__ == "__main__":
     data_path = "data/with_coordinates.csv"

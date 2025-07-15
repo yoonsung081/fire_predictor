@@ -82,6 +82,44 @@ def calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_
 
     print(f"Metrics successfully updated in {metrics_file_path}.")
 
+def filter_predictions_for_display(predicted_fires_gdf, true_fires_gdf, limit=3, radius_km=5.0):
+    """
+    Filters predicted fires to display only a limited number (default 3) closest to each true fire.
+    Sets 'display_prediction' column to True for predictions that should be displayed.
+    """
+    predicted_fires_gdf['display_prediction'] = False
+    predicted_fires_gdf['accuracy_score'] = 0
+    predicted_fires_gdf['distance_to_closest_true_fire_km'] = np.inf
+
+    predictions_to_display_indices = set()
+
+    for _, true_fire in true_fires_gdf.iterrows():
+        true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
+        true_date = true_fire.get('date')
+
+        if true_date:
+            predicted_fires_on_same_date = predicted_fires_gdf[predicted_fires_gdf['date'] == true_date]
+        else:
+            predicted_fires_on_same_date = predicted_fires_gdf
+
+        nearby_predictions = []
+        for pred_idx, pred_fire in predicted_fires_on_same_date.iterrows():
+            pred_lat, pred_lon = pred_fire.geometry.y, pred_fire.geometry.x
+            distance = haversine_distance(true_lat, true_lon, pred_lat, pred_lon)
+
+            if distance <= radius_km:
+                nearby_predictions.append((distance, pred_idx))
+
+        nearby_predictions.sort(key=lambda x: x[0])
+        for i, (distance, pred_idx) in enumerate(nearby_predictions):
+            if i < limit:
+                predictions_to_display_indices.add(pred_idx)
+                predicted_fires_gdf.loc[pred_idx, 'accuracy_score'] = calculate_accuracy_by_distance(distance)
+                predicted_fires_gdf.loc[pred_idx, 'distance_to_closest_true_fire_km'] = distance
+                predicted_fires_gdf.loc[pred_idx, 'display_prediction'] = True
+
+    return predicted_fires_gdf
+
 def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, predicted_fires_output_path, start_date=None, end_date=None):
     print(f"Adding accuracy to predictions from {predicted_fires_input_path}...")
     true_fires_gdf = gpd.read_file(true_fires_path)
@@ -110,46 +148,24 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
                                                       (predicted_fires_gdf['datetime'].dt.date <= end_date_dt)]
             predicted_fires_gdf = predicted_fires_gdf.drop(columns=['datetime']) # Remove temporary column
 
+    # Filter predictions for display
+    predicted_fires_gdf = filter_predictions_for_display(predicted_fires_gdf, true_fires_gdf)
+
+    # Convert GeoDataFrame to a list of features for JSON output
     predicted_fires_with_accuracy = []
-
-    for idx, pred_fire in predicted_fires_gdf.iterrows():
-        pred_lat, pred_lon = pred_fire.geometry.y, pred_fire.geometry.x
-        min_distance = float('inf')
-        
-        pred_date = pred_fire.get('date')
-
-        if pred_date:
-            # Filter true fires by the exact same date
-            true_fires_on_same_date = true_fires_gdf[true_fires_gdf['date'] == pred_date]
-            
-            if not true_fires_on_same_date.empty:
-                for _, true_fire in true_fires_on_same_date.iterrows():
-                    true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
-                    distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
-                    if distance < min_distance:
-                        min_distance = distance
-        else:
-            # Fallback for predictions without a date: compare against all true fires
-            for _, true_fire in true_fires_gdf.iterrows():
-                true_lat, true_lon = true_fire.geometry.y, true_fire.geometry.x
-                distance = haversine_distance(pred_lat, pred_lon, true_lat, true_lon)
-                if distance < min_distance:
-                    min_distance = distance
-
-        accuracy = calculate_accuracy_by_distance(min_distance)
-        
-        new_properties = pred_fire.drop('geometry', errors='ignore').to_dict()
+    for idx, row in predicted_fires_gdf.iterrows():
+        new_properties = row.drop(['geometry', 'display_prediction', 'accuracy_score', 'distance_to_closest_true_fire_km'], errors='ignore').to_dict()
         for key, value in new_properties.items():
             if isinstance(value, pd.Timestamp):
                 new_properties[key] = value.isoformat()
-        new_properties['accuracy_score'] = accuracy
-        new_properties['distance_to_closest_true_fire_km'] = min_distance
-        new_properties['display_prediction'] = (min_distance <= 5.0) # 5km 이내에 실제 산불이 있는 경우에만 표시
-        
+        new_properties['accuracy_score'] = row['accuracy_score']
+        new_properties['distance_to_closest_true_fire_km'] = row['distance_to_closest_true_fire_km']
+        new_properties['display_prediction'] = row['display_prediction']
+
         new_feature = {
             "type": "Feature",
             "properties": new_properties,
-            "geometry": pred_fire.geometry.__geo_interface__
+            "geometry": row.geometry.__geo_interface__
         }
         predicted_fires_with_accuracy.append(new_feature)
 
@@ -164,14 +180,17 @@ def add_accuracy_to_predictions(true_fires_path, predicted_fires_input_path, pre
 
 
 if __name__ == "__main__":
-    true_fires_path = "data/true_fires.geojson"
-    metrics_file_path = "static/metrics.json"
+    import os
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+    true_fires_path = os.path.join(PROJECT_ROOT, "data/true_fires.geojson")
+    metrics_file_path = os.path.join(PROJECT_ROOT, "static/metrics.json")
 
     # Calculate and update overall metrics for satellite_rule_based model
-    predicted_fires_path_satellite = "data/true_fires_with_weather_risk.geojson"
+    predicted_fires_path_satellite = os.path.join(PROJECT_ROOT, "data/true_fires_with_weather_risk.geojson")
     calculate_and_update_metrics(true_fires_path, predicted_fires_path_satellite, metrics_file_path, model_name="satellite_rule_based")
 
     # Add accuracy to individual prediction files
-    add_accuracy_to_predictions(true_fires_path, "data/predicted_weather.geojson", "data/predicted_weather_with_accuracy.geojson", start_date=None, end_date=None)
-    add_accuracy_to_predictions(true_fires_path, "data/predicted_baseline.geojson", "data/predicted_baseline_with_accuracy.geojson", start_date=None, end_date=None)
-    add_accuracy_to_predictions(true_fires_path, "data/true_fires_with_weather_risk.geojson", "data/predicted_satellite_with_accuracy.geojson", start_date=None, end_date=None)
+    add_accuracy_to_predictions(true_fires_path, os.path.join(PROJECT_ROOT, "data/predicted_weather.geojson"), os.path.join(PROJECT_ROOT, "data/predicted_weather_with_accuracy.geojson"), start_date=None, end_date=None)
+    add_accuracy_to_predictions(true_fires_path, os.path.join(PROJECT_ROOT, "data/predicted_baseline.geojson"), os.path.join(PROJECT_ROOT, "data/predicted_baseline_with_accuracy.geojson"), start_date=None, end_date=None)
+    add_accuracy_to_predictions(true_fires_path, os.path.join(PROJECT_ROOT, "data/true_fires_with_weather_risk.geojson"), os.path.join(PROJECT_ROOT, "data/predicted_satellite_with_accuracy.geojson"), start_date=None, end_date=None)
