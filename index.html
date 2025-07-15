@@ -178,6 +178,15 @@
     <script>
         const map = L.map('map').setView([37.5, 128.2], 7);
 
+        // URL 파라미터에서 lat, lon 읽기
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialLat = parseFloat(urlParams.get('lat'));
+        const initialLon = parseFloat(urlParams.get('lon'));
+
+        if (!isNaN(initialLat) && !isNaN(initialLon)) {
+            map.setView([initialLat, initialLon], 12); // 특정 위치로 이동 및 줌
+        }
+
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);
         const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' });
 
@@ -296,15 +305,26 @@
                             .slice(0, 3); // 가장 가까운 3개
 
                         closestPredictions.forEach(pred => {
-                            const marker = L.marker(L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]), {
-                                icon: L.icon({
-                                    iconUrl: iconUrl,
-                                    iconSize: [20, 20],
-                                    iconAnchor: [10, 10]
-                                })
-                            });
-                            marker.bindPopup(`<b>${modelName}</b><br>예측 확률: ${pred.properties.fire_probability ? pred.properties.fire_probability.toFixed(2) : 'N/A'}<br>거리: ${(pred.distance / 1000).toFixed(2)} km`);
-                            layerGroup.addLayer(marker);
+                            const predLatLng = L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]);
+                            let isOverlappingWithActualFire = false;
+                            for (const actualLatLng of actualFireLatLngs) {
+                                if (predLatLng.distanceTo(actualLatLng) < overlapThresholdMeters) {
+                                    isOverlappingWithActualFire = true;
+                                    break;
+                                }
+                            }
+
+                            if (!isOverlappingWithActualFire) {
+                                const marker = L.marker(predLatLng, {
+                                    icon: L.icon({
+                                        iconUrl: iconUrl,
+                                        iconSize: [20, 20],
+                                        iconAnchor: [10, 10]
+                                    })
+                                });
+                                marker.bindPopup(`<b>${modelName}</b><br>예측 확률: ${pred.properties.fire_probability ? pred.properties.fire_probability.toFixed(2) : 'N/A'}<br>거리: ${(pred.distance / 1000).toFixed(2)} km`);
+                                layerGroup.addLayer(marker);
+                            }
                         });
                     });
                 };

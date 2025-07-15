@@ -61,6 +61,21 @@
         font-size: 0.9em;
       }
     }
+    .ranking-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .ranking-list li {
+      background-color: #e9ecef;
+      margin-bottom: 5px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .ranking-list li:hover {
+      background-color: #dee2e6;
+    }
   </style>
 </head>
 <body>
@@ -315,11 +330,21 @@
         }
         const data = await response.json();
         const counts = {};
+        const coordinatesMap = {}; // 주소별 좌표 저장
+
         data.features.forEach(feature => {
-          const address = feature.properties.full_address || '알 수 없음';
-          counts[address] = (counts[address] || 0) + 1;
+          const address = feature.properties.full_address;
+          if (address && address !== '알 수 없음') { // '알 수 없음' 제외
+            counts[address] = (counts[address] || 0) + 1;
+            if (!coordinatesMap[address]) {
+              coordinatesMap[address] = feature.geometry.coordinates; // 첫 번째 발견된 좌표 저장
+            }
+          }
         });
-        return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+        return Object.entries(counts)
+          .map(([address, count]) => ({ address, count, coords: coordinatesMap[address] }))
+          .sort((a, b) => b.count - a.count);
       } catch (error) {
         console.error(`Error fetching ranking data from ${geojsonPath}:`, error);
         return [];
@@ -329,9 +354,18 @@
     function displayRanking(rankingData, elementId) {
       const olElement = document.getElementById(elementId);
       olElement.innerHTML = ''; // Clear previous content
-      rankingData.slice(0, 10).forEach(([address, count]) => {
+      olElement.classList.add('ranking-list'); // Add class for styling
+
+      rankingData.slice(0, 10).forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `${address}: ${count}건`;
+        li.textContent = `${item.address}: ${item.count}건`;
+        if (item.coords) {
+          li.dataset.lat = item.coords[1];
+          li.dataset.lon = item.coords[0];
+          li.addEventListener('click', () => {
+            window.location.href = `index.html?lat=${item.coords[1]}&lon=${item.coords[0]}`;
+          });
+        }
         olElement.appendChild(li);
       });
       if (rankingData.length === 0) {
@@ -348,14 +382,24 @@
 
       // 두 예측 랭킹을 합쳐서 처리 (중복 지역은 합산)
       const combinedPredictedCounts = {};
-      predictedWeatherRanking.forEach(([address, count]) => {
-        combinedPredictedCounts[address] = (combinedPredictedCounts[address] || 0) + count;
+      const combinedPredictedCoordinates = {};
+
+      predictedWeatherRanking.forEach(item => {
+        combinedPredictedCounts[item.address] = (combinedPredictedCounts[item.address] || 0) + item.count;
+        if (!combinedPredictedCoordinates[item.address]) {
+          combinedPredictedCoordinates[item.address] = item.coords;
+        }
       });
-      predictedSatelliteRanking.forEach(([address, count]) => {
-        combinedPredictedCounts[address] = (combinedPredictedCounts[address] || 0) + count;
+      predictedSatelliteRanking.forEach(item => {
+        combinedPredictedCounts[item.address] = (combinedPredictedCounts[item.address] || 0) + item.count;
+        if (!combinedPredictedCoordinates[item.address]) {
+          combinedPredictedCoordinates[item.address] = item.coords;
+        }
       });
 
-      const combinedPredictedRanking = Object.entries(combinedPredictedCounts).sort((a, b) => b[1] - a[1]);
+      const combinedPredictedRanking = Object.entries(combinedPredictedCounts)
+        .map(([address, count]) => ({ address, count, coords: combinedPredictedCoordinates[address] }))
+        .sort((a, b) => b.count - a.count);
       displayRanking(combinedPredictedRanking, 'predicted-fire-ranking');
     })();
   </script>
