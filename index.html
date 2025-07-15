@@ -279,40 +279,38 @@
             Promise.all([
                 fetch('data/predicted_weather_with_accuracy.geojson').then(res => res.json()),
                 fetch('data/predicted_satellite_with_accuracy.geojson').then(res => res.json())
-            ]).then(([weatherPredictions, baselinePredictions, satellitePredictions]) => {
+            ]).then(([weatherPredictions, satellitePredictions]) => {
                 const radiusKm = 50; // 50km 반경
-                const overlapThresholdMeters = 50; // 50미터 이내 겹치면 예측 마커 표시 안함
 
-                const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
-                    predictions.forEach(pred => {
-                        const predLatLng = L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]);
-                        let closestActualFire = null;
-                        let minDistance = Infinity;
+                const addPredictionMarkers = (allPredictions, layerGroup, iconUrl, modelName) => {
+                    filteredFires.forEach(actualFire => {
+                        const actualFireLatLng = L.latLng(actualFire.geometry.coordinates[1], actualFire.geometry.coordinates[0]);
 
-                        actualFireLatLngs.forEach(actualLatLng => {
-                            const distance = predLatLng.distanceTo(actualLatLng);
-                            if (distance < minDistance) {
-                                minDistance = distance;
-                                closestActualFire = actualLatLng;
-                            }
-                        });
+                        const closestPredictions = allPredictions.features
+                            .map(pred => {
+                                const predLatLng = L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]);
+                                return { ...pred, distance: actualFireLatLng.distanceTo(predLatLng) };
+                            })
+                            .filter(pred => pred.distance <= radiusKm * 1000) // 50km 반경 내
+                            .sort((a, b) => a.distance - b.distance)
+                            .slice(0, 3); // 가장 가까운 3개
 
-                        if (closestActualFire && minDistance <= radiusKm * 1000) { // radiusKm를 미터로 변환
-                            const marker = L.marker(predLatLng, {
+                        closestPredictions.forEach(pred => {
+                            const marker = L.marker(L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]), {
                                 icon: L.icon({
                                     iconUrl: iconUrl,
                                     iconSize: [20, 20],
                                     iconAnchor: [10, 10]
                                 })
                             });
-                            marker.bindPopup(`<b>${modelName}</b><br>예측 확률: ${pred.properties.fire_probability ? pred.properties.fire_probability.toFixed(2) : 'N/A'}`);
+                            marker.bindPopup(`<b>${modelName}</b><br>예측 확률: ${pred.properties.fire_probability ? pred.properties.fire_probability.toFixed(2) : 'N/A'}<br>거리: ${(pred.distance / 1000).toFixed(2)} km`);
                             layerGroup.addLayer(marker);
-                        }
+                        });
                     });
                 };
 
-                addPredictionMarkers(filteredWeatherPredictions, predWeather, 'img/icon_blue.png', '예측 산불 (날씨 고려)');
-                addPredictionMarkers(filteredSatellitePredictions, predSatellite, 'img/icon_blue.png', '예측 산불 (인공위성 규칙 기반)');
+                addPredictionMarkers(weatherPredictions, predWeather, 'img/icon_blue.png', '예측 산불 (날씨 고려)');
+                addPredictionMarkers(satellitePredictions, predSatellite, 'img/icon_blue.png', '예측 산불 (인공위성 규칙 기반)');
             });
         }
 
