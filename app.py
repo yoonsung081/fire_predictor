@@ -8,7 +8,6 @@ import torch
 
 from src.geocoding import get_coordinates
 from src.visualize import show_fire_map, show_long_term_prediction_map
-from calculate_metrics import add_accuracy_to_predictions # Import the function
 from train_model import WildfireTransformer # 트랜스포머 모델 클래스 임포트
 from sklearn.preprocessing import MinMaxScaler
 
@@ -189,47 +188,6 @@ def show_model_performance():
             
     print(df_metrics.to_string())
 
-def run_accuracy_mode():
-    print("\n[날짜] 정확도를 조회할 시작 날짜를 입력하세요 (예: 2023-03-01):")
-    start_date_str = input("> ")
-    print("🗓️ 정확도를 조회할 종료 날짜를 입력하세요 (예: 2023-03-31):")
-    end_date_str = input("> ")
-
-    try:
-        start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
-        end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
-    except ValueError:
-        print("잘못된 날짜 형식입니다. YYYY-MM-DD 형식으로 입력해주세요.")
-        return
-
-    true_fires_path = "data/true_fires.geojson"
-    predicted_baseline_path = "data/predicted_baseline.geojson"
-    predicted_baseline_with_accuracy_path = "data/predicted_baseline_with_accuracy.geojson"
-
-    print(f"\n✅ {start_date_str}부터 {end_date_str}까지의 예측 정확도 계산 중...")
-    add_accuracy_to_predictions(
-        true_fires_path,
-        predicted_baseline_path,
-        predicted_baseline_with_accuracy_path,
-        start_date=start_date.strftime("%Y-%m-%d"),
-        end_date=end_date.strftime("%Y-%m-%d")
-    )
-
-    # Load the generated GeoJSON with accuracy and display it
-    if os.path.exists(predicted_baseline_with_accuracy_path):
-        predicted_fires_with_accuracy_gdf = gpd.read_file(predicted_baseline_with_accuracy_path)
-        if not predicted_fires_with_accuracy_gdf.empty:
-            print("\n🗺️ 지도의 중심이 될 지역명을 입력하세요 (예: 전국):")
-            region_name = input("> ")
-            center_location = get_coordinates(region_name) or (36.5, 127.5)
-            show_fire_map(center_location, predicted_fires_with_accuracy_gdf, 
-                          f'{start_date_str} ~ {end_date_str} 예측 정확도', 
-                          'accuracy_score', 'blue')
-        else:
-            print(f"\nℹ️ 해당 기간({start_date_str} ~ {end_date_str})에는 정확도를 표시할 예측 산불 데이터가 없습니다.")
-    else:
-        print("🚨 정확도 계산 결과 파일을 찾을 수 없습니다.")
-
 if __name__ == "__main__":
     data_path = "data/with_coordinates.csv"
     if not os.path.exists(data_path):
@@ -249,7 +207,6 @@ if __name__ == "__main__":
         print("2: 단기 산불 위험 예측 (LightGBM)")
         print("3: 장기 산불 위험 예측 (Transformer)")
         print("4: 모델 성능 비교")
-        print("5: 예측 산불 정확도 조회 (날짜별)")
         print("q: 종료")
         print("----------------------------------------")
         mode = input("원하는 작업의 번호를 입력하세요 > ")
@@ -262,8 +219,6 @@ if __name__ == "__main__":
             run_long_term_prediction_mode(df.copy(), locations_df.copy())
         elif mode == '4':
             show_model_performance()
-        elif mode == '5':
-            run_accuracy_mode()
         elif mode.lower() == 'q':
             print("프로그램을 종료합니다.")
             break
