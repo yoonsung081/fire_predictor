@@ -323,9 +323,9 @@
                 const radiusKm = 20; // 20km 반경
                 const overlapThresholdMeters = 50; // 50미터 이내 겹치면 예측 마커 표시 안함
 
-                const filteredWeatherPredictions = filterPredictionsByDistance(weatherPredictions.features, filteredFires, radiusKm);
-                const filteredBaselinePredictions = filterPredictionsByDistance(baselinePredictions.features, filteredFires, radiusKm);
-                const filteredSatellitePredictions = filterPredictionsByDistance(satellitePredictions.features, filteredFires, radiusKm);
+                const filteredWeatherPredictions = weatherPredictions.features;
+                const filteredBaselinePredictions = baselinePredictions.features;
+                const filteredSatellitePredictions = satellitePredictions.features;
 
                 console.log("Filtered weatherPredictions:", filteredWeatherPredictions);
                 console.log("Filtered baselinePredictions:", filteredBaselinePredictions);
@@ -335,12 +335,7 @@
                     console.log(`Adding ${predictions.length} markers for ${modelName}.`);
                     L.geoJSON({ type: "FeatureCollection", features: predictions }, {
                         pointToLayer: (feature, latlng) => {
-                            // 실제 산불 마커와 겹치는지 확인
-                            for (const actualLatLng of actualFireLatLngs) {
-                                if (latlng.distanceTo(actualLatLng) < overlapThresholdMeters) {
-                                    return null; // 겹치면 예측 마커를 추가하지 않음
-                                }
-                            }
+                            
 
                             const marker = L.marker(latlng, {
                                 icon: L.icon({
