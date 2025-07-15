@@ -265,8 +265,8 @@
         "precip": 7.3,
         "wind": 10.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.486979842865749,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -311,8 +311,8 @@
         "precip": 0.1,
         "wind": 20.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.543869530058217,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -771,8 +771,8 @@
         "precip": 0.0,
         "wind": 9.7,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.29222832940214,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -909,8 +909,8 @@
         "precip": 0.0,
         "wind": 12.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.153393761277007,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1093,8 +1093,8 @@
         "precip": 0.1,
         "wind": 11.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.997199662109108,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1139,8 +1139,8 @@
         "precip": 0.0,
         "wind": 15.3,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.900772264981327,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1185,8 +1185,8 @@
         "precip": 0.0,
         "wind": 15.8,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.533568388321443,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1231,8 +1231,8 @@
         "precip": 0.0,
         "wind": 13.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.51387874030011,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1461,8 +1461,8 @@
         "precip": 0.0,
         "wind": 8.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.225031707801054,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1507,8 +1507,8 @@
         "precip": 0.0,
         "wind": 11.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.49135579293474,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1645,8 +1645,8 @@
         "precip": 0.0,
         "wind": 18.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.55772947306537,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1691,8 +1691,8 @@
         "precip": 0.0,
         "wind": 10.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.667577148365533,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1967,8 +1967,8 @@
         "precip": 0.0,
         "wind": 7.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.01186609797447,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2105,8 +2105,8 @@
         "precip": 0.0,
         "wind": 12.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.151253851766687,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2289,8 +2289,8 @@
         "precip": 0.0,
         "wind": 8.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.024493765854836,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2335,8 +2335,8 @@
         "precip": 0.0,
         "wind": 12.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.440009200893806,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2565,8 +2565,8 @@
         "precip": 0.0,
         "wind": 20.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.671318236534247,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2611,8 +2611,8 @@
         "precip": 0.0,
         "wind": 10.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.799613524494069,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2795,8 +2795,8 @@
         "precip": 0.0,
         "wind": 19.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.11951418845146,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2887,8 +2887,8 @@
         "precip": 0.0,
         "wind": 6.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.16578068518473,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -2933,8 +2933,8 @@
         "precip": 0.0,
         "wind": 15.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.101274791062515,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3071,8 +3071,8 @@
         "precip": 0.0,
         "wind": 18.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 18.3384272531018,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3163,8 +3163,8 @@
         "precip": 0.0,
         "wind": 12.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.11951418845146,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3209,8 +3209,8 @@
         "precip": 5.6,
         "wind": 21.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.854252517247249,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3347,8 +3347,8 @@
         "precip": 0.0,
         "wind": 16.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.918322790279342,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3439,8 +3439,8 @@
         "precip": 0.3,
         "wind": 18.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.80379739293842,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3577,8 +3577,8 @@
         "precip": 0.8,
         "wind": 30.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.968221365441892,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.803068448327732,
         "display_prediction": true
       },
       "geometry": {
@@ -3623,8 +3623,8 @@
         "precip": 1.9,
         "wind": 25.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.885827090102202,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3669,8 +3669,8 @@
         "precip": 0.0,
         "wind": 11.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.854247962614526,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3715,8 +3715,8 @@
         "precip": 0.0,
         "wind": 11.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.878644475200542,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3761,8 +3761,8 @@
         "precip": 0.0,
         "wind": 28.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.223477483839337,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3853,8 +3853,8 @@
         "precip": 0.0,
         "wind": 27.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.341065253320181,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -3945,8 +3945,8 @@
         "precip": 0.0,
         "wind": 23.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.810059300327003,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -4313,8 +4313,8 @@
         "precip": 0.0,
         "wind": 11.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.14672382327144,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -4359,8 +4359,8 @@
         "precip": 0.0,
         "wind": 13.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.29981506183663,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -4405,8 +4405,8 @@
         "precip": 0.0,
         "wind": 23.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.007539270851558,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -4451,8 +4451,8 @@
         "precip": 0.4,
         "wind": 21.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.375840992712148,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -4543,8 +4543,8 @@
         "precip": 0.0,
         "wind": 11.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.963147998784638,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.2016792087138795,
         "display_prediction": true
       },
       "geometry": {
@@ -4635,8 +4635,8 @@
         "precip": 0.0,
         "wind": 13.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.898549415868649,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -4773,8 +4773,8 @@
         "precip": 0.0,
         "wind": 25.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.08742942893891,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -4957,8 +4957,8 @@
         "precip": 0.0,
         "wind": 15.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.229541549517585,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5003,8 +5003,8 @@
         "precip": 0.0,
         "wind": 11.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.332527512942702,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5049,8 +5049,8 @@
         "precip": 0.0,
         "wind": 11.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.304735545614063,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5233,8 +5233,8 @@
         "precip": 0.0,
         "wind": 12.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.298322726668443,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5279,8 +5279,8 @@
         "precip": 0.0,
         "wind": 11.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.968028337085774,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5371,8 +5371,8 @@
         "precip": 0.0,
         "wind": 13.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.444487320223227,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5555,8 +5555,8 @@
         "precip": 3.0,
         "wind": 24.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.202431073249246,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5601,8 +5601,8 @@
         "precip": 0.0,
         "wind": 7.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.226554853633897,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5693,8 +5693,8 @@
         "precip": 0.0,
         "wind": 25.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.444487320223227,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -5969,8 +5969,8 @@
         "precip": 0.0,
         "wind": 7.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.514194654282775,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6107,8 +6107,8 @@
         "precip": 0.0,
         "wind": 31.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.994921923099183,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6199,8 +6199,8 @@
         "precip": 0.0,
         "wind": 18.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.199434635802076,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6245,8 +6245,8 @@
         "precip": 0.0,
         "wind": 20.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.75214990383362,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6383,8 +6383,8 @@
         "precip": 0.0,
         "wind": 15.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 26.196049766013473,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6567,8 +6567,8 @@
         "precip": 0.0,
         "wind": 22.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.449327363370152,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6613,8 +6613,8 @@
         "precip": 0.0,
         "wind": 16.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.049377730825782,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6659,8 +6659,8 @@
         "precip": 0.0,
         "wind": 24.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.203255116778088,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -6843,8 +6843,8 @@
         "precip": 0.0,
         "wind": 11.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.083483891905276,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -7395,8 +7395,8 @@
         "precip": 0.0,
         "wind": 34.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.619810435003581,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -7441,8 +7441,8 @@
         "precip": 0.9,
         "wind": 17.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.485755404714643,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -7671,8 +7671,8 @@
         "precip": 0.0,
         "wind": 8.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.251903913093,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -7855,8 +7855,8 @@
         "precip": 0.0,
         "wind": 11.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.926380176520697,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -7901,8 +7901,8 @@
         "precip": 0.0,
         "wind": 12.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.242774036369891,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8085,8 +8085,8 @@
         "precip": 0.0,
         "wind": 15.5,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.75214990383362,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8131,8 +8131,8 @@
         "precip": 0.0,
         "wind": 11.1,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.380475505789753,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8177,8 +8177,8 @@
         "precip": 0.0,
         "wind": 10.3,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.069666937267616,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8407,8 +8407,8 @@
         "precip": 0.0,
         "wind": 11.9,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.669215862342456,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8545,8 +8545,8 @@
         "precip": 0.2,
         "wind": 19.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.446701025447796,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8637,8 +8637,8 @@
         "precip": 0.0,
         "wind": 13.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.248890489422584,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8913,8 +8913,8 @@
         "precip": 0.0,
         "wind": 23.8,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.446701025447796,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -8959,8 +8959,8 @@
         "precip": 0.0,
         "wind": 17.7,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.145382172275049,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -9143,8 +9143,8 @@
         "precip": 0.5,
         "wind": 14.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.188669634335536,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -9189,8 +9189,8 @@
         "precip": 0.0,
         "wind": 14.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.8083959029398295,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -9419,8 +9419,8 @@
         "precip": 0.7,
         "wind": 23.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.10489148124138,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.107631997408443,
         "display_prediction": true
       },
       "geometry": {
@@ -9511,8 +9511,8 @@
         "precip": 0.0,
         "wind": 10.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.933289647292562,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -9741,8 +9741,8 @@
         "precip": 0.0,
         "wind": 15.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.624193518540821,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -9787,8 +9787,8 @@
         "precip": 0.0,
         "wind": 20.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.878644475200542,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -9925,8 +9925,8 @@
         "precip": 0.0,
         "wind": 20.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.181259404360937,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -10063,8 +10063,8 @@
         "precip": 0.0,
         "wind": 25.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.999004115476136,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.92278336423186,
         "display_prediction": true
       },
       "geometry": {
@@ -10339,8 +10339,8 @@
         "precip": 0.0,
         "wind": 9.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.251903913093,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -10569,8 +10569,8 @@
         "precip": 0.0,
         "wind": 21.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.67504000189697,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.459904055588057,
         "display_prediction": true
       },
       "geometry": {
@@ -10753,8 +10753,8 @@
         "precip": 12.2,
         "wind": 31.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.767240498956271,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -10891,8 +10891,8 @@
         "precip": 0.0,
         "wind": 19.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.330925995164174,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -10937,8 +10937,8 @@
         "precip": 0.0,
         "wind": 17.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.191726041944112,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -11167,8 +11167,8 @@
         "precip": 0.0,
         "wind": 22.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.646633034565731,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -11213,8 +11213,8 @@
         "precip": 0.0,
         "wind": 20.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.449673466974087,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -11443,8 +11443,8 @@
         "precip": 0.0,
         "wind": 19.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.389572572538016,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.9367652505972026,
         "display_prediction": true
       },
       "geometry": {
@@ -11489,8 +11489,8 @@
         "precip": 0.0,
         "wind": 19.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.498602046275917,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -11673,8 +11673,8 @@
         "precip": 0.0,
         "wind": 19.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.932256414218126,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -12363,8 +12363,8 @@
         "precip": 0.0,
         "wind": 10.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.332527512942702,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -12593,8 +12593,8 @@
         "precip": 0.0,
         "wind": 16.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.381392504933288,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -12639,8 +12639,8 @@
         "precip": 0.0,
         "wind": 13.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.191726041944112,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -12777,8 +12777,8 @@
         "precip": 0.0,
         "wind": 19.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.134119963094715,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -13007,8 +13007,8 @@
         "precip": 0.0,
         "wind": 7.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.14672382327144,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -13053,8 +13053,8 @@
         "precip": 0.0,
         "wind": 12.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.204075777401544,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -13099,8 +13099,8 @@
         "precip": 0.0,
         "wind": 12.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.816875524438261,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.55854980027274,
         "display_prediction": true
       },
       "geometry": {
@@ -13467,8 +13467,8 @@
         "precip": 0.0,
         "wind": 14.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.807859076458593,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -13513,8 +13513,8 @@
         "precip": 0.3,
         "wind": 18.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.1242509982484625,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -13927,8 +13927,8 @@
         "precip": 2.0,
         "wind": 14.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.954516923833218,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -14111,8 +14111,8 @@
         "precip": 0.0,
         "wind": 17.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.752525203741506,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -14203,8 +14203,8 @@
         "precip": 0.0,
         "wind": 7.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.6759919611177,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -14341,8 +14341,8 @@
         "precip": 0.0,
         "wind": 16.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.179325128187058,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -14571,8 +14571,8 @@
         "precip": 0.0,
         "wind": 13.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.89814743393594,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -14709,8 +14709,8 @@
         "precip": 0.0,
         "wind": 11.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.563812865135812,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -14847,8 +14847,8 @@
         "precip": 0.0,
         "wind": 24.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.526675592727947,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -15491,8 +15491,8 @@
         "precip": 0.0,
         "wind": 14.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.373721932718217,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -15537,8 +15537,8 @@
         "precip": 0.0,
         "wind": 31.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 27.998044642700307,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -15813,8 +15813,8 @@
         "precip": 0.0,
         "wind": 19.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.097996885524207,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -15859,8 +15859,8 @@
         "precip": 0.0,
         "wind": 17.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.014341393135408,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -16043,8 +16043,8 @@
         "precip": 0.0,
         "wind": 26.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.12926004616446,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -16089,8 +16089,8 @@
         "precip": 7.7,
         "wind": 23.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.076503749564402,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -16457,8 +16457,8 @@
         "precip": 0.0,
         "wind": 16.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.49045983374264,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -16641,8 +16641,8 @@
         "precip": 0.0,
         "wind": 14.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.954516923833218,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -16825,8 +16825,8 @@
         "precip": 0.4,
         "wind": 15.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.646633034565731,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -17055,8 +17055,8 @@
         "precip": 0.0,
         "wind": 13.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.173142922090724,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -17101,8 +17101,8 @@
         "precip": 3.5,
         "wind": 20.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.847290423861155,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -17147,8 +17147,8 @@
         "precip": 0.0,
         "wind": 22.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.635257415879279,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -17239,8 +17239,8 @@
         "precip": 0.0,
         "wind": 11.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.789792370461093,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -17377,8 +17377,8 @@
         "precip": 0.0,
         "wind": 15.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.367525992340349,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -17791,8 +17791,8 @@
         "precip": 0.0,
         "wind": 12.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.75624903884036,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -17929,8 +17929,8 @@
         "precip": 0.0,
         "wind": 12.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.840148921145762,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -18021,8 +18021,8 @@
         "precip": 0.0,
         "wind": 8.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.204075777401544,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -18067,8 +18067,8 @@
         "precip": 0.0,
         "wind": 10.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.7141122389025405,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -18343,8 +18343,8 @@
         "precip": 0.0,
         "wind": 19.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.91477607475443,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -18389,8 +18389,8 @@
         "precip": 0.0,
         "wind": 14.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.288254387999896,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -18527,8 +18527,8 @@
         "precip": 0.0,
         "wind": 13.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.288867882152099,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -18573,8 +18573,8 @@
         "precip": 0.0,
         "wind": 18.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.639422934428894,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -18619,8 +18619,8 @@
         "precip": 0.0,
         "wind": 17.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.635866592069291,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19125,8 +19125,8 @@
         "precip": 0.0,
         "wind": 18.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.771470702229184,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19171,8 +19171,8 @@
         "precip": 0.0,
         "wind": 13.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.5644153690279,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19309,8 +19309,8 @@
         "precip": 0.0,
         "wind": 12.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.790963689028544,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19401,8 +19401,8 @@
         "precip": 0.0,
         "wind": 17.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.4309057824714815,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19447,8 +19447,8 @@
         "precip": 0.0,
         "wind": 10.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.48641463542113,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19539,8 +19539,8 @@
         "precip": 0.0,
         "wind": 18.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.36441827844343,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19631,8 +19631,8 @@
         "precip": 0.0,
         "wind": 21.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.349664832905752,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -19723,8 +19723,8 @@
         "precip": 0.0,
         "wind": 14.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.7604016271568454,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -20091,8 +20091,8 @@
         "precip": 0.0,
         "wind": 14.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.172862579749323,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -20275,8 +20275,8 @@
         "precip": 0.0,
         "wind": 22.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.286343699032347,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -20413,8 +20413,8 @@
         "precip": 0.0,
         "wind": 15.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.468387161384146,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -20781,8 +20781,8 @@
         "precip": 0.0,
         "wind": 15.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.462502380036229,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -20827,8 +20827,8 @@
         "precip": 0.0,
         "wind": 10.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.495345653791896,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -20873,8 +20873,8 @@
         "precip": 0.0,
         "wind": 19.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.921459426860533,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.870999666019343,
         "display_prediction": true
       },
       "geometry": {
@@ -20919,8 +20919,8 @@
         "precip": 0.0,
         "wind": 14.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.101274791062515,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -21057,8 +21057,8 @@
         "precip": 0.4,
         "wind": 31.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.790963689028544,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -21333,8 +21333,8 @@
         "precip": 0.1,
         "wind": 16.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.751882050506097,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -21563,8 +21563,8 @@
         "precip": 0.0,
         "wind": 17.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 21.17349509968518,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -21931,8 +21931,8 @@
         "precip": 0.0,
         "wind": 8.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.641031042037885,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -22253,8 +22253,8 @@
         "precip": 0.0,
         "wind": 20.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.811573218659973,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -22391,8 +22391,8 @@
         "precip": 0.0,
         "wind": 29.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.36441827844343,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -22529,8 +22529,8 @@
         "precip": 0.0,
         "wind": 33.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.463411283195726,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -22667,8 +22667,8 @@
         "precip": 0.1,
         "wind": 10.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.065056921802064,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -22713,8 +22713,8 @@
         "precip": 0.0,
         "wind": 23.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.490627397907454,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -22805,8 +22805,8 @@
         "precip": 0.0,
         "wind": 9.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.076503749564402,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -22943,8 +22943,8 @@
         "precip": 0.0,
         "wind": 20.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.78336871247698,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23035,8 +23035,8 @@
         "precip": 7.5,
         "wind": 15.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.307720419734057,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23127,8 +23127,8 @@
         "precip": 0.0,
         "wind": 13.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.97458065418788,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23219,8 +23219,8 @@
         "precip": 0.0,
         "wind": 16.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.101078585721397,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23265,8 +23265,8 @@
         "precip": 0.0,
         "wind": 16.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.840148921145762,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23311,8 +23311,8 @@
         "precip": 0.0,
         "wind": 18.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.950406515517914,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23633,8 +23633,8 @@
         "precip": 0.0,
         "wind": 17.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.63107369482865,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23679,8 +23679,8 @@
         "precip": 0.0,
         "wind": 14.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.899331001892095,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -23863,8 +23863,8 @@
         "precip": 0.0,
         "wind": 19.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.797319969086998,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -24185,8 +24185,8 @@
         "precip": 0.0,
         "wind": 7.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.454995768075655,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -24277,8 +24277,8 @@
         "precip": 0.0,
         "wind": 16.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.277016071003645,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -24691,8 +24691,8 @@
         "precip": 0.0,
         "wind": 13.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.354138672021906,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -24783,8 +24783,8 @@
         "precip": 0.0,
         "wind": 10.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.888897466331725,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -25105,8 +25105,8 @@
         "precip": 0.0,
         "wind": 11.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.595261899555718,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -25381,8 +25381,8 @@
         "precip": 0.0,
         "wind": 8.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.444859234392158,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -25565,8 +25565,8 @@
         "precip": 0.0,
         "wind": 8.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.707122259866168,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -25657,8 +25657,8 @@
         "precip": 0.0,
         "wind": 14.3,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.454995768075655,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -25749,8 +25749,8 @@
         "precip": 0.0,
         "wind": 29.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.683250509028477,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -25887,8 +25887,8 @@
         "precip": 0.0,
         "wind": 8.2,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.244613833892178,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -26209,8 +26209,8 @@
         "precip": 1.6,
         "wind": 12.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.624737780725597,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -26531,8 +26531,8 @@
         "precip": 0.0,
         "wind": 9.3,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.209312552736016,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -27451,8 +27451,8 @@
         "precip": 0.0,
         "wind": 23.0,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.979756506033459,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.50686719429553,
         "display_prediction": true
       },
       "geometry": {
@@ -27865,8 +27865,8 @@
         "precip": 0.0,
         "wind": 21.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.204256840791468,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -28187,8 +28187,8 @@
         "precip": 0.0,
         "wind": 16.5,
         "FIRE_RISK": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.867830676874492,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -28325,8 +28325,8 @@
         "precip": 5.3,
         "wind": 25.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.882576227949525,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -28555,8 +28555,8 @@
         "precip": 0.0,
         "wind": 17.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.360630279121571,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -28969,8 +28969,8 @@
         "precip": 0.0,
         "wind": 12.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.618122065196797,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -29153,8 +29153,8 @@
         "precip": 0.6,
         "wind": 15.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.209312552736016,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -29291,8 +29291,8 @@
         "precip": 0.9,
         "wind": 15.4,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.282899752351704,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -29567,8 +29567,8 @@
         "precip": 0.0,
         "wind": 16.9,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.526675592727947,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -29705,8 +29705,8 @@
         "precip": 0.0,
         "wind": 19.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.518371751237872,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -30303,8 +30303,8 @@
         "precip": 0.2,
         "wind": 13.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.188669634335536,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -30625,8 +30625,8 @@
         "precip": 0.0,
         "wind": 20.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.43584788754142,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -31039,8 +31039,8 @@
         "precip": 0.0,
         "wind": 15.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.621314000441986,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -32465,8 +32465,8 @@
         "precip": 0.1,
         "wind": 18.5,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.705112842884434,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -32741,8 +32741,8 @@
         "precip": 0.0,
         "wind": 20.8,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.393060650174323,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -32971,8 +32971,8 @@
         "precip": 0.0,
         "wind": 13.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.318910733656795,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -38537,8 +38537,8 @@
         "precip": 0.0,
         "wind": 17.1,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.797319969086998,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -38583,8 +38583,8 @@
         "precip": 0.0,
         "wind": 17.2,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.29222832940214,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -38629,8 +38629,8 @@
         "precip": 0.0,
         "wind": 13.7,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.560356830885137,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -41251,8 +41251,8 @@
         "precip": 0.0,
         "wind": 5.6,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.749920398351216,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -43275,8 +43275,8 @@
         "precip": 0.0,
         "wind": 13.0,
         "FIRE_RISK": 0,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.976099752441353,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {

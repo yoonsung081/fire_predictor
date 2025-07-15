@@ -7,8 +7,8 @@
         "LAT": 37.6780718,
         "LON": 127.9350934,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 21.60207026230535,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.346777082990482,
         "display_prediction": true
       },
       "geometry": {
@@ -61,8 +61,8 @@
         "LAT": 35.2444351,
         "LON": 129.2188738,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.48350363991607,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.8860737493797378,
         "display_prediction": true
       },
       "geometry": {
@@ -79,8 +79,8 @@
         "LAT": 35.03033,
         "LON": 127.89305,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.920448012331809,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.3048899445138369,
         "display_prediction": true
       },
       "geometry": {
@@ -97,8 +97,8 @@
         "LAT": 35.274794,
         "LON": 129.150785,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 22.251448373250554,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7668093711037345,
         "display_prediction": true
       },
       "geometry": {
@@ -115,8 +115,8 @@
         "LAT": 37.4176053,
         "LON": 128.0036709,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.716160800705646,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.2366024847576047,
         "display_prediction": true
       },
       "geometry": {
@@ -133,8 +133,8 @@
         "LAT": 36.997539,
         "LON": 126.374201,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 30.228009070243726,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.9652206076665806,
         "display_prediction": true
       },
       "geometry": {
@@ -169,8 +169,8 @@
         "LAT": 38.0903796,
         "LON": 127.2756763,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 20.58673472603877,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.0717446935847932,
         "display_prediction": true
       },
       "geometry": {
@@ -187,8 +187,8 @@
         "LAT": 36.5070333,
         "LON": 126.9455613,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.507941146835472,
+        "accuracy_score": 83,
+        "distance_to_closest_true_fire_km": 0.36346817784956487,
         "display_prediction": true
       },
       "geometry": {
@@ -205,8 +205,8 @@
         "LAT": 37.3733591,
         "LON": 127.2999508,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.530168755076065,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.600383722417953,
         "display_prediction": true
       },
       "geometry": {
@@ -241,8 +241,8 @@
         "LAT": 37.8791743,
         "LON": 127.7262988,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 36.95053189682751,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.2254990787193878,
         "display_prediction": true
       },
       "geometry": {
@@ -259,8 +259,8 @@
         "LAT": 37.642333,
         "LON": 127.1276086,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.068411821323314,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.538736239531819,
         "display_prediction": true
       },
       "geometry": {
@@ -277,8 +277,8 @@
         "LAT": 35.11728,
         "LON": 127.456,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.617438597919366,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.519734027932396,
         "display_prediction": true
       },
       "geometry": {
@@ -295,8 +295,8 @@
         "LAT": 36.6949305,
         "LON": 128.1343878,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 28.032157610340246,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.2436573918045375,
         "display_prediction": true
       },
       "geometry": {
@@ -331,8 +331,8 @@
         "LAT": 36.9227101,
         "LON": 127.5566228,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.481669381822908,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.346907805546846,
         "display_prediction": true
       },
       "geometry": {
@@ -349,8 +349,8 @@
         "LAT": 36.0984833,
         "LON": 127.6837462,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.53011945125291,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1621095091537237,
         "display_prediction": true
       },
       "geometry": {
@@ -367,8 +367,8 @@
         "LAT": 37.735508,
         "LON": 127.4266359,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.683797221541582,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7482434715061776,
         "display_prediction": true
       },
       "geometry": {
@@ -385,8 +385,8 @@
         "LAT": 36.6222756,
         "LON": 127.6028405,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.187436943432857,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.6884787774474659,
         "display_prediction": true
       },
       "geometry": {
@@ -421,8 +421,8 @@
         "LAT": 34.9121609,
         "LON": 128.6520368,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 28.68671696877387,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.2739063612272175,
         "display_prediction": true
       },
       "geometry": {
@@ -439,8 +439,8 @@
         "LAT": 36.32381,
         "LON": 126.72037,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.419218616680185,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.0885438127221723,
         "display_prediction": true
       },
       "geometry": {
@@ -457,8 +457,8 @@
         "LAT": 35.0081,
         "LON": 127.092809,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 24.3092173742979,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.5361080687656945,
         "display_prediction": true
       },
       "geometry": {
@@ -475,8 +475,8 @@
         "LAT": 34.9298291,
         "LON": 126.5037002,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 23.328525096447905,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.3974686468648483,
         "display_prediction": true
       },
       "geometry": {
@@ -493,8 +493,8 @@
         "LAT": 35.4259578,
         "LON": 129.3507297,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.267166634696443,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.6671935234647371,
         "display_prediction": true
       },
       "geometry": {
@@ -511,8 +511,8 @@
         "LAT": 37.609039,
         "LON": 127.348047,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.164335907530467,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.1779470444538958,
         "display_prediction": true
       },
       "geometry": {
@@ -529,8 +529,8 @@
         "LAT": 38.067334,
         "LON": 127.015837,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.822928857949465,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.2614924674967,
         "display_prediction": true
       },
       "geometry": {
@@ -547,8 +547,8 @@
         "LAT": 35.40243,
         "LON": 128.00903,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.579155445513278,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.832722343736406,
         "display_prediction": true
       },
       "geometry": {
@@ -565,8 +565,8 @@
         "LAT": 35.41994,
         "LON": 128.52729,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.03606609868547,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.6651107944314454,
         "display_prediction": true
       },
       "geometry": {
@@ -583,8 +583,8 @@
         "LAT": 35.0843994,
         "LON": 128.0411936,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 23.373873177170328,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.686044347337278,
         "display_prediction": true
       },
       "geometry": {
@@ -619,8 +619,8 @@
         "LAT": 36.8067134,
         "LON": 127.1516634,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.67904976775369,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.8430434709663968,
         "display_prediction": true
       },
       "geometry": {
@@ -637,8 +637,8 @@
         "LAT": 36.5964474,
         "LON": 127.1025991,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.133606450879146,
+        "accuracy_score": 88,
+        "distance_to_closest_true_fire_km": 0.1124940632202209,
         "display_prediction": true
       },
       "geometry": {
@@ -655,8 +655,8 @@
         "LAT": 37.709649,
         "LON": 127.861274,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 22.812973520893202,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1712999833328697,
         "display_prediction": true
       },
       "geometry": {
@@ -673,8 +673,8 @@
         "LAT": 37.6302005,
         "LON": 127.3179009,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.156552684902103,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.3698521266115515,
         "display_prediction": true
       },
       "geometry": {
@@ -727,8 +727,8 @@
         "LAT": 36.8067134,
         "LON": 127.1516634,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.179893537072751,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.8430434709663968,
         "display_prediction": true
       },
       "geometry": {
@@ -745,8 +745,8 @@
         "LAT": 37.81543,
         "LON": 128.08729,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.555261551281184,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.5516762082958526,
         "display_prediction": true
       },
       "geometry": {
@@ -763,8 +763,8 @@
         "LAT": 36.5696278,
         "LON": 128.174871,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.449903362193483,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.8763715652474273,
         "display_prediction": true
       },
       "geometry": {
@@ -835,8 +835,8 @@
         "LAT": 37.2927969,
         "LON": 126.995589,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.935534512421302,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.6081414615196447,
         "display_prediction": true
       },
       "geometry": {
@@ -853,8 +853,8 @@
         "LAT": 37.3505063,
         "LON": 127.346279,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.028423038355609,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.377719816534107,
         "display_prediction": true
       },
       "geometry": {
@@ -871,8 +871,8 @@
         "LAT": 36.14122,
         "LON": 128.51315,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 25.61360506625942,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.4367940905597711,
         "display_prediction": true
       },
       "geometry": {
@@ -890,8 +890,8 @@
         "LON": 126.7392634,
         "PREDICTED_FIRE": 1,
         "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.083930275018075,
-        "display_prediction": true
+        "distance_to_closest_true_fire_km": Infinity,
+        "display_prediction": false
       },
       "geometry": {
         "type": "Point",
@@ -907,8 +907,8 @@
         "LAT": 36.0838403,
         "LON": 126.7638112,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.675552115655748,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.4053115147421398,
         "display_prediction": true
       },
       "geometry": {
@@ -925,8 +925,8 @@
         "LAT": 37.4176053,
         "LON": 128.0036709,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.640541622511574,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.2366024847576047,
         "display_prediction": true
       },
       "geometry": {
@@ -961,8 +961,8 @@
         "LAT": 35.1534417,
         "LON": 128.660127,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 20.115854140359186,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.2050661122057456,
         "display_prediction": true
       },
       "geometry": {
@@ -979,8 +979,8 @@
         "LAT": 36.818944,
         "LON": 126.663061,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.83054666205051,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7113291668781844,
         "display_prediction": true
       },
       "geometry": {
@@ -1033,8 +1033,8 @@
         "LAT": 37.2835,
         "LON": 128.72975,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.132256713697624,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1843490271367134,
         "display_prediction": true
       },
       "geometry": {
@@ -1087,8 +1087,8 @@
         "LAT": 34.57101,
         "LON": 126.81999,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 27.73867401649856,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.8999352765962142,
         "display_prediction": true
       },
       "geometry": {
@@ -1105,8 +1105,8 @@
         "LAT": 35.40046,
         "LON": 127.61642,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.75996674330221,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.520868191020808,
         "display_prediction": true
       },
       "geometry": {
@@ -1123,8 +1123,8 @@
         "LAT": 38.1096812,
         "LON": 127.9900596,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.83054403867712,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.371084240614456,
         "display_prediction": true
       },
       "geometry": {
@@ -1141,8 +1141,8 @@
         "LAT": 35.3741,
         "LON": 127.1374,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 23.438222661359696,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1584775851997742,
         "display_prediction": true
       },
       "geometry": {
@@ -1195,8 +1195,8 @@
         "LAT": 36.4969286,
         "LON": 127.4794064,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.944753788838902,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1605257723147766,
         "display_prediction": true
       },
       "geometry": {
@@ -1213,8 +1213,8 @@
         "LAT": 36.90247,
         "LON": 126.51549,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.27567163784308,
+        "accuracy_score": 82,
+        "distance_to_closest_true_fire_km": 0.40940171060247776,
         "display_prediction": true
       },
       "geometry": {
@@ -1249,8 +1249,8 @@
         "LAT": 35.57559,
         "LON": 128.5153,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.155170856387235,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1589581227769268,
         "display_prediction": true
       },
       "geometry": {
@@ -1303,8 +1303,8 @@
         "LAT": 34.9561451,
         "LON": 127.587824,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.085300452412636,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.2341153553706048,
         "display_prediction": true
       },
       "geometry": {
@@ -1321,8 +1321,8 @@
         "LAT": 35.71361,
         "LON": 127.32553,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 10.656400464754904,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.593238652663065,
         "display_prediction": true
       },
       "geometry": {
@@ -1339,8 +1339,8 @@
         "LAT": 37.6816091,
         "LON": 126.7726954,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.376585368782586,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.9580536089667147,
         "display_prediction": true
       },
       "geometry": {
@@ -1357,8 +1357,8 @@
         "LAT": 35.6883622,
         "LON": 128.8945872,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 23.41577415832415,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.09424098866159,
         "display_prediction": true
       },
       "geometry": {
@@ -1375,8 +1375,8 @@
         "LAT": 35.40046,
         "LON": 127.61642,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.75996674330221,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.520868191020808,
         "display_prediction": true
       },
       "geometry": {
@@ -1393,8 +1393,8 @@
         "LAT": 35.86532,
         "LON": 128.457902,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.945299249002373,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.530433885806107,
         "display_prediction": true
       },
       "geometry": {
@@ -1411,8 +1411,8 @@
         "LAT": 35.297069,
         "LON": 127.956132,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.46724239134982,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.860978940388259,
         "display_prediction": true
       },
       "geometry": {
@@ -1429,8 +1429,8 @@
         "LAT": 36.5628758,
         "LON": 126.6926918,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.248731272862038,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.109699835533473,
         "display_prediction": true
       },
       "geometry": {
@@ -1465,8 +1465,8 @@
         "LAT": 35.86735,
         "LON": 128.13972,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 23.668863820416608,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.0652914230577482,
         "display_prediction": true
       },
       "geometry": {
@@ -1483,8 +1483,8 @@
         "LAT": 36.2813846,
         "LON": 126.7774046,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.297710210600595,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.941078750229841,
         "display_prediction": true
       },
       "geometry": {
@@ -1501,8 +1501,8 @@
         "LAT": 34.9090331,
         "LON": 127.4796175,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 26.71678279115612,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.39566449111003,
         "display_prediction": true
       },
       "geometry": {
@@ -1519,8 +1519,8 @@
         "LAT": 36.5698393,
         "LON": 128.9210496,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.862213424363137,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.5965770882840724,
         "display_prediction": true
       },
       "geometry": {
@@ -1591,8 +1591,8 @@
         "LAT": 38.0004613,
         "LON": 127.2450827,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 24.774588676877382,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.134055502441254,
         "display_prediction": true
       },
       "geometry": {
@@ -1609,8 +1609,8 @@
         "LAT": 36.343637,
         "LON": 127.96122,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 29.096269313774055,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.9990805846556026,
         "display_prediction": true
       },
       "geometry": {
@@ -1645,8 +1645,8 @@
         "LAT": 34.6586172,
         "LON": 127.2632666,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.73701882608528,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.9182889852641178,
         "display_prediction": true
       },
       "geometry": {
@@ -1681,8 +1681,8 @@
         "LAT": 35.54734,
         "LON": 127.1415,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.538092622865223,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.444437171225189,
         "display_prediction": true
       },
       "geometry": {
@@ -1699,8 +1699,8 @@
         "LAT": 34.9561451,
         "LON": 127.587824,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.085300452412636,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.2341153553706048,
         "display_prediction": true
       },
       "geometry": {
@@ -1753,8 +1753,8 @@
         "LAT": 37.0703921,
         "LON": 127.2962649,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.291753072950662,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.635051052627784,
         "display_prediction": true
       },
       "geometry": {
@@ -1771,8 +1771,8 @@
         "LAT": 37.4276556,
         "LON": 127.5345472,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.428153020483643,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.1085695192406226,
         "display_prediction": true
       },
       "geometry": {
@@ -1789,8 +1789,8 @@
         "LAT": 36.0122451,
         "LON": 127.7882931,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.966426215312653,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7354743211512449,
         "display_prediction": true
       },
       "geometry": {
@@ -1807,8 +1807,8 @@
         "LAT": 36.8542334,
         "LON": 126.9532319,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.275321798441771,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.335870591420544,
         "display_prediction": true
       },
       "geometry": {
@@ -1825,8 +1825,8 @@
         "LAT": 37.8145038,
         "LON": 127.5107764,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 21.2440475744487,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.5684521670607259,
         "display_prediction": true
       },
       "geometry": {
@@ -1843,8 +1843,8 @@
         "LAT": 35.58976,
         "LON": 128.9114,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 18.27044130621461,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1275998163836467,
         "display_prediction": true
       },
       "geometry": {
@@ -1879,8 +1879,8 @@
         "LAT": 35.44301,
         "LON": 126.48008,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 32.97098146755628,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.5708652958067315,
         "display_prediction": true
       },
       "geometry": {
@@ -1897,8 +1897,8 @@
         "LAT": 37.268727,
         "LON": 127.71952,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.098437238618288,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.3570368283129286,
         "display_prediction": true
       },
       "geometry": {
@@ -1915,8 +1915,8 @@
         "LAT": 35.2743,
         "LON": 128.32305,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 28.331532093620478,
+        "accuracy_score": 90,
+        "distance_to_closest_true_fire_km": 0.0,
         "display_prediction": true
       },
       "geometry": {
@@ -1933,8 +1933,8 @@
         "LAT": 37.3733591,
         "LON": 127.2999508,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.530168755076065,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.600383722417953,
         "display_prediction": true
       },
       "geometry": {
@@ -1951,8 +1951,8 @@
         "LAT": 35.881826,
         "LON": 127.1537543,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.986467846003537,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.4523833619099087,
         "display_prediction": true
       },
       "geometry": {
@@ -1969,8 +1969,8 @@
         "LAT": 36.6798216,
         "LON": 126.7515305,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.095607762981643,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.703591667444585,
         "display_prediction": true
       },
       "geometry": {
@@ -1987,8 +1987,8 @@
         "LAT": 36.8471,
         "LON": 127.537585,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.846080788246617,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.71020079601476,
         "display_prediction": true
       },
       "geometry": {
@@ -2023,8 +2023,8 @@
         "LAT": 36.936716,
         "LON": 126.593784,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.50741232767352,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7016708698796056,
         "display_prediction": true
       },
       "geometry": {
@@ -2041,8 +2041,8 @@
         "LAT": 37.2022322,
         "LON": 127.71484,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.491504521272155,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.5602345071353511,
         "display_prediction": true
       },
       "geometry": {
@@ -2059,8 +2059,8 @@
         "LAT": 35.93276,
         "LON": 127.84711,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.41781561659156,
+        "accuracy_score": 85,
+        "distance_to_closest_true_fire_km": 0.2861369654328485,
         "display_prediction": true
       },
       "geometry": {
@@ -2095,8 +2095,8 @@
         "LAT": 37.3658379,
         "LON": 127.8386273,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.712304462715792,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.3561211112101872,
         "display_prediction": true
       },
       "geometry": {
@@ -2113,8 +2113,8 @@
         "LAT": 36.5858541,
         "LON": 128.1870612,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.57358837127464,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.363543132926812,
         "display_prediction": true
       },
       "geometry": {
@@ -2149,8 +2149,8 @@
         "LAT": 35.2199239,
         "LON": 126.3732594,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 25.37349451913006,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7795589888047924,
         "display_prediction": true
       },
       "geometry": {
@@ -2168,8 +2168,8 @@
         "LON": 126.7392634,
         "PREDICTED_FIRE": 1,
         "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 5.083930275018075,
-        "display_prediction": true
+        "distance_to_closest_true_fire_km": Infinity,
+        "display_prediction": false
       },
       "geometry": {
         "type": "Point",
@@ -2221,8 +2221,8 @@
         "LAT": 35.4995302,
         "LON": 129.120892,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.123652460384575,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.6878305051284888,
         "display_prediction": true
       },
       "geometry": {
@@ -2257,8 +2257,8 @@
         "LAT": 35.9926457,
         "LON": 129.5617702,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 37.06495899768321,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.6365870793271498,
         "display_prediction": true
       },
       "geometry": {
@@ -2275,8 +2275,8 @@
         "LAT": 36.7430223,
         "LON": 127.1611707,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.38673904445612,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.517575424366715,
         "display_prediction": true
       },
       "geometry": {
@@ -2293,8 +2293,8 @@
         "LAT": 36.55224,
         "LON": 128.39561,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.82543095527705,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.9488796219258784,
         "display_prediction": true
       },
       "geometry": {
@@ -2311,8 +2311,8 @@
         "LAT": 35.4633967,
         "LON": 127.6016738,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.558608245996503,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.929895946570662,
         "display_prediction": true
       },
       "geometry": {
@@ -2329,8 +2329,8 @@
         "LAT": 36.2782289,
         "LON": 127.1217845,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.34175987942733,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.3105838156089906,
         "display_prediction": true
       },
       "geometry": {
@@ -2383,8 +2383,8 @@
         "LAT": 35.4634724,
         "LON": 127.9270616,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 26.08900455680999,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.7607841224401084,
         "display_prediction": true
       },
       "geometry": {
@@ -2401,8 +2401,8 @@
         "LAT": 36.9825959,
         "LON": 126.3185457,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 26.159857870419792,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.4897281172831995,
         "display_prediction": true
       },
       "geometry": {
@@ -2437,8 +2437,8 @@
         "LAT": 37.35009,
         "LON": 126.822414,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.076395788706467,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.7932540482914059,
         "display_prediction": true
       },
       "geometry": {
@@ -2455,8 +2455,8 @@
         "LAT": 36.2753678,
         "LON": 126.910107,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.400215527647887,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.3303738279998367,
         "display_prediction": true
       },
       "geometry": {
@@ -2473,8 +2473,8 @@
         "LAT": 35.5204145,
         "LON": 127.7252966,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.189822667630054,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7343545830506581,
         "display_prediction": true
       },
       "geometry": {
@@ -2491,8 +2491,8 @@
         "LAT": 37.2022322,
         "LON": 127.71484,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.491504521272155,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.5602345071353511,
         "display_prediction": true
       },
       "geometry": {
@@ -2509,8 +2509,8 @@
         "LAT": 34.49263,
         "LON": 127.32637,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.671141055727016,
+        "accuracy_score": 85,
+        "distance_to_closest_true_fire_km": 0.2927074597790531,
         "display_prediction": true
       },
       "geometry": {
@@ -2527,8 +2527,8 @@
         "LAT": 34.954473,
         "LON": 128.6545924,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 31.374618028014947,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.0624041775403554,
         "display_prediction": true
       },
       "geometry": {
@@ -2545,8 +2545,8 @@
         "LAT": 34.37663,
         "LON": 126.52733,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.332293346019116,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.8883052194022387,
         "display_prediction": true
       },
       "geometry": {
@@ -2581,8 +2581,8 @@
         "LAT": 36.462012,
         "LON": 129.0373486,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 31.63021222915927,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.879832141025399,
         "display_prediction": true
       },
       "geometry": {
@@ -2599,8 +2599,8 @@
         "LAT": 35.7915,
         "LON": 127.4252,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 22.541215190446767,
+        "accuracy_score": 81,
+        "distance_to_closest_true_fire_km": 0.4728951603377711,
         "display_prediction": true
       },
       "geometry": {
@@ -2617,8 +2617,8 @@
         "LAT": 37.8042615,
         "LON": 126.7186775,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 37.24131596994429,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.8237286813734376,
         "display_prediction": true
       },
       "geometry": {
@@ -2635,8 +2635,8 @@
         "LAT": 36.14122,
         "LON": 128.51315,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 25.61360506625942,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.4367940905597711,
         "display_prediction": true
       },
       "geometry": {
@@ -2653,8 +2653,8 @@
         "LAT": 35.3990296,
         "LON": 128.8438715,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.5434874637697,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.6404754678814313,
         "display_prediction": true
       },
       "geometry": {
@@ -2671,8 +2671,8 @@
         "LAT": 35.99243,
         "LON": 128.82626,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.405840333150913,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.2732126835663722,
         "display_prediction": true
       },
       "geometry": {
@@ -2689,8 +2689,8 @@
         "LAT": 36.2368257,
         "LON": 127.7207879,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.85272454528375,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.8968369697763947,
         "display_prediction": true
       },
       "geometry": {
@@ -2707,8 +2707,8 @@
         "LAT": 35.2444351,
         "LON": 129.2188738,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.48350363991607,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.8860737493797378,
         "display_prediction": true
       },
       "geometry": {
@@ -2725,8 +2725,8 @@
         "LAT": 36.1610333,
         "LON": 128.8939559,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 27.55845500145659,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.372466554795269,
         "display_prediction": true
       },
       "geometry": {
@@ -2743,8 +2743,8 @@
         "LAT": 35.3637422,
         "LON": 127.342847,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.694104157585464,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.4448838384243237,
         "display_prediction": true
       },
       "geometry": {
@@ -2761,8 +2761,8 @@
         "LAT": 37.5862797,
         "LON": 127.2188793,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 15.70495716138836,
+        "accuracy_score": 85,
+        "distance_to_closest_true_fire_km": 0.28856806402062457,
         "display_prediction": true
       },
       "geometry": {
@@ -2779,8 +2779,8 @@
         "LAT": 37.6376595,
         "LON": 126.4191692,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.138176996054394,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.6278728394788975,
         "display_prediction": true
       },
       "geometry": {
@@ -2797,8 +2797,8 @@
         "LAT": 36.7622798,
         "LON": 127.3000613,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.989337502977387,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.081428687486793,
         "display_prediction": true
       },
       "geometry": {
@@ -2815,8 +2815,8 @@
         "LAT": 36.0122451,
         "LON": 127.7882931,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 13.966426215312653,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.7354743211512449,
         "display_prediction": true
       },
       "geometry": {
@@ -2833,8 +2833,8 @@
         "LAT": 35.7318229,
         "LON": 127.5811959,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.927335936934842,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.426261053209237,
         "display_prediction": true
       },
       "geometry": {
@@ -2851,8 +2851,8 @@
         "LAT": 36.5333074,
         "LON": 127.8265805,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 23.288535600912926,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.9344247704637815,
         "display_prediction": true
       },
       "geometry": {
@@ -2869,8 +2869,8 @@
         "LAT": 35.8753366,
         "LON": 128.8962944,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.457652802668743,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.8416089704497118,
         "display_prediction": true
       },
       "geometry": {
@@ -2887,8 +2887,8 @@
         "LAT": 34.462446,
         "LON": 127.129219,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 24.91320903569095,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.8045019955937762,
         "display_prediction": true
       },
       "geometry": {
@@ -2905,8 +2905,8 @@
         "LAT": 36.3790715,
         "LON": 129.1407079,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 22.070436703117668,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 3.138839532956022,
         "display_prediction": true
       },
       "geometry": {
@@ -2923,8 +2923,8 @@
         "LAT": 34.954473,
         "LON": 128.6545924,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 31.374618028014947,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.0624041775403554,
         "display_prediction": true
       },
       "geometry": {
@@ -2941,8 +2941,8 @@
         "LAT": 35.86532,
         "LON": 128.457902,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.945299249002373,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.530433885806107,
         "display_prediction": true
       },
       "geometry": {
@@ -2959,8 +2959,8 @@
         "LAT": 35.9869747,
         "LON": 129.275494,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 30.67435267309019,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.6866913709701885,
         "display_prediction": true
       },
       "geometry": {
@@ -2977,8 +2977,8 @@
         "LAT": 36.2753678,
         "LON": 126.910107,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 9.400215527647887,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.3303738279998367,
         "display_prediction": true
       },
       "geometry": {
@@ -2995,8 +2995,8 @@
         "LAT": 37.609039,
         "LON": 127.348047,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.164335907530467,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.1779470444538958,
         "display_prediction": true
       },
       "geometry": {
@@ -3013,8 +3013,8 @@
         "LAT": 36.7175368,
         "LON": 126.5432623,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 18.381276591515537,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.4968131081760698,
         "display_prediction": true
       },
       "geometry": {
@@ -3031,8 +3031,8 @@
         "LAT": 36.0984833,
         "LON": 127.6837462,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.53011945125291,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.1621095091537237,
         "display_prediction": true
       },
       "geometry": {
@@ -3049,8 +3049,8 @@
         "LAT": 35.89751,
         "LON": 128.34962,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 32.2678855932979,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.9281076627681981,
         "display_prediction": true
       },
       "geometry": {
@@ -3085,8 +3085,8 @@
         "LAT": 37.780549,
         "LON": 126.847838,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.987651503061757,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.6904253686007467,
         "display_prediction": true
       },
       "geometry": {
@@ -3103,8 +3103,8 @@
         "LAT": 37.1879032,
         "LON": 128.3746674,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 20.89388819669278,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 4.600261240455306,
         "display_prediction": true
       },
       "geometry": {
@@ -3121,8 +3121,8 @@
         "LAT": 37.4304122,
         "LON": 127.1372922,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.43070193758846,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.557838610073582,
         "display_prediction": true
       },
       "geometry": {
@@ -3139,8 +3139,8 @@
         "LAT": 34.7922,
         "LON": 126.8575,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 21.183212082647294,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.5885058923700923,
         "display_prediction": true
       },
       "geometry": {
@@ -3157,8 +3157,8 @@
         "LAT": 35.1396428,
         "LON": 126.7938232,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 18.350941734032098,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.964754766717843,
         "display_prediction": true
       },
       "geometry": {
@@ -3175,8 +3175,8 @@
         "LAT": 36.8740554,
         "LON": 128.5234721,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 21.388447973007096,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.270059547835713,
         "display_prediction": true
       },
       "geometry": {
@@ -3193,8 +3193,8 @@
         "LAT": 37.4612995,
         "LON": 128.062255,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 14.499921288248881,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.5576631319991388,
         "display_prediction": true
       },
       "geometry": {
@@ -3211,8 +3211,8 @@
         "LAT": 35.07374,
         "LON": 127.25237,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.43911073396884,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.9123324518915785,
         "display_prediction": true
       },
       "geometry": {
@@ -3229,8 +3229,8 @@
         "LAT": 35.0933974,
         "LON": 128.0903825,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 19.537925103525797,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.6372300450678465,
         "display_prediction": true
       },
       "geometry": {
@@ -3247,8 +3247,8 @@
         "LAT": 36.980028,
         "LON": 128.657778,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 7.0506248456974925,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.344417650399061,
         "display_prediction": true
       },
       "geometry": {
@@ -3265,8 +3265,8 @@
         "LAT": 34.59951,
         "LON": 127.46066,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.485070461831146,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.7639749600741108,
         "display_prediction": true
       },
       "geometry": {
@@ -3301,8 +3301,8 @@
         "LAT": 37.2022322,
         "LON": 127.71484,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 16.491504521272155,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.5602345071353511,
         "display_prediction": true
       },
       "geometry": {
@@ -3319,8 +3319,8 @@
         "LAT": 36.726583,
         "LON": 128.8433122,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 11.852329185022874,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.862057578149212,
         "display_prediction": true
       },
       "geometry": {
@@ -3355,8 +3355,8 @@
         "LAT": 35.9910529,
         "LON": 126.7112824,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 17.82757725546573,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.2256057380999381,
         "display_prediction": true
       },
       "geometry": {
@@ -3373,8 +3373,8 @@
         "LAT": 37.8985558,
         "LON": 127.3024664,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 27.008373409967202,
+        "accuracy_score": 70,
+        "distance_to_closest_true_fire_km": 2.2574163361760125,
         "display_prediction": true
       },
       "geometry": {
@@ -3391,8 +3391,8 @@
         "LAT": 36.8914813,
         "LON": 128.7268956,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 8.228666076127855,
+        "accuracy_score": 80,
+        "distance_to_closest_true_fire_km": 0.6591575619858472,
         "display_prediction": true
       },
       "geometry": {
@@ -3409,8 +3409,8 @@
         "LAT": 36.85909,
         "LON": 126.56302,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 6.345818260141605,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.4079832878939906,
         "display_prediction": true
       },
       "geometry": {
@@ -3427,8 +3427,8 @@
         "LAT": 37.406799,
         "LON": 126.9168237,
         "PREDICTED_FIRE": 1,
-        "accuracy_score": 0,
-        "distance_to_closest_true_fire_km": 12.908617421459034,
+        "accuracy_score": 75,
+        "distance_to_closest_true_fire_km": 1.902008809487391,
         "display_prediction": true
       },
       "geometry": {
