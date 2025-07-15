@@ -82,7 +82,7 @@ def calculate_and_update_metrics(true_fires_path, predicted_fires_path, metrics_
 
     print(f"Metrics successfully updated in {metrics_file_path}.")
 
-def filter_predictions_for_display(predicted_fires_gdf, true_fires_gdf, limit=3, radius_km=5.0):
+def filter_predictions_for_display(predicted_fires_gdf, true_fires_gdf, limit=3, radius_km=float('inf')):
     """
     Filters predicted fires to display only a limited number (default 3) closest to each true fire.
     Sets 'display_prediction' column to True for predictions that should be displayed.
