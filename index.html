@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
     
     <style>
         body { margin: 0; overflow: hidden; }
@@ -155,17 +156,15 @@
             <input type="text" id="end-date" placeholder="YYYY-MM-DD">
             <button id="filter-button">적용</button>
         </div>
-        <div>
-            <label for="months-ago">지난 :</label>
-            <input type="number" id="months-ago" min="1" placeholder="10">
-            <span>개월 간의 데이터 (10개월 이상 입력 시 최신 데이터 조회 가능)</span>
-            <button id="months-filter-button">적용</button>
+        <div id="date-range-display" style="font-size: 12px; color: #555; text-align: center; margin-top: 5px;">
+            <!-- 날짜 범위가 여기에 표시됩니다. -->
         </div>
     </div>
     <div class="legend">
         <h4>범례</h4>
         <div><img src="img/icon_red.png" alt="실제 산불"> 실제 산불</div>
-        <div><img src="img/icon_blue.png" alt="예측 산불 (LightGBM 예측)"> LightGBM 예측</div>
+        <div><img src="img/icon_blue.png" alt="LightGBM 예측"> LightGBM 예측</div>
+        <div><img src="img/icon_orange.png" alt="RandomForest 예측"> RandomForest 예측</div>
     </div>
     <div id="map"></div>
 
@@ -184,21 +183,32 @@
 
         if (!isNaN(initialLat) && !isNaN(initialLon)) {
             map.setView([initialLat, initialLon], 12); // 특정 위치로 이동 및 줌
+
+            const initialSido = urlParams.get('sido');
+            const initialSigungu = urlParams.get('sigungu');
+            const locationName = (initialSido && initialSigungu) ? `${initialSido} ${initialSigungu}` : '예측 산불 위치';
+
+            L.circle([initialLat, initialLon], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 500 // 500 meters radius
+            }).addTo(map).bindPopup(`<b>${locationName}</b><br>예측 위치`);
         }
 
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);
         const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' });
 
         const trueFires = L.layerGroup().addTo(map);
-        
-        
-        const predSatellite = L.layerGroup().addTo(map);
+        const lgbmPredictions = L.layerGroup().addTo(map);
+        const rfPredictions = L.layerGroup().addTo(map);
 
         L.control.layers(
             { "지도": osm, "위성": satellite },
             {
                 "실제 산불": trueFires,
-                "예측 산불 (LightGBM 예측)": predSatellite
+                "LightGBM 예측": lgbmPredictions,
+                "RandomForest 예측": rfPredictions
             }
         ).addTo(map);
 
@@ -219,8 +229,8 @@
 
         map.addControl(searchControl);
 
-        flatpickr("#start-date", {});
-        flatpickr("#end-date", {});
+        flatpickr("#start-date", { locale: "ko" });
+        flatpickr("#end-date", { locale: "ko" });
 
         let allFiresData = [];
 
@@ -273,7 +283,8 @@
 
         function updateAllMarkers(startDate, endDate, initialFires = null) {
             trueFires.clearLayers();
-            predSatellite.clearLayers();
+            lgbmPredictions.clearLayers();
+            rfPredictions.clearLayers();
 
             const filteredFires = initialFires || allFiresData.filter(feature => {
                 const fireDate = new Date(feature.properties.발생일시_년, feature.properties.발생일시_월 - 1, feature.properties.발생일시_일);
@@ -287,81 +298,74 @@
 
             L.geoJSON(filteredFires, {
                 pointToLayer: (feature, latlng) => {
-                    const marker = L.marker(latlng, {
+                    return L.marker(latlng, {
                         icon: L.icon({
                             iconUrl: 'img/icon_red.png',
                             iconSize: [20, 20],
                             iconAnchor: [10, 10]
                         })
-                    });
-                    marker.bindPopup(`<b>실제 산불</b><br>${feature.properties.full_address || ''}`);
-                    return marker;
+                    }).bindPopup(`<b>실제 산불</b><br>${feature.properties.full_address || ''}`);
                 }
             }).addTo(trueFires);
 
+            const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
+                L.geoJSON(predictions, {
+                    pointToLayer: (feature, latlng) => {
+                        // 마커가 겹치지 않도록 동쪽으로 약간(약 800미터) 이동시킵니다.
+                        const offsetLatLng = L.latLng(latlng.lat, latlng.lng + 0.008);
+
+                        return L.marker(offsetLatLng, {
+                            icon: L.icon({
+                                iconUrl: iconUrl,
+                                iconSize: [20, 20],
+                                iconAnchor: [10, 10]
+                            })
+                        }).bindPopup(`<b>${modelName}</b><br>예측 확률: ${feature.properties.fire_probability ? feature.properties.fire_probability.toFixed(2) : 'N/A'}`);
+                    }
+                }).addTo(layerGroup);
+            };
+
+            const parseCsv = (csvText) => {
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+                const predictions = [];
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(',');
+                    if (values.length === headers.length) {
+                        const lat = parseFloat(values[0]);
+                        const lon = parseFloat(values[1]);
+                        const probability = parseFloat(values[2]);
+                        if (!isNaN(lat) && !isNaN(lon) && !isNaN(probability)) {
+                            predictions.push({
+                                type: "Feature",
+                                geometry: { type: "Point", coordinates: [lon, lat] },
+                                properties: { fire_probability: probability }
+                            });
+                        }
+                    }
+                }
+                return predictions;
+            };
+
+            // 1. LightGBM 예측 로드 및 표시
             fetch('data/fixed_predict.csv')
                 .then(res => res.text())
                 .then(csvText => {
-                    const lines = csvText.trim().split('\n');
-                    const headers = lines[0].split(',');
-                    const fixedPredictions = [];
-
-                    for (let i = 1; i < lines.length; i++) {
-                        const values = lines[i].split(',');
-                        if (values.length === headers.length) {
-                            const lat = parseFloat(values[0]);
-                            const lon = parseFloat(values[1]);
-                            const probability = parseFloat(values[2]);
-
-                            if (!isNaN(lat) && !isNaN(lon) && !isNaN(probability)) {
-                                fixedPredictions.push({
-                                    type: "Feature",
-                                    geometry: {
-                                        type: "Point",
-                                        coordinates: [lon, lat]
-                                    },
-                                    properties: {
-                                        fire_probability: probability
-                                    }
-                                });
-                            }
-                        }
-                    }
-
-                    const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
-                        const actualFireLatLngs = filteredFires.map(fire => L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]));
-                        const overlapThresholdMeters = 10;
-
-                        L.geoJSON(predictions, {
-                            pointToLayer: (feature, latlng) => {
-                                for (const actualLatLng of actualFireLatLngs) {
-                                    if (latlng.distanceTo(actualLatLng) < overlapThresholdMeters) {
-                                        return null; 
-                                    }
-                                }
-
-                                const marker = L.marker(latlng, {
-                                    icon: L.icon({
-                                        iconUrl: iconUrl,
-                                        iconSize: [20, 20],
-                                        iconAnchor: [10, 10]
-                                    })
-                                });
-                                marker.bindPopup(`<b>${modelName}</b><br>예측 확률: ${feature.properties.fire_probability ? feature.properties.fire_probability.toFixed(2) : 'N/A'}`);
-                                return marker;
-                            }
-                        }).addTo(layerGroup);
-                    };
-
-                    // 각 실제 산불에 가장 가까운 예측 산불을 찾습니다.
-                    const matchedPredictions = findClosestPredictionForFires(fixedPredictions, filteredFires);
-                    
-                    addPredictionMarkers({
-                        type: "FeatureCollection",
-                        features: matchedPredictions
-                    }, predSatellite, 'img/icon_blue.png', 'LightGBM 예측');
+                    const lgbmData = parseCsv(csvText);
+                    const matchedLgbm = findClosestPredictionForFires(lgbmData, filteredFires);
+                    addPredictionMarkers({ type: "FeatureCollection", features: matchedLgbm }, lgbmPredictions, 'img/icon_blue.png', 'LightGBM 예측');
                 })
                 .catch(error => console.error('Error fetching fixed_predict.csv:', error));
+
+            // 2. RandomForest 예측 로드 및 표시
+            fetch('data/rf_predict.csv')
+                .then(res => res.text())
+                .then(csvText => {
+                    const rfData = parseCsv(csvText);
+                    const matchedRf = findClosestPredictionForFires(rfData, filteredFires);
+                    addPredictionMarkers({ type: "FeatureCollection", features: matchedRf }, rfPredictions, 'img/icon_orange.png', 'RandomForest 예측');
+                })
+                .catch(error => console.error('Error fetching rf_predict.csv:', error));
         }
 
         fetch('data/true_fires.geojson')
@@ -375,15 +379,22 @@
                 });
 
                 if (allFiresData.length > 0) {
-                    const latestFireDate = new Date(allFiresData[0].properties.발생일시_년, allFiresData[0].properties.발생일시_월 - 1, allFiresData[0].properties.발생일시_일);
+                    // 전체 데이터 기간 표시
+                    const latestFire = allFiresData[0].properties;
+                    const earliestFire = allFiresData[allFiresData.length - 1].properties;
+                    const latestDateStr = `${latestFire.발생일시_년}-${String(latestFire.발생일시_월).padStart(2, '0')}-${String(latestFire.발생일시_일).padStart(2, '0')}`;
+                    const earliestDateStr = `${earliestFire.발생일시_년}-${String(earliestFire.발생일시_월).padStart(2, '0')}-${String(earliestFire.발생일시_일).padStart(2, '0')}`;
+                    document.getElementById('date-range-display').textContent = `조회 가능 기간: ${earliestDateStr} ~ ${latestDateStr}`;
+
+                    // 초기 지도 로딩 시, 가장 최근 월의 데이터를 보여줌
                     const latestMonthFires = allFiresData.filter(fire => {
                         const fireDate = new Date(fire.properties.발생일시_년, fire.properties.발생일시_월 - 1, fire.properties.발생일시_일);
+                        const latestFireDate = new Date(latestFire.발생일시_년, latestFire.발생일시_월 - 1, latestFire.발생일시_일);
                         return fireDate.getFullYear() === latestFireDate.getFullYear() && fireDate.getMonth() === latestFireDate.getMonth();
                     });
 
-                    // 가장 최근 월의 시작일과 종료일 설정
-                    const firstDayOfLatestMonth = new Date(latestFireDate.getFullYear(), latestFireDate.getMonth(), 1);
-                    const lastDayOfLatestMonth = new Date(latestFireDate.getFullYear(), latestFireDate.getMonth() + 1, 0);
+                    const firstDayOfLatestMonth = new Date(latestFire.발생일시_년, latestFire.발생일시_월 - 1, 1);
+                    const lastDayOfLatestMonth = new Date(latestFire.발생일시_년, latestFire.발생일시_월, 0);
 
                     document.getElementById('start-date').value = firstDayOfLatestMonth.toISOString().split('T')[0];
                     document.getElementById('end-date').value = lastDayOfLatestMonth.toISOString().split('T')[0];
@@ -397,23 +408,6 @@
         document.getElementById('filter-button').addEventListener('click', () => {
             const startDate = new Date(document.getElementById('start-date').value);
             const endDate = new Date(document.getElementById('end-date').value);
-            updateAllMarkers(startDate, endDate);
-        });
-
-        document.getElementById('months-filter-button').addEventListener('click', () => {
-            const months = parseInt(document.getElementById('months-ago').value);
-            if (isNaN(months) || months <= 0) {
-                alert("유효한 개월 수를 입력하세요.");
-                return;
-            }
-
-            const endDate = new Date();
-            const startDate = new Date();
-            startDate.setMonth(startDate.getMonth() - months);
-
-            document.getElementById('start-date').value = startDate.toISOString().split('T')[0];
-            document.getElementById('end-date').value = endDate.toISOString().split('T')[0];
-
             updateAllMarkers(startDate, endDate);
         });
     </script>

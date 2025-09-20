@@ -4,9 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔥 성능 비교 대시보드</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin: 20px; line-height: 1.6; }
+    pre {
+      background-color: #282c34; /* Dark background for code */
+      color: #abb2bf; /* Light text color */
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto; /* Enable horizontal scrolling for long lines */
+      margin: 1em 0;
+      text-align: left;
+    }
+    code {
+      font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+      font-size: 0.9em;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      line-height: 1.6;
+      background: linear-gradient(to right, #e0f2f7, #b3e5fc); /* Light blue to slightly darker light blue gradient */
+      color: #333; /* Ensure text is readable on the gradient */
+    }
     h1 { font-size: 2em; }
     canvas { max-width: 600px; height: 600px; margin: 30px auto; display: block; }
     a { display: inline-block; margin-top: 30px; text-decoration: none; padding: 8px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; color: #333; }
@@ -91,7 +112,7 @@
     <ul>
       <li><b>LightGBM (Baseline):</b> 기본적인 머신러닝 모델로, 빠르고 효율적인 학습이 특징입니다. 다른 모델들의 성능을 비교하는 기준점(baseline)으로 사용됩니다.</li>
       <li><b>Transformer:</b> 자연어 처리 분야에서 뛰어난 성능을 보이는 모델 구조로, 시계열 데이터나 복잡한 패턴 인식에 활용될 수 있습니다.</li>
-      <li><b>예측 산불:</b> 인공위성 데이터를 기반으로 특정 규칙(예: 온도, 강수량, 풍속 등)을 적용하여 산불 위험을 예측하는 모델입니다. 실제 산불 발생 지점의 날씨 데이터를 활용하여 산불 위험도를 판단합니다.</li>
+      
     </ul>
 
     <h3>성능 지표 설명</h3>
@@ -103,8 +124,90 @@
     </ul>
     <p>이 지표들은 모델이 산불 위험을 얼마나 효과적으로 감지하고 분류하는지 평가하는 데 중요한 역할을 합니다.</p>
 
-    
   </div>
+
+  <div class="explanation-section">
+    <h2>산불 예측 모델의 작동 원리</h2>
+    <p>본 산불 예측 시스템은 과거 산불 데이터를 기반으로 미래의 산불 발생 위험을 예측합니다. 예측 과정은 크게 <b>데이터 준비</b>, <b>모델 학습</b>, <b>예측 수행</b>의 세 단계로 구성됩니다.</p>
+
+    <h3>1. 데이터 준비 (Feature Engineering)</h3>
+    <p>산불 발생에 영향을 미치는 다양한 요인들을 수집하고 분석 가능한 형태로 가공합니다. 주요 데이터는 다음과 같습니다:</p>
+    <ul>
+      <li><b>시간 정보:</b> 산불 발생 연도, 월, 일, 시간, 요일 등</li>
+      <li><b>공간 정보:</b> 산불 발생 시도, 시군구 등 지리적 위치</li>
+      <li><b>원인 정보:</b> 산불 발생의 주요 원인 분류</li>
+    </ul>
+    <p>이러한 원시 데이터는 머신러닝 모델이 학습할 수 있도록 수치형 특성(Feature)으로 변환됩니다. 예를 들어, 월이나 시간 같은 주기적인 정보는 사인(sin) 및 코사인(cos) 변환을 통해 모델에 효과적으로 전달됩니다.</p>
+    <pre><code class="language-python">
+import pandas as pd
+import numpy as np
+
+# 예시 데이터 로드 및 특성 생성
+df = pd.DataFrame({
+    '발생일시_년': [2023, 2023],
+    '발생일시_월': [10, 11],
+    '발생일시_일': [15, 20],
+    '발생일시_시간': [14, 10],
+    '발생장소_시도': ['강원', '경북'],
+    '발생장소_시군구': ['강릉', '안동'],
+    '발생원인_구분': ['실화', '부주의']
+})
+
+df['발생일시'] = pd.to_datetime(df['발생일시_년'].astype(str) + '-' + df['발생일시_월'].astype(str) + '-' + df['발생일시_일'].astype(str))
+df['day_of_week'] = df['발생일시'].dt.dayofweek
+df['month_sin'] = np.sin(2 * np.pi * df['발생일시_월']/12)
+df['month_cos'] = np.cos(2 * np.pi * df['발생일시_월']/12)
+df['hour_sin'] = np.sin(2 * np.pi * df['발생일시_시간']/24)
+df['hour_cos'] = np.cos(2 * np.pi * df['발생일시_시간']/24)
+
+# 범주형 특성 인코딩 (실제 모델 학습 시 사용된 인코더를 재사용)
+from sklearn.preprocessing import LabelEncoder
+le_sido = LabelEncoder().fit(['강원', '경북', '충남', '전북']) # 예시
+le_sigungu = LabelEncoder().fit(['강릉', '안동', '부여', '남원']) # 예시
+le_cause = LabelEncoder().fit(['실화', '부주의', '기타']) # 예시
+
+df['발생장소_시도'] = le_sido.transform(df['발생장소_시도'])
+df['발생장소_시군구'] = le_sigungu.transform(df['발생장소_시군구'])
+df['발생원인_구분'] = le_cause.transform(df['발생원인_구분'])
+
+print(df[['발생일시_년', '발생일시_월', '발생일시_시간', 'day_of_week', 'month_sin', 'month_cos', 'hour_sin', 'hour_cos', '발생장소_시도', '발생장소_시군구', '발생원인_구분']].head())
+    </code></pre>
+
+    <h3>2. 머신러닝 모델 학습</h3>
+    <p>전처리된 과거 산불 데이터를 활용하여 LightGBM, RandomForest, Transformer와 같은 고급 머신러닝 모델을 학습시킵니다. 모델은 이 데이터를 통해 산불 발생과 관련된 복잡한 패턴과 규칙을 스스로 파악합니다. 예를 들어, 특정 계절, 특정 지역, 특정 기상 조건(데이터에 포함된 경우)에서 산불 발생 확률이 높아지는 경향 등을 학습하게 됩니다.</p>
+    <pre><code class="language-python">
+import joblib
+from lightgbm import LGBMClassifier
+
+# 실제 모델은 'models/fire_prediction_model.joblib' 경로에서 로드됩니다.
+# model = joblib.load('models/fire_prediction_model.joblib')
+
+# 예시: 모델 학습 (실제 학습은 별도의 스크립트에서 진행)
+# X_train, y_train은 학습 데이터와 타겟 변수
+# model = LGBMClassifier(random_state=42)
+# model.fit(X_train, y_train)
+print("모델 학습 완료 (예시)")
+    </code></pre>
+
+    <h3>3. 미래 산불 위험 예측</h3>
+    <p>학습이 완료된 모델은 아직 산불이 발생하지 않은 미래의 특정 날짜와 장소에 대해 산불 발생 확률을 계산합니다. 계산된 확률이 미리 설정된 임계값(예: 0.5)을 초과할 경우, 해당 지역은 '산불 위험 지역'으로 분류되어 사용자에게 제시됩니다.</p>
+    <pre><code class="language-python">
+# 예시: 미래 데이터에 대한 예측 수행
+# X_future는 미래 예측을 위한 특성 데이터프레임
+# future_probabilities = model.predict_proba(X_future)[:, 1]
+
+# 예측 결과 필터링 (확률 0.5 이상)
+# high_prob_predictions = future_df[future_df['FIRE_PROBABILITY'] > 0.5]
+
+# 최종 예측 결과 (날짜별 최고 확률 예측)
+# daily_top_predictions = high_prob_predictions.loc[high_prob_predictions.groupby(high_prob_predictions['발생일시'].dt.date)['FIRE_PROBABILITY'].idxmax()]
+
+# print("미래 예측 결과 (일별 최고 확률):")
+# print(daily_top_predictions[['발생일시', '발생장소_시도', '발생장소_시군구', 'FIRE_PROBABILITY']].head())
+    </code></pre>
+    <p>이러한 과정을 통해 산불 위험을 사전에 감지하고 예방하는 데 필요한 정보를 제공합니다.</p>
+  </div>
+
   <canvas id="metricsChart"></canvas>
 
   
@@ -125,6 +228,13 @@
     </div>
   </div>
 
+  <div class="explanation-section">
+    <h2>날짜별 예측 산불 확인</h2>
+    <p>날짜를 선택하여 해당 날짜의 예측 산불 위치를 확인하세요.</p>
+    <input type="date" id="prediction-date" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+    <div id="prediction-result" style="margin-top: 20px; font-weight: bold;"></div>
+  </div>
+
   <script>
     fetch('static/metrics.json')
       .then(response => {
@@ -137,18 +247,28 @@
         const labels = ['정확도 (Accuracy)', '정밀도 (Precision)', '재현율 (Recall)', 'F1-Score'];
         const chartDatasets = [];
 
-        // LightGBM (Baseline) 데이터 처리
-        if (data.baseline) {
-          chartDatasets.push({
-            label: 'LightGBM (Baseline)',
-            data: [
-              data.baseline.accuracy * 100,
-              data.baseline.precision * 100,
-              data.baseline.recall * 100,
-              data.baseline.f1 * 100
-            ],
-            backgroundColor: 'rgba(153, 102, 255, 0.7)' // Purple
-          });
+        const modelDisplayInfo = {
+            'baseline': { label: 'LightGBM (Baseline)', color: 'rgba(153, 102, 255, 0.7)' },
+            'random_forest': { label: 'RandomForest', color: 'rgba(75, 192, 192, 0.7)' },
+            'transformer': { label: 'Transformer', color: 'rgba(255, 159, 64, 0.7)' }
+        };
+
+        // metrics.json에 있는 모든 모델 키를 순회하며 데이터셋을 동적으로 생성
+        for (const modelKey in data) {
+            if (Object.prototype.hasOwnProperty.call(data, modelKey) && modelDisplayInfo[modelKey]) {
+                const modelData = data[modelKey];
+                const displayInfo = modelDisplayInfo[modelKey];
+                chartDatasets.push({
+                    label: displayInfo.label,
+                    data: [
+                        modelData.accuracy * 100,
+                        modelData.precision * 100,
+                        modelData.recall * 100,
+                        modelData.f1 * 100
+                    ],
+                    backgroundColor: displayInfo.color
+                });
+            }
         }
         
         if (chartDatasets.length === 0) {
@@ -291,6 +411,52 @@
       const predictedRanking = await getRankingData('data/refined_predicted_fire_markers.json', false);
       displayRanking(predictedRanking, 'predicted-fire-ranking');
     })();
+
+    // 날짜 선택 시 예측 산불 표시
+    const predictionDateInput = document.getElementById('prediction-date');
+    const predictionResultDiv = document.getElementById('prediction-result');
+
+    // Set the minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    predictionDateInput.setAttribute('min', today);
+
+    predictionDateInput.addEventListener('change', async (event) => {
+      const selectedDate = event.target.value;
+      if (!selectedDate) {
+        predictionResultDiv.innerHTML = '';
+        return;
+      }
+
+      try {
+        const response = await fetch('data/daily_top_future_predictions.json');
+        if (!response.ok) {
+          throw new Error('예측 데이터를 불러오는 데 실패했습니다.');
+        }
+        const predictions = await response.json();
+
+        // The date in daily_top_future_predictions.json is in "YYYYMMDD" format.
+        const formattedDate = selectedDate.replace(/-/g, '');
+
+        const predictionsForDate = predictions.filter(p => p.date === formattedDate);
+
+        if (predictionsForDate.length > 0) {
+          const prediction = predictionsForDate[0]; // 첫 번째 예측만 사용
+          predictionResultDiv.innerHTML = `
+            <p>선택한 날짜의 예측 산불 위치:</p>
+            <p>지역: ${prediction.location_sido} ${prediction.location_sigungu}</p>
+            <p>위도: ${prediction.lat}, 경도: ${prediction.lon}</p>
+            <a href="index.html?lat=${prediction.lat}&lon=${prediction.lon}&sido=${prediction.location_sido}&sigungu=${prediction.location_sigungu}" target="_blank">지도에서 위치 보기</a>
+          `;
+        } else {
+          predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
+        }
+      } catch (error) {
+        console.error('Error fetching prediction data:', error);
+        predictionResultDiv.innerHTML = `<p>오류가 발생했습니다: ${error.message}</p>`;
+      }
+    });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
 </body>
 </html>
