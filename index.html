@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
     
     <style>
@@ -171,6 +173,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     
 
     <script>
@@ -199,9 +202,22 @@
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);
         const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' });
 
-        const trueFires = L.layerGroup().addTo(map);
-        const lgbmPredictions = L.layerGroup().addTo(map);
-        const rfPredictions = L.layerGroup().addTo(map);
+        // Function to detect if the device is mobile
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) || (window.innerWidth <= 768);
+        }
+
+        let trueFires, lgbmPredictions, rfPredictions;
+
+        if (isMobileDevice()) {
+            trueFires = L.markerClusterGroup().addTo(map);
+            lgbmPredictions = L.markerClusterGroup().addTo(map);
+            rfPredictions = L.markerClusterGroup().addTo(map);
+        } else {
+            trueFires = L.layerGroup().addTo(map);
+            lgbmPredictions = L.layerGroup().addTo(map);
+            rfPredictions = L.layerGroup().addTo(map);
+        }
 
         L.control.layers(
             { "지도": osm, "위성": satellite },
