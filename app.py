@@ -5,6 +5,14 @@ from datetime import datetime
 import joblib
 import json
 import torch
+try:
+    from tqdm import tqdm
+except ImportError:
+    print("'tqdm' 라이브러리가 설치되지 않았습니다. 'pip install tqdm'으로 설치해주세요.")
+    # tqdm이 없을 경우, 일반 range를 사용하는 대체 함수
+    def tqdm(iterable, *args, **kwargs):
+        return iterable
+import warnings
 
 from src.geocoding import get_coordinates
 from src.visualize import show_fire_map, show_long_term_prediction_map
@@ -70,12 +78,30 @@ def run_short_term_prediction_mode(locations_df):
     X_pred = X_pred.fillna(0)
 
     print("🔥 단기 예측 수행 중...")
-    predictions = model.predict(X_pred)
-    pred_proba = model.predict_proba(X_pred)[:, 1]
+    print(f"전체 예측 대상 지역 수: {len(X_pred)}")
+    
+    # 배치 예측 및 프로그레스 바
+    batch_size = 1000
+    predictions = []
+    pred_proba = []
+    
+    for i in tqdm(range(0, len(X_pred), batch_size), desc="LightGBM 예측"):
+        batch = X_pred.iloc[i:i+batch_size]
+        predictions.extend(model.predict(batch))
+        pred_proba.extend(model.predict_proba(batch)[:, 1])
+
+    predictions = np.array(predictions)
+    pred_proba = np.array(pred_proba)
 
     result_df = locations_df.copy()
     result_df['fire_probability'] = pred_proba
     df_pred = result_df[predictions == 1]
+
+    # 예측 경향 분석
+    print("\n📊 예측 확률 분포 (Prediction Probability Distribution):")
+    hist, bin_edges = np.histogram(pred_proba, bins=5)
+    for i in range(len(hist)):
+        print(f"  {bin_edges[i]:.2f} ~ {bin_edges[i+1]:.2f}: {hist[i]} 개 ({hist[i]/len(pred_proba)*100:.2f}%)")
 
     if not df_pred.empty:
         print(f"\n✅ {date_str}에 {len(df_pred)}곳의 산불 위험 지역이 예측되었습니다.")

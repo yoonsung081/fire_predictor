@@ -1,20 +1,9 @@
 {
-  "baseline": {
-    "accuracy": 0.9948,
-    "precision": 0.995,
-    "recall": 0.9948,
-    "f1": 0.9947
-  },
-  "transformer": {
-    "accuracy": 0.0484,
-    "precision": 0.0625,
-    "recall": 0.0484,
-    "f1": 0.0471
-  },
-  "satellite_rule_based": {
-    "accuracy": 0.07677616501145913,
-    "precision": 1.0,
-    "recall": 0.07677616501145913,
-    "f1": 0.142603760198652
-  }
+    "baseline": {
+        "accuracy": 0.9729299363057324,
+        "precision": 0.9541284403669725,
+        "recall": 0.9936305732484076,
+        "f1": 0.9734789391575663,
+        "auc_roc": 0.9871698649032415
+    }
 }
