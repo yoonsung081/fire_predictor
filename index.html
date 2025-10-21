@@ -3,429 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 산불 예측 지도</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+    <title>🔥 산불 예측 대시보드</title>
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
+    <!-- Custom CSS -->
     <style>
-        body { margin: 0; overflow: hidden; }
-        #map { height: 100vh; width: 100vw; }
-        .analysis-link {
-            position: absolute;
-            top: 100px; /* 돋보기 바로 아래로 내림 */
-            right: 10px;
-            background: #fff;
-            padding: 6px 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            text-decoration: none;
-            z-index: 1000;
-            font-size: 14px;
-            color: #333;
-        }
-        .date-filter {
-            position: absolute;
-            top: 10px;
-            left: 80px; /* 컨트롤 버튼과 겹치지 않도록 조정 */
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 1000;
+        body {
             display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Malgun Gothic', sans-serif;
         }
-        .date-filter > div {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
+        #sidebar {
+            width: 450px;
+            min-width: 400px;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border-right: 1px solid #dee2e6;
+            padding: 1.5rem;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
-        .date-filter input, .date-filter button, .date-filter span, .date-filter label {
-            margin: 0 5px;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 3px;
+        #map-container {
+            flex-grow: 1;
+            height: 100vh;
         }
-        .date-filter button {
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
+        #map {
+            width: 100%;
+            height: 100%;
         }
-        .date-filter button:hover {
-            background-color: #0056b3;
+        .chart-container {
+            margin-top: 2rem;
         }
-        .legend {
-            position: absolute;
-            bottom: 20px;
-            left: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        h1, h2 {
+            color: #343a40;
+            font-weight: bold;
         }
-        .legend h4 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: #333;
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
         }
-        .legend div {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-            color: #555;
-        }
-        .legend img {
+        .legend-icon {
             width: 20px;
             height: 20px;
             margin-right: 8px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .date-filter {
-                flex-direction: column;
-                left: 10px;
-                right: 10px;
-                width: auto;
-                top: 10px;
-            }
-            .date-filter > div {
-                flex-direction: column;
-                align-items: stretch;
-                margin-bottom: 10px;
-            }
-            .date-filter input, .date-filter button, .date-filter span, .date-filter label {
-                margin: 5px 0;
-            }
-            .analysis-link {
-                top: auto;
-                bottom: 10px;
-                right: 10px;
-                font-size: 12px;
-                padding: 4px 8px;
-            }
-            .legend {
-                bottom: 60px; /* Adjust to not overlap with analysis link on small screens */
-                left: 10px;
-                right: 10px;
-                width: auto;
-                padding: 8px;
-            }
-            .legend h4 {
-                font-size: 1em;
-            }
-            .legend div {
-                font-size: 0.9em;
-            }
-            .legend img {
-                width: 18px;
-                height: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .date-filter input, .date-filter button, .date-filter span, .date-filter label {
-                font-size: 0.9em;
-            }
-            .analysis-link {
-                font-size: 0.8em;
-                padding: 3px 6px;
-            }
-            .legend {
-                font-size: 0.8em;
-                padding: 5px;
-            }
-            .legend img {
-                width: 15px;
-                height: 15px;
-            }
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <a href="dashboard.html" class="analysis-link">📊 분석 보기</a>
-    <div class="date-filter">
-        <div>
-            <label>조회할 범위:</label>
-            <input type="text" id="start-date" placeholder="YYYY-MM-DD">
-            <span>~</span>
-            <input type="text" id="end-date" placeholder="YYYY-MM-DD">
-            <button id="filter-button">적용</button>
-        </div>
-        <div id="date-range-display" style="font-size: 12px; color: #555; text-align: center; margin-top: 5px;">
-            <!-- 날짜 범위가 여기에 표시됩니다. -->
-        </div>
-    </div>
-    <div class="legend">
-        <h4>범례</h4>
-        <div><img src="img/icon_red.png" alt="실제 산불"> 실제 산불</div>
-        <div><img src="img/icon_blue.png" alt="LightGBM 예측"> LightGBM 예측</div>
-        <div><img src="img/icon_orange.png" alt="RandomForest 예측"> RandomForest 예측</div>
-    </div>
-    <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <h1 class="h3 mb-4">🔥 산불 예측 대시보드</h1>
+        
+        <!-- Date Filter -->
+        <div class="mb-4 p-3 border rounded bg-light">
+            <h2 class="h5 mb-3">날짜 필터</h2>
+            <div class="input-group">
+                <input type="date" id="start-date" class="form-control">
+                <span class="input-group-text">~</span>
+                <input type="date" id="end-date" class="form-control">
+            </div>
+            <div class="d-grid gap-2 mt-2">
+                <button id="filter-button" class="btn btn-primary">필터 적용</button>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="mb-4 p-3 border rounded">
+            <h2 class="h5 mb-3">범례</h2>
+            <ul class="list-unstyled">
+                <li><img src="img/icon_red.png" alt="실제 산불" class="legend-icon"> 실제 산불</li>
+                <li class="mt-2"><img src="img/icon_blue.png" alt="LightGBM 예측" class="legend-icon"> LightGBM 예측</li>
+                <li class="mt-2"><img src="img/icon_orange.png" alt="RandomForest 예측" class="legend-icon"> RandomForest 예측</li>
+                <li class="mt-2"><img src="img/icon_purple.png" alt="미래 예측 산불" class="legend-icon"> 미래 예측 산불 (경로 탐색)</li>
+            </ul>
+        </div>
+
+        <!-- Model Performance -->
+        <div class="chart-container p-3 border rounded">
+            <h2 class="h5 mb-3">모델 성능 비교</h2>
+            <canvas id="metricsChart"></canvas>
+        </div>
+         <div class="mt-4 p-3 border rounded">
+            <a href="dashboard.html">성능 비교 대시보드로 이동</a>
+        </div>
+
+    </div>
+
+    <!-- Map -->
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
+    <!-- Custom JS -->
     <script>
-        const map = L.map('map').setView([37.5, 128.2], 7);
+        // --- Initialize Map and Layers ---
+        
+        const map = L.map('map').setView([36.5, 127.5], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-        // URL 파라미터에서 lat, lon 읽기
-        const urlParams = new URLSearchParams(window.location.search);
-        const initialLat = parseFloat(urlParams.get('lat'));
-        const initialLon = parseFloat(urlParams.get('lon'));
+        const trueFiresLayer = L.markerClusterGroup().addTo(map);
+        const lgbmLayer = L.markerClusterGroup().addTo(map);
+        const rfLayer = L.markerClusterGroup().addTo(map);
+        const futurePredLayer = L.markerClusterGroup().addTo(map);
+        const fireStationLayer = L.layerGroup().addTo(map); // 소방서는 클러스터링하지 않음
+        let currentRouteLine = null; // 현재 경로를 저장할 변수
 
-        if (!isNaN(initialLat) && !isNaN(initialLon)) {
-            map.setView([initialLat, initialLon], 12); // 특정 위치로 이동 및 줌
+        const layers = {
+            "실제 산불": trueFiresLayer,
+            "LightGBM 예측": lgbmLayer,
+            "RandomForest 예측": rfLayer,
+            "미래 예측 산불": futurePredLayer,
+            "전국 소방서": fireStationLayer
+        };
+        L.control.layers(null, layers).addTo(map);
 
-            const initialSido = urlParams.get('sido');
-            const initialSigungu = urlParams.get('sigungu');
-            const locationName = (initialSido && initialSigungu) ? `${initialSido} ${initialSigungu}` : '예측 산불 위치';
-
-            L.circle([initialLat, initialLon], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: 500 // 500 meters radius
-            }).addTo(map).bindPopup(`<b>${locationName}</b><br>예측 위치`);
-        }
-
-        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OpenStreetMap' }).addTo(map);
-        const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' });
-
-        // Function to detect if the device is mobile
-        function isMobileDevice() {
-            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1) || (window.innerWidth <= 768);
-        }
-
-        let trueFires, lgbmPredictions, rfPredictions;
-
-        if (isMobileDevice()) {
-            trueFires = L.markerClusterGroup().addTo(map);
-            lgbmPredictions = L.markerClusterGroup().addTo(map);
-            rfPredictions = L.markerClusterGroup().addTo(map);
-        } else {
-            trueFires = L.layerGroup().addTo(map);
-            lgbmPredictions = L.layerGroup().addTo(map);
-            rfPredictions = L.layerGroup().addTo(map);
-        }
-
-        L.control.layers(
-            { "지도": osm, "위성": satellite },
-            {
-                "실제 산불": trueFires,
-                "LightGBM 예측": lgbmPredictions,
-                "RandomForest 예측": rfPredictions
+        // --- Initialize Chart ---
+        
+        const ctx = document.getElementById('metricsChart').getContext('2d');
+        const metricsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Accuracy', 'Precision', 'Recall', 'F1-Score'],
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.raw.toFixed(2)}%` } }
+                },
+                scales: { y: { beginAtZero: true, ticks: { callback: (v) => `${v}%` } } }
             }
-        ).addTo(map);
-
-        const searchControl = new L.Control.Search({
-            url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
-            jsonpParam: 'json_callback',
-            propertyName: 'display_name',
-            propertyLoc: ['lat','lon'],
-            autoCollapse: true,
-            autoType: false,
-            minLength: 2,
-            zoom: 12
         });
 
-        searchControl.on('search:locationfound', function(e) {
-            map.setView(e.latlng, 12);
-        });
-
-        map.addControl(searchControl);
-
-        flatpickr("#start-date", { locale: "ko" });
-        flatpickr("#end-date", { locale: "ko" });
-
-        let allFiresData = [];
-
-        // Haversine 거리 계산 함수 (킬로미터 단위)
-        function haversineDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371; // 지구 반지름 (킬로미터)
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a =
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return R * c; // 킬로미터 단위 거리
-        }
-
-        function findClosestPredictionForFires(predictions, actualFires) {
-            const closestPredictions = [];
-            const usedPredictionIndexes = new Set(); // 한 번 사용된 예측은 다시 사용하지 않도록 관리
-
-            actualFires.forEach(fire => {
-                let closestPred = null;
-                let minDistance = Infinity;
-                let closestPredIndex = -1;
-
-                const fireLatLng = L.latLng(fire.geometry.coordinates[1], fire.geometry.coordinates[0]);
-
-                predictions.forEach((pred, index) => {
-                    // 아직 사용되지 않은 예측 중에서만 탐색
-                    if (!usedPredictionIndexes.has(index)) {
-                        const predLatLng = L.latLng(pred.geometry.coordinates[1], pred.geometry.coordinates[0]);
-                        const distance = haversineDistance(fireLatLng.lat, fireLatLng.lng, predLatLng.lat, predLatLng.lng);
-
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                            closestPred = pred;
-                            closestPredIndex = index;
-                        }
-                    }
+        // --- Data Loading and Visualization ---
+        
+        async function fetchData(url) {
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.error(`Failed to load ${url}`);
+                return [];
+            }
+            // CSV 파일인 경우 PapaParse로 파싱
+            if (url.endsWith('.csv')) {
+                const csvText = await response.text();
+                return new Promise(resolve => {
+                    Papa.parse(csvText, {
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: (results) => resolve(results.data)
+                    });
                 });
-
-                if (closestPred) {
-                    closestPredictions.push(closestPred);
-                    usedPredictionIndexes.add(closestPredIndex); // 사용된 예측 인덱스 추가
-                }
-            });
-
-            return closestPredictions;
+            }
+            return response.json();
         }
 
-        function updateAllMarkers(startDate, endDate, initialFires = null) {
-            trueFires.clearLayers();
-            lgbmPredictions.clearLayers();
-            rfPredictions.clearLayers();
+        function addMarkersToLayer(layer, data, iconUrl, popupContentFn, isFuturePrediction = false) {
+            layer.clearLayers();
+            data.forEach(item => {
+                // 데이터 형식에 따라 위도, 경도 키를 확인
+                const lat = item.lat || item.WGS84위도;
+                const lon = item.lon || item.WGS84경도;
 
-            const filteredFires = initialFires || allFiresData.filter(feature => {
-                const fireDate = new Date(feature.properties.발생일시_년, feature.properties.발생일시_월 - 1, feature.properties.발생일시_일);
-                return fireDate >= startDate && fireDate <= endDate;
+                if (!lat || !lon) return;
+
+                const marker = L.marker([lat, lon], {
+                    icon: L.icon({ iconUrl, iconSize: [25, 25] })
+                });
+                marker.bindPopup(popupContentFn(item));
+                
+                if (item.properties && item.properties.date) {
+                    marker.fireDate = new Date(item.properties.date);
+                }
+                
+                // 미래 예측 마커에 경로 탐색 이벤트 추가
+                if (isFuturePrediction) {
+                    marker.on('click', () => findAndDrawRoute([lat, lon]));
+                }
+
+                layer.addLayer(marker);
             });
+        }
 
-            if (filteredFires.length === 0) {
-                alert("해당 기간에 산불 데이터가 없습니다.");
+        async function loadAllData() {
+            // Load metrics
+            const metricsData = await fetchData('static/metrics.json');
+            if (metricsData) {
+                const datasets = [];
+                const colors = {
+                    baseline: 'rgba(54, 162, 235, 0.7)',
+                    random_forest: 'rgba(255, 159, 64, 0.7)'
+                };
+                for (const modelKey in metricsData) {
+                    const modelMetrics = metricsData[modelKey];
+                    datasets.push({
+                        label: modelKey,
+                        data: [
+                            modelMetrics.accuracy * 100,
+                            modelMetrics.precision * 100,
+                            modelMetrics.recall * 100,
+                            modelMetrics.f1 * 100
+                        ],
+                        backgroundColor: colors[modelKey] || 'rgba(255, 99, 132, 0.7)',
+                    });
+                }
+                metricsChart.data.datasets = datasets;
+                metricsChart.update();
+            }
+
+            // Load map data
+            const trueFiresData = await fetchData('data/true_fires.geojson');
+            addMarkersToLayer(trueFiresLayer, trueFiresData.features, 'img/icon_red.png', 
+                item => `<b>실제 산불</b><br>주소: ${item.properties.full_address || 'N/A'}`
+            );
+
+            const lgbmData = await fetchData('static/lgbm_predictions.json');
+            addMarkersToLayer(lgbmLayer, lgbmData, 'img/icon_blue.png', 
+                item => `<b>LGBM 예측</b><br>확률: ${item.fire_probability ? item.fire_probability.toFixed(2) : 'N/A'}`
+            );
+
+            const rfData = await fetchData('static/rf_predictions.json');
+            addMarkersToLayer(rfLayer, rfData, 'img/icon_orange.png', 
+                item => `<b>RF 예측</b><br>확률: ${item.fire_probability ? item.fire_probability.toFixed(2) : 'N/A'}`
+            );
+            
+            // Load future predictions
+            const futureData = await fetchData('data/future_predictions.json');
+            addMarkersToLayer(futurePredLayer, futureData, 'img/icon_purple.png', 
+                item => `<b>미래 예측 (${item.date})</b><br>위치: ${item.location_sido} ${item.location_sigungu}<br>확률: ${item.fire_probability.toFixed(2)}<br><b style='color:blue;'>클릭하여 가장 가까운 소방서 경로 탐색</b>`,
+                true // isFuturePrediction = true
+            );
+
+            // Load fire stations
+            const fireStationsData = await fetchData('data/fire_stations_nationwide.csv');
+            window.fireStations = fireStationsData; // 전역 변수에 저장하여 경로 탐색 시 사용
+            addMarkersToLayer(fireStationLayer, fireStationsData, 'img/icon_station.png', 
+                item => `<b>${item.서명}</b><br>주소: ${item.주소}`
+            );
+        }
+
+        // --- Pathfinding Logic ---
+        function haversineDistance(coords1, coords2) {
+            function toRad(x) {
+                return x * Math.PI / 180;
+            }
+
+            const lat1 = coords1[0];
+            const lon1 = coords1[1];
+            const lat2 = coords2[0];
+            const lon2 = coords2[1];
+
+            const R = 6371; // km
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lon2 - lon1);
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function findAndDrawRoute(fireCoords) {
+            if (!window.fireStations || window.fireStations.length === 0) {
+                alert('소방서 데이터가 로드되지 않았습니다.');
                 return;
             }
 
-            L.geoJSON(filteredFires, {
-                pointToLayer: (feature, latlng) => {
-                    return L.marker(latlng, {
-                        icon: L.icon({
-                            iconUrl: 'img/icon_red.png',
-                            iconSize: [20, 20],
-                            iconAnchor: [10, 10]
-                        })
-                    }).bindPopup(`<b>실제 산불</b><br>${feature.properties.full_address || ''}`);
-                }
-            }).addTo(trueFires);
+            let closestStation = null;
+            let minDistance = Infinity;
 
-            const addPredictionMarkers = (predictions, layerGroup, iconUrl, modelName) => {
-                L.geoJSON(predictions, {
-                    pointToLayer: (feature, latlng) => {
-                        // 마커가 겹치지 않도록 동쪽으로 약간(약 800미터) 이동시킵니다.
-                        const offsetLatLng = L.latLng(latlng.lat, latlng.lng + 0.008);
+            window.fireStations.forEach(station => {
+                const stationCoords = [parseFloat(station.WGS84위도), parseFloat(station.WGS84경도)];
+                if (isNaN(stationCoords[0]) || isNaN(stationCoords[1])) return;
 
-                        return L.marker(offsetLatLng, {
-                            icon: L.icon({
-                                iconUrl: iconUrl,
-                                iconSize: [20, 20],
-                                iconAnchor: [10, 10]
-                            })
-                        }).bindPopup(`<b>${modelName}</b><br>예측 확률: ${feature.properties.fire_probability ? feature.properties.fire_probability.toFixed(2) : 'N/A'}`);
-                    }
-                }).addTo(layerGroup);
-            };
-
-            const parseCsv = (csvText) => {
-                const lines = csvText.trim().split('\n');
-                const headers = lines[0].split(',');
-                const predictions = [];
-                for (let i = 1; i < lines.length; i++) {
-                    const values = lines[i].split(',');
-                    if (values.length === headers.length) {
-                        const lat = parseFloat(values[0]);
-                        const lon = parseFloat(values[1]);
-                        const probability = parseFloat(values[2]);
-                        if (!isNaN(lat) && !isNaN(lon) && !isNaN(probability)) {
-                            predictions.push({
-                                type: "Feature",
-                                geometry: { type: "Point", coordinates: [lon, lat] },
-                                properties: { fire_probability: probability }
-                            });
-                        }
-                    }
-                }
-                return predictions;
-            };
-
-            // 1. LightGBM 예측 로드 및 표시
-            fetch('data/fixed_predict.csv')
-                .then(res => res.text())
-                .then(csvText => {
-                    const lgbmData = parseCsv(csvText);
-                    const matchedLgbm = findClosestPredictionForFires(lgbmData, filteredFires);
-                    addPredictionMarkers({ type: "FeatureCollection", features: matchedLgbm }, lgbmPredictions, 'img/icon_blue.png', 'LightGBM 예측');
-                })
-                .catch(error => console.error('Error fetching fixed_predict.csv:', error));
-
-            // 2. RandomForest 예측 로드 및 표시
-            fetch('data/rf_predict.csv')
-                .then(res => res.text())
-                .then(csvText => {
-                    const rfData = parseCsv(csvText);
-                    const matchedRf = findClosestPredictionForFires(rfData, filteredFires);
-                    addPredictionMarkers({ type: "FeatureCollection", features: matchedRf }, rfPredictions, 'img/icon_orange.png', 'RandomForest 예측');
-                })
-                .catch(error => console.error('Error fetching rf_predict.csv:', error));
-        }
-
-        fetch('data/true_fires.geojson')
-            .then(res => res.json())
-            .then(data => {
-                allFiresData = data.features;
-                allFiresData.sort((a, b) => {
-                    const dateA = new Date(a.properties.발생일시_년, a.properties.발생일시_월 - 1, a.properties.발생일시_일);
-                    const dateB = new Date(b.properties.발생일시_년, b.properties.발생일시_월 - 1, b.properties.발생일시_일);
-                    return dateB - dateA; // 최신 날짜 순으로 정렬
-                });
-
-                if (allFiresData.length > 0) {
-                    // 전체 데이터 기간 표시
-                    const latestFire = allFiresData[0].properties;
-                    const earliestFire = allFiresData[allFiresData.length - 1].properties;
-                    const latestDateStr = `${latestFire.발생일시_년}-${String(latestFire.발생일시_월).padStart(2, '0')}-${String(latestFire.발생일시_일).padStart(2, '0')}`;
-                    const earliestDateStr = `${earliestFire.발생일시_년}-${String(earliestFire.발생일시_월).padStart(2, '0')}-${String(earliestFire.발생일시_일).padStart(2, '0')}`;
-                    document.getElementById('date-range-display').textContent = `조회 가능 기간: ${earliestDateStr} ~ ${latestDateStr}`;
-
-                    // 초기 지도 로딩 시, 가장 최근 월의 데이터를 보여줌
-                    const latestMonthFires = allFiresData.filter(fire => {
-                        const fireDate = new Date(fire.properties.발생일시_년, fire.properties.발생일시_월 - 1, fire.properties.발생일시_일);
-                        const latestFireDate = new Date(latestFire.발생일시_년, latestFire.발생일시_월 - 1, latestFire.발생일시_일);
-                        return fireDate.getFullYear() === latestFireDate.getFullYear() && fireDate.getMonth() === latestFireDate.getMonth();
-                    });
-
-                    const firstDayOfLatestMonth = new Date(latestFire.발생일시_년, latestFire.발생일시_월 - 1, 1);
-                    const lastDayOfLatestMonth = new Date(latestFire.발생일시_년, latestFire.발생일시_월, 0);
-
-                    document.getElementById('start-date').value = firstDayOfLatestMonth.toISOString().split('T')[0];
-                    document.getElementById('end-date').value = lastDayOfLatestMonth.toISOString().split('T')[0];
-
-                    updateAllMarkers(firstDayOfLatestMonth, lastDayOfLatestMonth, latestMonthFires);
-                } else {
-                    alert("산불 데이터가 없습니다.");
+                const distance = haversineDistance(fireCoords, stationCoords);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestStation = station;
                 }
             });
 
+            if (closestStation) {
+                const stationCoords = [parseFloat(closestStation.WGS84위도), parseFloat(closestStation.WGS84경도)];
+                
+                // 이전 경로가 있으면 지도에서 제거
+                if (currentRouteLine) {
+                    map.removeLayer(currentRouteLine);
+                }
+
+                // 새 경로 생성 및 추가
+                currentRouteLine = L.polyline([fireCoords, stationCoords], {
+                    color: 'red',
+                    weight: 3,
+                    opacity: 0.7
+                }).addTo(map);
+                
+                currentRouteLine.bindPopup(`<b>최단 경로</b><br>소방서: ${closestStation.서명}<br>거리: ${minDistance.toFixed(2)} km`).openPopup();
+
+                // 경로가 잘 보이도록 지도 범위 조정
+                map.fitBounds(currentRouteLine.getBounds().pad(0.1));
+            }
+        }
+
+
+        // --- Filtering Logic ---
         document.getElementById('filter-button').addEventListener('click', () => {
-            const startDate = new Date(document.getElementById('start-date').value);
-            const endDate = new Date(document.getElementById('end-date').value);
-            updateAllMarkers(startDate, endDate);
+            const startDate = document.getElementById('start-date').valueAsDate;
+            const endDate = document.getElementById('end-date').valueAsDate;
+
+            if (!startDate || !endDate) {
+                alert('시작 날짜와 종료 날짜를 모두 선택해주세요.');
+                return;
+            }
+            endDate.setHours(23, 59, 59, 999);
+
+            [trueFiresLayer, lgbmLayer, rfLayer, futurePredLayer].forEach(layer => {
+                let visibleMarkers = [];
+                layer.eachLayer(marker => {
+                    // 날짜 정보가 있는 마커만 필터링
+                    if (marker.fireDate) {
+                         if (marker.fireDate >= startDate && marker.fireDate <= endDate) {
+                            visibleMarkers.push(marker);
+                        }
+                    } else {
+                        // 날짜 정보가 없는 마커는 항상 보이도록 함 (예: 미래 예측)
+                        visibleMarkers.push(marker);
+                    }
+                });
+                layer.clearLayers();
+                layer.addLayers(visibleMarkers);
+            });
         });
+
+        // --- Initial Load ---
+        loadAllData();
+
     </script>
+
 </body>
 </html>

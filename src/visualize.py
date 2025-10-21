@@ -1,54 +1,66 @@
-import folium
-from folium.plugins import MarkerCluster
+"""
+Visualization functions for the fire predictor project.
+"""
+
+import json
 import webbrowser
 import os
+import pandas as pd
 
-def show_fire_map(center, df, popup_col, color):
-    m = folium.Map(location=center, zoom_start=10)
+def export_data_to_json(df, filename, lat_col='LAT', lon_col='LON', extra_cols=None):
+    """
+    Exports DataFrame data to a JSON file for map visualization.
 
-    folium.TileLayer('OpenStreetMap', name='지도').add_to(m)
-    folium.TileLayer(
-        tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        attr='Esri',
-        name='위성사진',
-        overlay=False,
-        control=True
-    ).add_to(m)
-
-    marker_cluster = MarkerCluster(name='산불 위치').add_to(m)
-
+    Args:
+        df (pd.DataFrame): DataFrame containing the data.
+        filename (str): The name of the output JSON file.
+        lat_col (str): The name of the latitude column.
+        lon_col (str): The name of the longitude column.
+        extra_cols (list): A list of extra columns to include in the properties.
+    """
+    map_data = []
     for _, row in df.iterrows():
-        popup_text = f"🔥 {row[popup_col]}"
-        folium.Marker(
-            [row['LAT'], row['LON']],
-            popup=popup_text,
-            icon=folium.Icon(color=color, icon='fire', prefix='fa')
-        ).add_to(marker_cluster)
+        properties = {}
+        if extra_cols:
+            for col in extra_cols:
+                properties[col] = row[col]
+        
+        map_data.append({
+            'lat': row[lat_col],
+            'lon': row[lon_col],
+            'properties': properties
+        })
 
-    folium.LayerControl().add_to(m)
-    m.save("map_result.html")
-    webbrowser.open('file://' + os.path.realpath("map_result.html"))
+    # Ensure the static directory exists
+    static_dir = os.path.join(os.path.dirname(__file__), '..', 'static')
+    os.makedirs(static_dir, exist_ok=True)
 
-def show_long_term_prediction_map(center, pred_dfs):
-    m = folium.Map(location=center, zoom_start=7)
-    folium.TileLayer('OpenStreetMap', name='지도').add_to(m)
-    folium.TileLayer(
-        tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        attr='Esri',
-        name='위성사진',
-        overlay=False,
-        control=True
-    ).add_to(m)
+    filepath = os.path.join(static_dir, filename)
+    with open(filepath, 'w', encoding='utf-8') as f:
+        json.dump(map_data, f, ensure_ascii=False, indent=4)
+    print(f"Map data exported to {filepath}")
 
-    for day, df in pred_dfs.items():
-        layer = MarkerCluster(name=f'{day} 예측').add_to(m)
-        for _, row in df.iterrows():
-            folium.Marker(
-                [row['LAT'], row['LON']],
-                popup=f"🔥 예측 확률: {row['fire_probability']:.2f}",
-                icon=folium.Icon(color='purple', icon='fire', prefix='fa')
-            ).add_to(layer)
+def open_dashboard():
+    """
+    Opens the main dashboard (index.html) in a web browser.
+    """
+    # Correctly construct the path to index.html relative to this script's location
+    # __file__ -> src/visualize.py
+    # os.path.dirname(__file__) -> src/
+    # os.path.join(..., '..') -> project root
+    project_root = os.path.join(os.path.dirname(__file__), '..')
+    dashboard_path = os.path.join(project_root, 'index.html')
+    
+    if os.path.exists(dashboard_path):
+        webbrowser.open('file://' + os.path.realpath(dashboard_path))
+    else:
+        print(f"Error: {dashboard_path} not found.")
 
-    folium.LayerControl().add_to(m)
-    m.save("long_term_prediction_map.html")
-    webbrowser.open('file://' + os.path.realpath("long_term_prediction_map.html"))
+# The old functions are no longer needed as the new index.html will handle visualization.
+# You can keep them for reference or remove them.
+
+# def show_fire_map(center, df, popup_col, color):
+#     ...
+
+# def show_long_term_prediction_map(center, pred_dfs):
+#     ...

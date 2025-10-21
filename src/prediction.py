@@ -11,12 +11,13 @@ import json
 import config
 from src.data_processing import preprocess_data
 
-def predict_lgbm(data_path):
+def predict_lgbm(data_path, output_filename):
     """
     Runs the LightGBM prediction process.
 
     Args:
         data_path (str): Path to the data for prediction.
+        output_filename (str): The name of the output JSON file.
 
     Returns:
         pd.DataFrame: DataFrame with prediction results.
@@ -36,18 +37,6 @@ def predict_lgbm(data_path):
     df_pred = df[fire_probabilities > 0.5].copy()
 
     # --- Generate JSON output ---
-    predicted_markers = []
-    for _, row in df_pred.iterrows():
-        if 'LAT' in row and 'LON' in row:
-            predicted_markers.append({
-                "lat": row['LAT'],
-                "lon": row['LON'],
-                "probability": row['fire_probability']
-            })
-    
-    os.makedirs(os.path.dirname(config.PREDICTED_JSON_PATH), exist_ok=True)
-    with open(config.PREDICTED_JSON_PATH, 'w', encoding='utf-8') as f:
-        json.dump(predicted_markers, f, ensure_ascii=False, indent=4)
-    print(f"Predicted fire markers saved to {config.PREDICTED_JSON_PATH}")
+    export_data_to_json(df_pred, output_filename, extra_cols=['fire_probability'])
 
     return df_pred
