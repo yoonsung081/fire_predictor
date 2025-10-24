@@ -82,10 +82,8 @@
             <h2 class="h5 mb-3">범례</h2>
             <ul class="list-unstyled">
                 <li><img src="img/icon_red.png" alt="실제 산불" class="legend-icon"> 실제 산불</li>
-                <li class="mt-2"><img src="img/icon_blue.png" alt="LightGBM 예측" class="legend-icon"> LightGBM 예측</li>
                 <li class="mt-2"><img src="img/icon_orange.png" alt="RandomForest 예측" class="legend-icon"> RandomForest 예측</li>
-                <li class="mt-2"><img src="img/icon_purple.png" alt="미래 예측 산불" class="legend-icon"> 미래 예측 산불 (경로 탐색)</li>
-                <li class="mt-2"><img src="img/icon_station.png" alt="소방서" class="legend-icon"> 소방서</li>
+                <li class="mt-2"><img src="img/icon_blue.png" alt="LightGBM 예측" class="legend-icon"> LightGBM 예측</li>
             </ul>
         </div>
 
@@ -124,18 +122,13 @@
         }).addTo(map);
 
         const trueFiresLayer = L.markerClusterGroup().addTo(map);
-        const lgbmLayer = L.markerClusterGroup().addTo(map);
+        const lgbmLayer = L.markerClusterGourp().addTo(map);
         const rfLayer = L.markerClusterGroup().addTo(map);
-        const futurePredLayer = L.markerClusterGroup().addTo(map);
-        const fireStationLayer = L.layerGroup().addTo(map); // 소방서는 클러스터링하지 않음
-        let currentRouteLine = null; // 현재 경로를 저장할 변수
 
         const layers = {
             "실제 산불": trueFiresLayer,
-            "LightGBM 예측": lgbmLayer,
             "RandomForest 예측": rfLayer,
-            "미래 예측 산불": futurePredLayer,
-            "소방서": fireStationLayer
+            "LightGBM 예측": lgbmLayer
         };
         L.control.layers(null, layers).addTo(map);
 
@@ -236,74 +229,10 @@
                 item => `<b>RF 예측</b><br>확률: ${item.fire_probability ? item.fire_probability.toFixed(2) : 'N/A'}`
             );
             
-            // Load future predictions
-            const futureData = await fetchData('data/future_predictions.json');
-            addMarkersToLayer(futurePredLayer, futureData, 'img/icon_purple.png', 
-                item => `<b>미래 예측 (${item.date})</b><br>위치: ${item.location_sido} ${item.location_sigungu}<br>확률: ${item.fire_probability.toFixed(2)}<br><b style='color:blue;'>클릭하여 가장 가까운 소방서 경로 탐색</b>`,
-                true // isFuturePrediction = true
-            );
-
-            // Load fire stations
-            const fireStationsData = await fetchData('data/경기도소방서현황및관할구역현황.json');
-            window.fireStations = fireStationsData; // 전역 변수에 저장
-            addMarkersToLayer(fireStationLayer, fireStationsData, 'img/icon_station.png', 
-                item => `<b>${item.ALL_INST_NM}</b><br>주소: ${item.REFINE_ROADNM_ADDR}`
-            );
+            
         }
 
-        // --- Pathfinding Logic ---
-        function haversineDistance(coords1, coords2) {
-            function toRad(x) { return x * Math.PI / 180; }
-            const R = 6371; // km
-            const dLat = toRad(coords2[0] - coords1[0]);
-            const dLon = toRad(coords2[1] - coords1[1]);
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                      Math.cos(toRad(coords1[0])) * Math.cos(toRad(coords2[0])) *
-                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return R * c;
-        }
-
-        function findAndDrawRoute(fireCoords) {
-            if (!window.fireStations || window.fireStations.length === 0) {
-                alert('소방서 데이터가 로드되지 않았습니다.');
-                return;
-            }
-
-            let closestStation = null;
-            let minDistance = Infinity;
-
-            window.fireStations.forEach(station => {
-                const stationCoords = [parseFloat(station.REFINE_WGS84_LAT), parseFloat(station.REFINE_WGS84_LOGT)];
-                if (isNaN(stationCoords[0]) || isNaN(stationCoords[1])) return;
-
-                const distance = haversineDistance(fireCoords, stationCoords);
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestStation = station;
-                }
-            });
-
-            if (closestStation) {
-                const stationCoords = [parseFloat(closestStation.REFINE_WGS84_LAT), parseFloat(closestStation.REFINE_WGS84_LOGT)];
-                
-                if (currentRouteLine) {
-                    map.removeLayer(currentRouteLine);
-                }
-
-                currentRouteLine = L.polyline([fireCoords, stationCoords], {
-                    color: 'red',
-                    weight: 3,
-                    opacity: 0.7
-                }).addTo(map);
-                
-                currentRouteLine.bindPopup(`<b>최단 경로</b><br>소방서: ${closestStation.ALL_INST_NM}<br>거리: ${minDistance.toFixed(2)} km`).openPopup();
-
-                map.fitBounds(currentRouteLine.getBounds().pad(0.1));
-            } else {
-                alert('가까운 소방서를 찾을 수 없습니다. (경기도 내 소방서 데이터만 사용 중)');
-            }
-        }
+        
 
         // --- Filtering Logic ---
         document.getElementById('filter-button').addEventListener('click', () => {
@@ -316,7 +245,7 @@
             }
             endDate.setHours(23, 59, 59, 999);
 
-            [trueFiresLayer, lgbmLayer, rfLayer, futurePredLayer].forEach(layer => {
+            [trueFiresLayer, lgbmLayer, rfLayer].forEach(layer => {
                 let visibleMarkers = [];
                 layer.eachLayer(marker => {
                     if (marker.fireDate) {
