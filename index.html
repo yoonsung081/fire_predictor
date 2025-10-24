@@ -157,14 +157,30 @@
                 console.error(`Failed to load ${url}`);
                 return [];
             }
-            return response.json();
+            if (url.endsWith('.csv')) {
+                const csvText = await response.text();
+                const lines = csvText.split('\n').filter(line => line.trim() !== '');
+                if (lines.length < 2) return [];
+                const headers = lines[0].split(',').map(header => header.trim());
+                const data = lines.slice(1).map(line => {
+                    const values = line.split(',');
+                    const obj = {};
+                    headers.forEach((header, index) => {
+                        obj[header] = values[index] ? values[index].trim() : '';
+                    });
+                    return obj;
+                });
+                return data;
+            } else {
+                return response.json();
+            }
         }
 
         function addMarkersToLayer(layer, data, iconUrl, popupContentFn, isFuturePrediction = false) {
             layer.clearLayers();
             data.forEach(item => {
-                const lat = item.lat || (item.properties && item.properties.LAT) || item.REFINE_WGS84_LAT;
-                const lon = item.lon || (item.properties && item.properties.LON) || item.REFINE_WGS84_LOGT;
+                const lat = item.lat || item.LAT || (item.properties && item.properties.LAT) || item.REFINE_WGS84_LAT;
+                const lon = item.lon || item.LON || (item.properties && item.properties.LON) || item.REFINE_WGS84_LOGT;
 
                 if (!lat || !lon) return;
 
@@ -219,14 +235,14 @@
                 );
             }
 
-            const lgbmData = await fetchData('data/predicted_fire_markers.json');
+            const lgbmData = await fetchData('data/refined_predicted_fire_markers.json');
             addMarkersToLayer(lgbmLayer, lgbmData, 'img/icon_blue.png', 
                 item => `<b>LGBM 예측</b><br>확률: ${item.probability ? item.probability.toFixed(2) : 'N/A'}`
             );
 
-            const rfData = await fetchData('data/refined_predicted_fire_markers.json');
+            const rfData = await fetchData('data/rf_predict.csv');
             addMarkersToLayer(rfLayer, rfData, 'img/icon_orange.png', 
-                item => `<b>RF 예측</b><br>확률: ${item.probability ? item.probability.toFixed(2) : 'N/A'}`
+                item => `<b>RF 예측</b><br>확률: ${item.FIRE_PROBABILITY ? parseFloat(item.FIRE_PROBABILITY).toFixed(2) : 'N/A'}`
             );
             
             
