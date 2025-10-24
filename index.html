@@ -219,14 +219,14 @@
                 );
             }
 
-            const lgbmData = await fetchData('static/lgbm_predictions.json');
+            const lgbmData = await fetchData('data/predicted_fire_markers.json');
             addMarkersToLayer(lgbmLayer, lgbmData, 'img/icon_blue.png', 
-                item => `<b>LGBM 예측</b><br>확률: ${item.fire_probability ? item.fire_probability.toFixed(2) : 'N/A'}`
+                item => `<b>LGBM 예측</b><br>확률: ${item.probability ? item.probability.toFixed(2) : 'N/A'}`
             );
 
-            const rfData = await fetchData('static/rf_predictions.json');
+            const rfData = await fetchData('data/refined_predicted_fire_markers.json');
             addMarkersToLayer(rfLayer, rfData, 'img/icon_orange.png', 
-                item => `<b>RF 예측</b><br>확률: ${item.fire_probability ? item.fire_probability.toFixed(2) : 'N/A'}`
+                item => `<b>RF 예측</b><br>확률: ${item.probability ? item.probability.toFixed(2) : 'N/A'}`
             );
             
             
@@ -263,6 +263,23 @@
 
         // --- Initial Load ---
         loadAllData();
+
+        // Handle URL parameters
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lat = urlParams.get('lat');
+            const lon = urlParams.get('lon');
+
+            if (lat && lon) {
+                map.setView([lat, lon], 13);
+                L.circle([lat, lon], {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.5,
+                    radius: 1000 // 1km radius
+                }).addTo(map);
+            }
+        });
 
     </script>
 

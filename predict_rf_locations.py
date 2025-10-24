@@ -71,4 +71,21 @@ if __name__ == "__main__":
         predicted_fire_locations_df[['LAT', 'LON', 'FIRE_PROBABILITY']].to_csv(PREDICTED_CSV_PATH, index=False)
         print(f"RandomForest predicted fire locations saved to {PREDICTED_CSV_PATH}")
 
+    # --- Save to JSON for map display ---
+    predicted_markers = []
+    for index, row in predicted_fire_locations_df.iterrows():
+        if 'LAT' in row and 'LON' in row:
+            predicted_markers.append({
+                "lat": row['LAT'],
+                "lon": row['LON'],
+                "fire_probability": row['FIRE_PROBABILITY']
+            })
+    
+    PREDICTED_JSON_PATH = "static/rf_predictions.json"
+    os.makedirs(os.path.dirname(PREDICTED_JSON_PATH), exist_ok=True)
+    with open(PREDICTED_JSON_PATH, 'w', encoding='utf-8') as f:
+        import json
+        json.dump(predicted_markers, f, ensure_ascii=False, indent=4)
+    print(f"RandomForest predicted fire markers saved to {PREDICTED_JSON_PATH}")
+
     print("RandomForest prediction process complete.")

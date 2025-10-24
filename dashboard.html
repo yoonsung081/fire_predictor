@@ -98,9 +98,7 @@
       background-color: #dee2e6;
     }
   </style>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-</head>
+  </head>
 <body>
   <h1>🔥 성능 지표 비교</h1>
 
@@ -216,8 +214,6 @@ print("모델 학습 완료 (예시)")
 
   <a href="index.html">← 지도 보기로 돌아가기</a>
 
-  <div id="map" style="height: 400px; margin-top: 20px;"></div>
-
   <div class="explanation-section">
     <h2>산불 발생 지역 랭킹</h2>
     <div style="display: flex; justify-content: space-around;">
@@ -240,12 +236,6 @@ print("모델 학습 완료 (예시)")
   </div>
 
   <script>
-    const map = L.map('map').setView([36.5, 127.5], 7);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-    window.mapCircle = null;
-
     fetch('static/metrics.json')
       .then(response => {
         if (!response.ok) {
@@ -455,25 +445,8 @@ print("모델 학습 완료 (예시)")
             <p>선택한 날짜의 예측 산불 위치:</p>
             <p>지역: ${prediction.location_sido} ${prediction.location_sigungu}</p>
             <p>위도: ${prediction.lat}, 경도: ${prediction.lon}</p>
-            <button id="show-on-map-btn" data-lat="${prediction.lat}" data-lon="${prediction.lon}">지도에서 위치 보기</button>
+            <a href="index.html?lat=${prediction.lat}&lon=${prediction.lon}" target="_blank">지도에서 위치 보기</a>
           `;
-
-          document.getElementById('show-on-map-btn').addEventListener('click', (e) => {
-            const lat = e.target.dataset.lat;
-            const lon = e.target.dataset.lon;
-            
-            if (window.mapCircle) {
-              map.removeLayer(window.mapCircle);
-            }
-
-            map.setView([lat, lon], 13);
-            window.mapCircle = L.circle([lat, lon], {
-              color: 'red',
-              fillColor: '#f03',
-              fillOpacity: 0.5,
-              radius: 500
-            }).addTo(map);
-          });
         } else {
           predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
         }
