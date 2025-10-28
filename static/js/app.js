@@ -9,10 +9,34 @@ async function loadAllData() {
 
     // Load map data
     const trueFiresData = await fetchData('data/true_fires.geojson');
+    let minDate = new Date();
+    let maxDate = new Date(0); // Epoch
+
     if (trueFiresData.features) {
          addMarkersToLayer(trueFiresLayer, trueFiresData.features, 'img/icon_red.png', 
-            item => `<b>실제 산불</b><br>주소: ${item.properties.full_address || 'N/A'}`
+            item => {
+                const year = item.properties['발생일시_년'];
+                const month = item.properties['발생일시_월'];
+                const day = item.properties['발생일시_일'];
+                const fireDate = new Date(year, month - 1, day); // Month is 0-indexed
+
+                if (fireDate < minDate) minDate = fireDate;
+                if (fireDate > maxDate) maxDate = fireDate;
+
+                return `<b>실제 산불</b><br>주소: ${item.properties.full_address || 'N/A'}<br>날짜: ${year}-${month}-${day}`;
+            }
         );
+    }
+
+    // Set min/max dates for date filters
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+
+    if (minDate.getTime() !== new Date().getTime() && maxDate.getTime() !== new Date(0).getTime()) {
+        startDateInput.setAttribute('min', minDate.toISOString().split('T')[0]);
+        startDateInput.setAttribute('value', minDate.toISOString().split('T')[0]); // Set initial value
+        endDateInput.setAttribute('max', maxDate.toISOString().split('T')[0]);
+        endDateInput.setAttribute('value', maxDate.toISOString().split('T')[0]); // Set initial value
     }
 
     const lgbmData = await fetchData('data/refined_predicted_fire_markers.json');
@@ -29,7 +53,7 @@ async function loadAllData() {
         item => {
             const key = `${parseFloat(item.lat).toFixed(6)},${parseFloat(item.lon).toFixed(6)}`;
             const damage = damageMap[key];
-            let popupContent = `<b>LGBM 예측</b><br>확률: ${item.probability ? item.probability.toFixed(2) : 'N/A'}`;
+            let popupContent = `<b>LGBM 예측</b>`;
             if (damage !== undefined) {
                 popupContent += `<br>예상 피해 면적: ${damage.toFixed(4)} ha`;
             }
@@ -44,7 +68,7 @@ async function loadAllData() {
         item => {
             const key = `${parseFloat(item.LAT).toFixed(6)},${parseFloat(item.LON).toFixed(6)}`;
             const damage = damageMap[key];
-            let popupContent = `<b>RF 예측</b><br>확률: ${item.FIRE_PROBABILITY ? parseFloat(item.FIRE_PROBABILITY).toFixed(2) : 'N/A'}`;
+            let popupContent = `<b>RF 예측</b>`;
             if (damage !== undefined) {
                 popupContent += `<br>예상 피해 면적: ${damage.toFixed(4)} ha`;
             }
