@@ -131,22 +131,6 @@ def show_model_performance():
     print("\n📊 모델 성능 비교 대시보드를 엽니다.")
     open_dashboard()
 
-def run_damage_prediction_mode():
-    """Runs the damage prediction and opens the dashboard."""
-    damage_prediction_path = "C:/Users/000/OneDrive/Desktop/fire_predictor_project/data/damage_predictions.json"
-    if not os.path.exists(damage_prediction_path):
-        print(f"🚨 피해 면적 예측 결과 파일({damage_prediction_path})이 없습니다.")
-        print("지금 피해 면적 예측을 실행하시겠습니까? (y/n)")
-        choice = input("> ")
-        if choice.lower() == 'y':
-            print("피해 면적 예측을 실행합니다...")
-            os.system("python C:/Users/000/OneDrive/Desktop/fire_predictor_project/predict_damage_area.py")
-        else:
-            return
-            
-    print("\n📈 피해 면적 예측 결과를 대시보드에서 엽니다.")
-    open_dashboard()
-
 if __name__ == "__main__":
     if not os.path.exists(config.PREPROCESSED_DATA_PATH):
         print(f"🚨 데이터 파일({config.PREPROCESSED_DATA_PATH})이 없습니다. 데이터를 먼저 준비해주세요.")
@@ -165,7 +149,6 @@ if __name__ == "__main__":
         print("2: 단기 산불 위험 예측 및 대시보드 열기")
         print("3: 장기 산불 위험 예측 및 대시보드 열기")
         print("4: 모델 성능 대시보드 열기")
-        print("5: 피해 면적 예측 결과 보기")
         print("q: 종료")
         print("----------------------------------------")
         mode = input("원하는 작업의 번호를 입력하세요 > ")
@@ -178,10 +161,8 @@ if __name__ == "__main__":
             run_long_term_prediction_mode(df.copy(), locations_df.copy())
         elif mode == '4':
             show_model_performance()
-        elif mode == '5':
-            run_damage_prediction_mode()
         elif mode.lower() == 'q':
             print("프로그램을 종료합니다.")
             break
         else:
-            print("🚨 잘못된 입력입니다. 1, 2, 3, 4, 5, q 중에서 선택해주세요.")
+            print("🚨 잘못된 입력입니다. 1, 2, 3, 4, q 중에서 선택해주세요.")
