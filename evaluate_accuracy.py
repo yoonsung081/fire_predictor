@@ -21,7 +21,7 @@ def haversine(lat1, lon1, lat2, lon2):
     distance = R * c
     return distance
 
-def evaluate_accuracy(actual_data_path, predicted_data_path, distance_threshold_km=10):
+def evaluate_accuracy(actual_data_path, predicted_data_path, distance_threshold_km=20):
     with open(actual_data_path, 'r', encoding='utf-8') as f:
         actual_fires = json.load(f)
 
@@ -37,8 +37,8 @@ def evaluate_accuracy(actual_data_path, predicted_data_path, distance_threshold_
         actual_time_str = actual_fire['start_time']
         actual_time = datetime.strptime(actual_time_str, '%Y-%m-%d %H:%M')
 
-        found_location_and_time_match = False
-        has_predicted_date_match = False
+        has_prediction_for_this_day = False
+        is_correctly_predicted = False
 
         for predicted_fire in predicted_fires:
             predicted_lat = predicted_fire['lat']
@@ -52,18 +52,19 @@ def evaluate_accuracy(actual_data_path, predicted_data_path, distance_threshold_
                           actual_time.day == predicted_time.day)
             
             if time_match:
-                has_predicted_date_match = True
+                has_prediction_for_this_day = True
                 # Check location proximity
                 distance = haversine(actual_lat, actual_lon, predicted_lat, predicted_lon)
                 location_match = (distance <= distance_threshold_km)
 
                 if location_match:
-                    correct_predictions += 1
-                    found_location_and_time_match = True
-                    break # Move to the next actual fire once a match is found for both time and location
+                    is_correctly_predicted = True
+                    # No break here, as we want to check all predictions for the day
         
-        if has_predicted_date_match:
+        if has_prediction_for_this_day:
             evaluated_actual_fires += 1
+            if is_correctly_predicted:
+                correct_predictions += 1
 
     accuracy = (correct_predictions / evaluated_actual_fires) * 100 if evaluated_actual_fires > 0 else 0
     return accuracy, evaluated_actual_fires, correct_predictions

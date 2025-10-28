@@ -15,9 +15,9 @@ def generate_and_update_predictions(model_path, output_json_path, actual_data_fo
     actual_df = pd.DataFrame(actual_fires)
     actual_df['start_time'] = pd.to_datetime(actual_df['start_time'])
 
-    # Determine the date range for predictions (e.g., next 30 days from the latest actual fire)
-    latest_actual_date = actual_df['start_time'].max().date()
-    prediction_dates = [latest_actual_date + timedelta(days=i) for i in range(1, 31)] # Predict for next 30 days
+    # Determine the date range for predictions (all unique dates from actual fire data)
+    prediction_dates = actual_df['start_time'].dt.date.unique()
+    prediction_dates = sorted(list(prediction_dates)) # Sort dates for consistent output
 
     # Determine the spatial range for predictions (based on actual fire data)
     min_lat, max_lat = actual_df['latitude'].min(), actual_df['latitude'].max()
@@ -59,10 +59,11 @@ def generate_and_update_predictions(model_path, output_json_path, actual_data_fo
 
     # Group by date and select the top prediction (highest probability) for each day
     predictions_df = pd.DataFrame(future_predictions_list)
-    daily_top_predictions = predictions_df.loc[predictions_df.groupby('date')['probability'].idxmax()]
+    probability_threshold = 0.5 # You can adjust this threshold
+    filtered_predictions = predictions_df[predictions_df['probability'] >= probability_threshold]
 
     # Convert to the desired JSON format
-    output_data = daily_top_predictions[['date', 'lat', 'lon', 'probability']].to_dict(orient='records')
+    output_data = filtered_predictions[['date', 'lat', 'lon', 'probability']].to_dict(orient='records')
 
     # Update the daily_top_future_predictions.json file
     with open(output_json_path, 'w', encoding='utf-8') as f:
