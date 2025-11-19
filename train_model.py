@@ -13,7 +13,6 @@ import config
 from src.data_processing import preprocess_data
 
 def objective(trial, X_train, y_train, X_test, y_test):
-    """Optuna objective function."""
     param = {
         'objective': 'binary',
         'metric': 'binary_logloss',
@@ -26,13 +25,12 @@ def objective(trial, X_train, y_train, X_test, y_test):
         'min_child_samples': trial.suggest_int('min_child_samples', 5, 100),
         'subsample': trial.suggest_float('subsample', 0.6, 1.0),
         'colsample_bytree': trial.suggest_float('colsample_bytree', 0.6, 1.0),
-        'reg_alpha': trial.suggest_float('reg_alpha', 1e-8, 10.0, log=True),  # L1 규제 추가
-        'reg_lambda': trial.suggest_float('reg_lambda', 1e-8, 10.0, log=True), # L2 규제 추가
+        'reg_alpha': trial.suggest_float('reg_alpha', 1e-8, 10.0, log=True),  
+        'reg_lambda': trial.suggest_float('reg_lambda', 1e-8, 10.0, log=True), 
     }
 
     model = lgb.LGBMClassifier(**param, random_state=42)
     
-    # Apply SMOTE
     smote = SMOTE(random_state=42)
     X_train_res, y_train_res = smote.fit_resample(X_train, y_train)
     

@@ -368,44 +368,89 @@
     const predictionDateInput = document.getElementById('prediction-date');
     const predictionResultDiv = document.getElementById('prediction-result');
 
-    // Set the minimum date to today
-    const today = new Date().toISOString().split('T')[0];
-    predictionDateInput.setAttribute('min', today);
+    // Format YYYYMMDD to YYYY-MM-DD
+    function formatInputDate(yyyymmdd) {
+      const year = yyyymmdd.substring(0, 4);
+      const month = yyyymmdd.substring(4, 6);
+      const day = yyyymmdd.substring(6, 8);
+      return `${year}-${month}-${day}`;
+    }
 
-    predictionDateInput.addEventListener('change', async (event) => {
-      const selectedDate = event.target.value;
-      if (!selectedDate) {
-        predictionResultDiv.innerHTML = '';
-        return;
-      }
-
+    (async () => {
       try {
         const response = await fetch('data/daily_top_future_predictions.json');
         if (!response.ok) {
           throw new Error('예측 데이터를 불러오는 데 실패했습니다.');
         }
         const predictions = await response.json();
-
-        // The date in daily_top_future_predictions.json is in "YYYYMMDD" format.
-        const formattedDate = selectedDate.replace(/-/g, '');
-
-        const predictionsForDate = predictions.filter(p => p.date === formattedDate);
-
-        if (predictionsForDate.length > 0) {
-          const prediction = predictionsForDate[0]; // 첫 번째 예측만 사용
-          predictionResultDiv.innerHTML = `
-            <p>선택한 날짜의 예측 산불 위치:</p>
-            <p>위도: ${prediction.lat}, 경도: ${prediction.lon}</p>
-            <a href="index.html?lat=${prediction.lat}&lon=${prediction.lon}" target="_blank">지도에서 위치 보기</a>
-          `;
-        } else {
-          predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
+        
+        if (predictions.length === 0) {
+          predictionDateInput.disabled = true;
+          const infoP = document.createElement('p');
+          infoP.textContent = '현재 제공되는 예측 데이터가 없습니다.';
+          predictionDateInput.parentNode.insertBefore(infoP, predictionDateInput.nextSibling);
+          return;
         }
+
+        const availableDates = [...new Set(predictions.map(p => p.date))].sort();
+        const minDate = formatInputDate(availableDates[0]);
+        const maxDate = formatInputDate(availableDates[availableDates.length - 1]);
+
+        predictionDateInput.setAttribute('min', minDate);
+        predictionDateInput.setAttribute('max', maxDate);
+
+        const dateRangeP = document.createElement('p');
+        dateRangeP.textContent = `예측 데이터는 ${minDate}부터 ${maxDate}까지 제공됩니다.`;
+        predictionDateInput.parentNode.insertBefore(dateRangeP, predictionDateInput);
+        
+        const availableDatesSet = new Set(availableDates);
+
+        predictionDateInput.addEventListener('input', (event) => {
+            const selectedDate = event.target.value;
+            if (!selectedDate) {
+                predictionResultDiv.innerHTML = '';
+                return;
+            }
+
+            const formattedDate = selectedDate.replace(/-/g, '');
+            if (!availableDatesSet.has(formattedDate)) {
+                predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
+                // Disable the date picker
+                predictionDateInput.disabled = true;
+                return;
+            }
+            // Re-enable the date picker if a valid date is chosen
+            predictionDateInput.disabled = false;
+        });
+
+        predictionDateInput.addEventListener('change', async (event) => {
+          const selectedDate = event.target.value;
+          if (!selectedDate) {
+            predictionResultDiv.innerHTML = '';
+            return;
+          }
+
+          const formattedDate = selectedDate.replace(/-/g, '');
+          const predictionsForDate = predictions.filter(p => p.date === formattedDate);
+
+          if (predictionsForDate.length > 0) {
+            const prediction = predictionsForDate[0]; // 첫 번째 예측만 사용
+            predictionResultDiv.innerHTML = `
+              <p>선택한 날짜의 예측 산불 위치:</p>
+              <p>위도: ${prediction.lat}, 경도: ${prediction.lon}</p>
+              <a href="index.html?lat=${prediction.lat}&lon=${prediction.lon}" target="_blank">지도에서 위치 보기</a>
+            `;
+          } else {
+            predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
+          }
+        });
+
       } catch (error) {
-        console.error('Error fetching prediction data:', error);
+        console.error('Error processing prediction data:', error);
         predictionResultDiv.innerHTML = `<p>오류가 발생했습니다: ${error.message}</p>`;
+        predictionDateInput.disabled = true;
       }
-    });
+    })();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
