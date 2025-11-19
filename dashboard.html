@@ -98,6 +98,16 @@
     .ranking-list li:hover {
       background-color: #dee2e6;
     }
+
+    /* Mobile responsiveness for ranking section */
+    @media (max-width: 600px) {
+      .explanation-section div[style*="display: flex"] {
+        flex-direction: column;
+      }
+      .explanation-section div[style*="width: 45%"] {
+        width: 100% !important; /* Override inline style */
+      }
+    }
   </style>
   </head>
 <body>
