@@ -74,13 +74,15 @@
     }
 
     @media (max-width: 480px) {
-      body { margin: 10px; }
+      body { margin: 0; } /* Remove margin on very small screens */
       h1 { font-size: 1.5em; }
-      canvas { max-width: 95%; }
+      canvas { max-width: 95%; height: auto; } /* Make height flexible */
       a { padding: 6px 12px; font-size: 0.9em; }
       .explanation-section {
         padding: 10px;
         font-size: 0.9em;
+        margin: 10px auto; /* Adjust margin for small screens */
+        max-width: 95%; /* Ensure it doesn't take full 100% to keep some padding from viewport edge */
       }
     }
     .ranking-list {
@@ -99,13 +101,26 @@
       background-color: #dee2e6;
     }
 
+    .ranking-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .ranking-column {
+      width: 45%;
+    }
+
     /* Mobile responsiveness for ranking section */
     @media (max-width: 600px) {
-      .explanation-section div[style*="display: flex"] {
+      .ranking-container {
         flex-direction: column;
       }
-      .explanation-section div[style*="width: 45%"] {
-        width: 100% !important; /* Override inline style */
+      .ranking-column {
+        width: 100%;
+        margin-bottom: 20px; /* Add some space between stacked columns */
+      }
+      .ranking-column:last-child {
+        margin-bottom: 0; /* No margin after the last column */
       }
     }
   </style>
@@ -179,12 +194,12 @@
 
   <div class="explanation-section">
     <h2>산불 발생 지역 랭킹</h2>
-    <div style="display: flex; justify-content: space-around;">
-      <div style="width: 45%;">
+    <div class="ranking-container">
+      <div class="ranking-column">
         <h3>실제 산불 발생 지역 (상위 10개)</h3>
         <ol id="actual-fire-ranking"></ol>
       </div>
-      <div style="width: 45%;">
+      <div class="ranking-column">
         <h3>LightGBM 예측 발생 지역 (상위 10개)</h3>
         <ol id="predicted-fire-ranking"></ol>
       </div>
