@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔥 성능 비교 대시보드</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     pre {
@@ -396,52 +397,34 @@
         const minDate = formatInputDate(availableDates[0]);
         const maxDate = formatInputDate(availableDates[availableDates.length - 1]);
 
-        predictionDateInput.setAttribute('min', minDate);
-        predictionDateInput.setAttribute('max', maxDate);
-
         const dateRangeP = document.createElement('p');
         dateRangeP.textContent = `예측 데이터는 ${minDate}부터 ${maxDate}까지 제공됩니다.`;
         predictionDateInput.parentNode.insertBefore(dateRangeP, predictionDateInput);
         
-        const availableDatesSet = new Set(availableDates);
+        const enabledDates = availableDates.map(dateStr => formatInputDate(dateStr));
 
-        predictionDateInput.addEventListener('input', (event) => {
-            const selectedDate = event.target.value;
-            if (!selectedDate) {
-                predictionResultDiv.innerHTML = '';
-                return;
+        flatpickr(predictionDateInput, {
+          enable: enabledDates,
+          dateFormat: "Y-m-d",
+          onChange: function(selectedDates, dateStr, instance) {
+            if (selectedDates.length === 0) {
+              predictionResultDiv.innerHTML = '';
+              return;
             }
+            
+            const formattedDate = dateStr.replace(/-/g, '');
+            const predictionsForDate = predictions.filter(p => p.date === formattedDate);
 
-            const formattedDate = selectedDate.replace(/-/g, '');
-            if (!availableDatesSet.has(formattedDate)) {
-                predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
-                // Disable the date picker
-                predictionDateInput.disabled = true;
-                return;
+            if (predictionsForDate.length > 0) {
+              const prediction = predictionsForDate[0]; // 첫 번째 예측만 사용
+              predictionResultDiv.innerHTML = `
+                <p>선택한 날짜의 예측 산불 위치:</p>
+                <p>위도: ${prediction.lat}, 경도: ${prediction.lon}</p>
+                <a href="index.html?lat=${prediction.lat}&lon=${prediction.lon}" target="_blank">지도에서 위치 보기</a>
+              `;
+            } else {
+              predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
             }
-            // Re-enable the date picker if a valid date is chosen
-            predictionDateInput.disabled = false;
-        });
-
-        predictionDateInput.addEventListener('change', async (event) => {
-          const selectedDate = event.target.value;
-          if (!selectedDate) {
-            predictionResultDiv.innerHTML = '';
-            return;
-          }
-
-          const formattedDate = selectedDate.replace(/-/g, '');
-          const predictionsForDate = predictions.filter(p => p.date === formattedDate);
-
-          if (predictionsForDate.length > 0) {
-            const prediction = predictionsForDate[0]; // 첫 번째 예측만 사용
-            predictionResultDiv.innerHTML = `
-              <p>선택한 날짜의 예측 산불 위치:</p>
-              <p>위도: ${prediction.lat}, 경도: ${prediction.lon}</p>
-              <a href="index.html?lat=${prediction.lat}&lon=${prediction.lon}" target="_blank">지도에서 위치 보기</a>
-            `;
-          } else {
-            predictionResultDiv.innerHTML = '<p>해당 날짜에 대한 예측이 없습니다.</p>';
           }
         });
 
@@ -452,6 +435,7 @@
       }
     })();
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
   </body>
