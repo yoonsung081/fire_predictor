@@ -196,20 +196,67 @@
 
   <div class="explanation-section">
     <h2>데이터 기반 산불 특성 분석</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-      <div style="width: 45%; min-width: 300px;">
-        <h3>1. 주요 산불 발생 원인</h3>
-        <canvas id="causeChart"></canvas>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+      <div style="flex: 1; min-width: 320px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <h3 style="text-align: center; margin-bottom: 20px;">1. 주요 산불 발생 원인</h3>
+        <div style="position: relative; height: 350px;">
+          <canvas id="causeChart"></canvas>
+        </div>
       </div>
-      <div style="width: 45%; min-width: 300px;">
-        <h3>2. 시간대별 산불 분포</h3>
-        <canvas id="hourlyChart"></canvas>
+      <div style="flex: 1; min-width: 320px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <h3 style="text-align: center; margin-bottom: 20px;">2. 시간대별 산불 분포</h3>
+        <div style="position: relative; height: 350px;">
+          <canvas id="hourlyChart"></canvas>
+        </div>
       </div>
     </div>
-    <div style="margin-top: 40px;">
-      <h3>3. 예측 모델 변수 중요도 (Feature Importance)</h3>
-      <p>모델이 산불 위험을 판단할 때 어떤 요소를 가장 중요하게 고려했는지 보여줍니다. 이 데이터는 예측 결과의 <b>과학적 근거</b>가 됩니다.</p>
-      <canvas id="importanceChart"></canvas>
+    <div style="margin-top: 40px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+      <h3 style="text-align: center; margin-bottom: 20px;">3. 예측 모델 변수 중요도 (Feature Importance)</h3>
+      <p style="text-align: center; color: #666;">모델이 산불 위험을 판단할 때 어떤 요소를 가장 중요하게 고려했는지 보여줍니다. 이 데이터는 예측 결과의 <b>과학적 근거</b>가 됩니다.</p>
+      <div style="position: relative; height: 400px;">
+        <canvas id="importanceChart"></canvas>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+      <h3 style="text-align: center; margin-bottom: 10px;">4. 산불 발생 골든타임 히트맵 (월별 x 시간별)</h3>
+      <p style="text-align: center; color: #666; margin-bottom: 20px;">어느 달, 몇 시에 산불이 가장 빈번하게 발생하는지 나타내는 매트릭스입니다. 색상이 <b>진할수록</b> 위험도가 높음을 의미합니다.</p>
+      <div id="heatmap-container" style="overflow-x: auto; padding-bottom: 10px;">
+        <div id="heatmap-grid" style="display: grid; grid-template-columns: 60px repeat(24, 1fr); gap: 2px; min-width: 800px;">
+          <!-- JS로 데이터 채움 -->
+        </div>
+      </div>
+      <div id="heatmap-legend" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; gap: 10px; font-size: 0.9em; color: #666;">
+        <span>낮음 (낮은 위험)</span>
+        <div style="display: flex; gap: 2px;">
+          <div style="width: 20px; height: 20px; background-color: #fef0d9;"></div>
+          <div style="width: 20px; height: 20px; background-color: #fdd49e;"></div>
+          <div style="width: 20px; height: 20px; background-color: #fdbb84;"></div>
+          <div style="width: 20px; height: 20px; background-color: #fc8d59;"></div>
+          <div style="width: 20px; height: 20px; background-color: #e34a33;"></div>
+          <div style="width: 20px; height: 20px; background-color: #b30000;"></div>
+        </div>
+        <span>높음 (매우 위험)</span>
+      </div>
+    </div>
+
+    <div class="explanation-section">
+      <h2>산불 지리적 분포 및 피해 규모 분석</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        <div style="flex: 1; min-width: 320px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <h3 style="text-align: center; margin-bottom: 20px;">5. 지역별 산불 발생 비중</h3>
+          <div style="position: relative; height: 350px;">
+            <canvas id="regionChart"></canvas>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 320px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+          <h3 style="text-align: center; margin-bottom: 20px;">6. 산불 피해 규모별 분포</h3>
+          <div style="position: relative; height: 350px;">
+            <canvas id="scaleChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; color: #666; margin-top: 20px;">지역별 특성과 과거 피해 규모를 분석하여, 고위험군 산불에 대한 선제적 대응 체계를 마련합니다.</p>
     </div>
   </div>
 
@@ -403,6 +450,10 @@
               data: Object.values(data.causes),
               backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#8BC34A', '#795548']
             }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } }
           }
         });
 
@@ -421,7 +472,10 @@
               tension: 0.4
             }]
           },
-          options: { scales: { y: { beginAtZero: true } } }
+          options: { 
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true } } 
+          }
         });
 
         // 3. 변수 중요도 수평 바 차트
@@ -439,11 +493,104 @@
           options: {
             indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: false,
             scales: { x: { beginAtZero: true } }
           }
         });
       })
       .catch(error => console.error('Error loading extra viz data:', error));
+
+    // 히트맵 시각화
+    fetch('static/heatmap_data.json')
+      .then(response => {
+        if (!response.ok) throw new Error("heatmap_data.json 파일을 찾을 수 없습니다.");
+        return response.json();
+      })
+      .then(data => {
+        const grid = document.getElementById('heatmap-grid');
+        const colors = ['#fef0d9', '#fdd49e', '#fdbb84', '#fc8d59', '#e34a33', '#b30000'];
+        
+        // 시간 헤더 추가 (빈칸 + 0~23시)
+        grid.innerHTML += '<div></div>';
+        for (let h = 0; h < 24; h++) {
+          grid.innerHTML += `<div style="text-align: center; font-size: 0.8em; font-weight: bold;">${h}시</div>`;
+        }
+        
+        // 월별 데이터 추가
+        data.matrix.forEach((monthData, mIdx) => {
+          // 월 라벨
+          grid.innerHTML += `<div style="text-align: right; padding-right: 5px; font-weight: bold; font-size: 0.8em;">${mIdx + 1}월</div>`;
+          
+          monthData.forEach(val => {
+            // 색상 단계 결정 (0 ~ max_val 기반)
+            let colorIdx = 0;
+            if (val > 0) {
+              colorIdx = Math.min(Math.floor((val / data.max_val) * colors.length), colors.length - 1);
+            }
+            const bgColor = val === 0 ? '#f8f9fa' : colors[colorIdx];
+            const textColor = colorIdx > 3 ? '#fff' : '#000';
+            
+            grid.innerHTML += `
+              <div style="
+                background-color: ${bgColor}; 
+                color: ${textColor}; 
+                height: 30px; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 0.7em; 
+                border-radius: 2px;
+                cursor: help;
+              " title="${mIdx + 1}월 ${monthData.indexOf(val)}시: ${val}건">
+                ${val > 0 ? val : ''}
+              </div>`;
+          });
+        });
+      })
+      .catch(error => console.error('Error loading heatmap data:', error));
+
+    // 지역 및 규모 분석 차트
+    fetch('static/density_scale_data.json')
+      .then(response => {
+        if (!response.ok) throw new Error("density_scale_data.json 파일을 찾을 수 없습니다.");
+        return response.json();
+      })
+      .then(data => {
+        // 5. 지역별 파이 차트 (상위 8개)
+        const sortedRegion = Object.entries(data.region).sort((a,b) => b[1] - a[1]);
+        const topRegion = sortedRegion.slice(0, 8);
+        const ctxRegion = document.getElementById('regionChart').getContext('2d');
+        new Chart(ctxRegion, {
+          type: 'pie',
+          data: {
+            labels: topRegion.map(r => r[0]),
+            datasets: [{
+              data: topRegion.map(r => r[1]),
+              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796', '#5a5c69', '#f8f9fc']
+            }]
+          },
+          options: { maintainAspectRatio: false }
+        });
+
+        // 6. 규모별 바 차트
+        const ctxScale = document.getElementById('scaleChart').getContext('2d');
+        new Chart(ctxScale, {
+          type: 'bar',
+          data: {
+            labels: Object.keys(data.scale),
+            datasets: [{
+              label: '발생 건수',
+              data: Object.values(data.scale),
+              backgroundColor: '#e74a3b'
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true, title: { display: true, text: '건수' } } }
+          }
+        });
+      })
+      .catch(error => console.error('Error loading density/scale data:', error));
 
     // 랭킹 데이터 처리
     async function getRankingData(geojsonPath, isActual) {
