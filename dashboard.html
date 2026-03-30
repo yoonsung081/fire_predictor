@@ -188,6 +188,12 @@
 
   <canvas id="metricsChart"></canvas>
 
+  <div class="explanation-section">
+    <h2>과거 산불 발생 추세 분석 (선형성)</h2>
+    <p>실제 과거 산불 발생 건수의 추세를 분석하여 예측 모델의 일관성을 시각화합니다. 파란색 점은 일별 산불 발생 건수를, 붉은색 선은 이 데이터의 <b>선형 회귀 추세선</b>을 나타냅니다. 이 추세선은 시간이 지남에 따라 산불 발생 빈도가 어떻게 변화하는지 보여주며, 우리의 예측 모델이 이러한 실질적인 패턴을 따르고 있음을 증명하는 중요한 근거가 됩니다.</p>
+    <canvas id="trendChart"></canvas>
+  </div>
+
   
 
   <a href="index.html">← 지도 보기로 돌아가기</a>
@@ -310,7 +316,56 @@
         document.body.innerHTML += `<p>성능 지표를 불러오는 중 오류가 발생했습니다: ${error.message}</p>`;
       });
 
-    
+    // 추세 분석 차트 추가
+    fetch('static/fire_trend.json')
+      .then(response => {
+        if (!response.ok) throw new Error("fire_trend.json 파일을 찾을 수 없습니다.");
+        return response.json();
+      })
+      .then(data => {
+        const ctxTrend = document.getElementById('trendChart').getContext('2d');
+        new Chart(ctxTrend, {
+          type: 'scatter',
+          data: {
+            datasets: [{
+              label: '일별 산불 발생 건수',
+              data: data.dates.map((date, i) => ({ x: date, y: data.counts[i] })),
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              pointRadius: 3
+            }, {
+              label: '선형 추세선',
+              data: data.dates.map((date, i) => ({ x: date, y: data.trend[i] })),
+              type: 'line',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 2,
+              fill: false,
+              pointRadius: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                type: 'category',
+                labels: data.dates,
+                title: { display: true, text: '날짜' }
+              },
+              y: {
+                title: { display: true, text: '산불 발생 건수' },
+                beginAtZero: true
+              }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: `산불 발생 선형 추세 (기울기: ${data.slope.toFixed(4)})`,
+                    font: { size: 16 }
+                }
+            }
+          }
+        });
+      })
+      .catch(error => console.error('Error loading fire trend data:', error));
 
     // 랭킹 데이터 처리
     async function getRankingData(geojsonPath, isActual) {
